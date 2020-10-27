@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/10/26 19:24:28 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/10/27 20:14:41 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,27 @@
 # include <mlx.h>
 
 typedef struct	s_vars {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
+	void		*mlx;
+	void		*win;
+
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+
+	float		p_x;
+	float		p_y;
+	float		p_width;
+	float		p_height;
+	int			p_turn_direction;
+	int			p_walk_direction;
+	float		p_rotation_angle;
+	float		p_walk_speed;
+	float		p_turn_speed;
 }				t_vars;
 
+t_vars			g_vars;
 # define FALSE 0
 # define TRUE 1
 

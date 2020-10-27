@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/10/26 19:24:11 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/10/27 20:35:58 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,48 +28,38 @@ const int g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 };
 
-// typedef	struct	s_player
-// {
-//     float		x;
-//     float		y;
-//     float		width;
-//     float		height;
-//     int			turnDirection; // -1 for left, +1 for right
-//     int			walkDirection; // -1 for back, +1 for front
-//     float		rotationAngle;
-//     float		walkSpeed;
-//     float		turnSpeed;
-// } 				t_player;
-
-int		window_init(t_vars *vars)
+int		init_setup(t_vars *g_vars)
 {
-	if (!(vars->mlx_ptr = mlx_init()))
-	{
-		// Handle error msg
+	g_vars->p_x = WINDOW_WIDTH / 2;
+	g_vars->p_y = WINDOW_HEIGHT / 2;
+	g_vars->p_width = 10;
+	g_vars->p_height = 10;
+	g_vars->p_turn_direction = 0;
+	g_vars->p_walk_direction = 0;
+	g_vars->p_rotation_angle = PI / 2;
+	g_vars->p_walk_speed = 100;
+	g_vars->p_turn_speed = 45 * (PI / 180);
+	if (!(g_vars->mlx = mlx_init()))
 		return (FALSE);
-	}
-	if (!(vars->win_ptr = mlx_new_window(vars->mlx_ptr, RES_X, RES_Y, "cub3D")))
-	{
-		// Handle error msg
+	if (!(g_vars->win = mlx_new_window(g_vars->mlx, RES_X, RES_Y, "cub3D")))
 		return (FALSE);
-	}
+	if (!(g_vars->img = mlx_new_image(g_vars->mlx, 1920, 1080)))
+		return (FALSE);
+	g_vars->addr = mlx_get_data_addr(g_vars->img, &g_vars->bits_per_pixel,
+									&g_vars->size_line, &g_vars->endian);
 	return (TRUE);
 }
 
-// void 	setup(t_player *player)
-// {
-// 	player->x = WINDOW_WIDTH / 2;
-//     player->y = WINDOW_HEIGHT / 2;
-//     player->width = 5;
-//     player->height = 5;
-//     player->turnDirection = 0;
-//     player->walkDirection = 0;
-//     player->rotationAngle = PI / 2;
-//     player->walkSpeed = 100;
-//     player->turnSpeed = 45 * (PI / 180);
-// }
+void	my_mlx_pixel_put(t_vars *g_vars, int x, int y, int color)
+{
+	char	*dst;
 
-void	draw_rect(t_vars *vars, int i, int j, int color)
+	dst = g_vars->addr + (y * g_vars->size_line
+						+ x * (g_vars->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+void	draw_rect(t_vars *g_vars, int i, int j, int color)
 {
 	int x;
 	int y;
@@ -80,8 +70,7 @@ void	draw_rect(t_vars *vars, int i, int j, int color)
 		y = 0;
 		while (y < TILE_SIZE)
 		{
-			mlx_pixel_put(vars->mlx_ptr, vars->win_ptr,
-							(x + i) * MINIMAP_SCALE_FACTOR,
+			my_mlx_pixel_put(g_vars, (x + i) * MINIMAP_SCALE_FACTOR,
 							(y + j) * MINIMAP_SCALE_FACTOR, color);
 			y++;
 		}
@@ -89,7 +78,7 @@ void	draw_rect(t_vars *vars, int i, int j, int color)
 	}
 }
 
-void	render_map(t_vars *vars)
+void	render_map(t_vars *g_vars)
 {
 	int	i;
 	int j;
@@ -105,28 +94,82 @@ void	render_map(t_vars *vars)
 			tile_x = j * TILE_SIZE;
 			tile_y = i * TILE_SIZE;
 			if (g_map[i][j] == 1)
-				draw_rect(vars, tile_x, tile_y, 0x00FFFFFF);
+				draw_rect(g_vars, tile_x, tile_y, 0x00FFFFFF);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	render(t_vars *vars)
+void	render_player(t_vars *g_vars)
 {
-	render_map(vars);
+	int x;
+	int y;
+
+	x = g_vars->p_x;
+	while (x < g_vars->p_x + g_vars->p_width)
+	{
+		y = g_vars->p_y;
+		while (y < g_vars->p_y + g_vars->p_height)
+		{
+			my_mlx_pixel_put(g_vars, x * MINIMAP_SCALE_FACTOR,
+							y * MINIMAP_SCALE_FACTOR, 0x0000FF00);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	render(t_vars *g_vars)
+{
+	render_map(g_vars);
+	render_player(g_vars);
+}
+
+int		key_hook_pressed(int keycode, t_vars *g_vars)
+{
+	if (keycode == 53)
+		exit(0);
+	else if (keycode == 123)
+		g_vars->p_walk_direction -= 1;
+	else if (keycode == 124)
+		g_vars->p_walk_direction += 1;
+	else if (keycode == 125)
+		g_vars->p_walk_direction -= 1;
+	else if (keycode == 126)
+		g_vars->p_walk_direction += 1;
+	return (0);
+}
+
+int		key_hook_released(int keycode, t_vars *g_vars)
+{
+	if (keycode == 123)
+		g_vars->p_walk_direction = 0;
+	else if (keycode == 124)
+		g_vars->p_walk_direction = 0;
+	else if (keycode == 125)
+		g_vars->p_walk_direction = 0;
+	else if (keycode == 126)
+		g_vars->p_walk_direction = 0;
+	return (0);
+}
+
+void	process_input(void)
+{
+	mlx_hook(g_vars.win, 2, 1L << 0, key_hook_pressed, &g_vars);
+	mlx_hook(g_vars.win, 3, 1L << 1, key_hook_released, &g_vars);
 }
 
 int		main(void)
 {
-	t_vars		vars;
-	// t_player	player;
-
-	// setup(&player);
-	if (window_init(&vars))
+	if (!(init_setup(&g_vars)))
+		exit(0);
+	else
 	{
-		render(&vars);
-		mlx_loop(vars.mlx_ptr);
+		render(&g_vars);
+		mlx_put_image_to_window(g_vars.mlx, g_vars.win, g_vars.img, 0, 0);
+		process_input();
+		mlx_loop(g_vars.mlx);
 	}
 	return (0);
 }
