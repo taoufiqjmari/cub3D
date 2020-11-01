@@ -43,7 +43,7 @@ int		init_setup(t_vars *g_vars)
 		return (FALSE);
 	if (!(g_vars->win = mlx_new_window(g_vars->mlx, RES_X, RES_Y, "cub3D")))
 		return (FALSE);
-	if (!(g_vars->img = mlx_new_image(g_vars->mlx, 1920, 1080)))
+	if (!(g_vars->img = mlx_new_image(g_vars->mlx, 1300, 900)))
 		return (FALSE);
 	g_vars->addr = mlx_get_data_addr(g_vars->img, &g_vars->bits_per_pixel,
 									&g_vars->size_line, &g_vars->endian);
@@ -101,7 +101,7 @@ void	render_map(t_vars *g_vars)
 	}
 }
 
-void	render_player(t_vars *g_vars)
+void	render_player(t_vars *g_vars, int color)
 {
 	int x;
 	int y;
@@ -113,7 +113,7 @@ void	render_player(t_vars *g_vars)
 		while (y < g_vars->p_y + g_vars->p_height)
 		{
 			my_mlx_pixel_put(g_vars, x * MINIMAP_SCALE_FACTOR,
-							y * MINIMAP_SCALE_FACTOR, 0x0000FF00);
+							y * MINIMAP_SCALE_FACTOR, color);
 			y++;
 		}
 		x++;
@@ -123,21 +123,26 @@ void	render_player(t_vars *g_vars)
 void	render(t_vars *g_vars)
 {
 	render_map(g_vars);
-	render_player(g_vars);
+	render_player(g_vars, 0x0000FF00);
 }
 
 int		key_hook_pressed(int keycode, t_vars *g_vars)
 {
+	render_player(g_vars, 0x000000);
 	if (keycode == 53)
 		exit(0);
 	else if (keycode == 123)
-		g_vars->p_walk_direction -= 1;
+		g_vars->p_x -= 10;
 	else if (keycode == 124)
-		g_vars->p_walk_direction += 1;
+		g_vars->p_x += 10;
 	else if (keycode == 125)
-		g_vars->p_walk_direction -= 1;
+		g_vars->p_y += 10;
 	else if (keycode == 126)
-		g_vars->p_walk_direction += 1;
+		g_vars->p_y -= 10;
+	render_map(g_vars);
+	render_player(g_vars, 0x0000FF00);
+	mlx_put_image_to_window(g_vars->mlx, g_vars->win, g_vars->img, 0, 0);
+
 	return (0);
 }
 

@@ -43,8 +43,8 @@ t_vars			g_vars;
 # define FALSE 0
 # define TRUE 1
 
-# define RES_X 1920
-# define RES_Y 1080
+# define RES_X 1300
+# define RES_Y 900
 
 # define PI 3.14159265
 # define TWO_PI 6.28318530
