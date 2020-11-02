@@ -50,6 +50,10 @@ int		init_setup(t_vars *g_vars)
 	return (TRUE);
 }
 
+/*
+**	rendering
+*/
+
 void	my_mlx_pixel_put(t_vars *g_vars, int x, int y, int color)
 {
 	char	*dst;
@@ -126,6 +130,10 @@ void	render(t_vars *g_vars)
 	render_player(g_vars, 0x0000FF00);
 }
 
+/*
+**	process_input
+*/
+
 int		key_hook_pressed(int keycode, t_vars *g_vars)
 {
 	render_player(g_vars, 0x000000);
@@ -146,23 +154,30 @@ int		key_hook_pressed(int keycode, t_vars *g_vars)
 	return (0);
 }
 
-int		key_hook_released(int keycode, t_vars *g_vars)
+int		red_x(void)
 {
-	if (keycode == 123)
-		g_vars->p_walk_direction = 0;
-	else if (keycode == 124)
-		g_vars->p_walk_direction = 0;
-	else if (keycode == 125)
-		g_vars->p_walk_direction = 0;
-	else if (keycode == 126)
-		g_vars->p_walk_direction = 0;
-	return (0);
-}
+	// mlx_destroy_window(g_vars->mlx, g_vars->win);
+	exit(0);
+}	
+
+// int		key_hook_released(int keycode, t_vars *g_vars)
+// {
+// 	if (keycode == 123)
+// 		g_vars->p_walk_direction = 0;
+// 	else if (keycode == 124)
+// 		g_vars->p_walk_direction = 0;
+// 	else if (keycode == 125)
+// 		g_vars->p_walk_direction = 0;
+// 	else if (keycode == 126)
+// 		g_vars->p_walk_direction = 0;
+// 	return (0);
+// }
 
 void	process_input(void)
 {
 	mlx_hook(g_vars.win, 2, 1L << 0, key_hook_pressed, &g_vars);
-	mlx_hook(g_vars.win, 3, 1L << 1, key_hook_released, &g_vars);
+	mlx_hook(g_vars.win, 17, 0L, red_x, &g_vars);
+	// mlx_hook(g_vars.win, 3, 1L << 1, key_hook_released, &g_vars);
 }
 
 int		main(void)
