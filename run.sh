@@ -1,6 +1,24 @@
-#!/bin/sh
-
-# gcc -Wall -Wextra -Werror -I /usr/local/include cub3d.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
-gcc -Wall -Wextra -Werror -g -I /usr/local/include cub3d.c -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
-
-# ./a.out
+PS3='Please enter your choice: '
+options=("clean && run" "debug" "clean")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "clean && run")
+            make fclean
+            make
+            make run
+            break
+            ;;
+        "debug")
+            make fclean
+            make debug
+            echo '\n\n===> Run Debugger (F5)\n\n'
+            break
+            ;;
+        "clean")
+            make fclean
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done

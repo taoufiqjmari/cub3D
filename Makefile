@@ -20,19 +20,26 @@ LIB = -L /usr/local/lib -lmlx
 
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = cub3D.c
+SRC = cub3d.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) -o $(NAME) && ./cub3D
+	gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) -o $(NAME)
+
+debug:
+	gcc $(FLAGS) -g $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) -o $(NAME)
 	
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)*
+	rm -rf .vscode
 
 re: fcean all
+
+run:
+	./cub3D
