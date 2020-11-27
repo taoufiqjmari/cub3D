@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/10/27 20:18:43 by tjmari           ###   ########.fr        #
+#    Updated: 2020/11/26 20:31:12 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME):
 
 debug:
 	gcc $(FLAGS) -g $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) -o $(NAME)
-	
+
 clean:
 	rm -rf $(OBJ)
 
@@ -39,7 +39,7 @@ fclean: clean
 	rm -rf $(NAME)*
 	rm -rf .vscode
 
-re: fcean all
+re: fclean all
 
 run:
 	./cub3D
