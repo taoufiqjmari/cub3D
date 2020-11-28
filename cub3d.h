@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/28 17:09:05 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/28 20:42:51 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ typedef	struct	s_init
 	float		img_x;
 	float		img_y;
 
-	int			ply_x;
-	int			ply_y;
-	int			radius;
+	float		ply_x;
+	float		ply_y;
 	int			turn_direction;
 	int			walk_direction;
-	int			rotation_angle;
+	float		rotation_angle;
 	float		move_speed;
 	float		rotation_speed;
 }				t_init;
@@ -54,8 +53,11 @@ void			setup(void);
 void			update(void);
 void			draw(void);
 void			render_map(void);
+void			render_player(void);
 void			draw_rect(int i, int j, int color);
-void			draw_circle(int i, int j, int color);
+void			draw_rect2(int i, int j, int color);
+void			draw_line(int x0, int y0, int x1, int y1);
 void			mlx_pixel_put_img(int x, int y, int color);
+int				abs (int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/28 17:21:08 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/28 20:54:48 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,14 @@ void	render_map(void)
 			if (g_map[i][j] == '1')
 				draw_rect(tile_x, tile_y, 0x00FFFFFF);
 			else if (g_map[i][j] == '2')
-			{
-				draw_rect(tile_x, tile_y, 0x00999999);
-				g_init.ply_x = tile_x + 32;
-				g_init.ply_y = tile_y + 32;
-				draw_circle(g_init.ply_x, g_init.ply_y, 0x00BF4040);
-			}
+				draw_rect(tile_x, tile_y, 0x00BF4040);
 			else if (g_map[i][j] == 'N' || g_map[i][j] == 'R'
 						|| g_map[i][j] == 'S' || g_map[i][j] == 'W')
 			{
 				draw_rect(tile_x, tile_y, 0x00999999);
-				g_init.ply_x = tile_x + 32;
-				g_init.ply_y = tile_y + 32;
-				draw_circle(g_init.ply_x, g_init.ply_y, 0x0040BF40);
+				g_init.ply_x = tile_x;
+				g_init.ply_y = tile_y;
+				render_player();
 			}
 			else if (g_map[i][j] == ' ')
 			{
@@ -85,7 +80,12 @@ void	render_map(void)
 
 void	render_player(void)
 {
-
+	draw_rect2(g_init.ply_x + g_init.tile_size / 2 - 5, g_init.ply_y + g_init.tile_size / 2 - 5, 0x0000FF);
+	draw_line(g_init.ply_x + g_init.tile_size / 2,
+				g_init.ply_y + g_init.tile_size / 2,
+				g_init.ply_x + cos(g_init.rotation_angle) * 100 + g_init.tile_size / 2,
+				g_init.ply_y + sin(g_init.rotation_angle) * 100 + g_init.tile_size / 2
+			);
 }
 
 void	update_player(void)
@@ -111,7 +111,6 @@ void	setup(void)
 	g_init.img_x = (g_init.win_width - g_init.img_width) / 2;
 	g_init.img_y = (g_init.win_height - g_init.img_height) / 2;
 
-	g_init.radius = 5;
 	g_init.turn_direction = 0;
 	g_init.walk_direction = 0;
 	g_init.rotation_angle = M_PI / 2;

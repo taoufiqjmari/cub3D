@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/28 17:09:52 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/28 20:53:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,45 @@ void	draw_rect(int i, int j, int color)
 	}
 }
 
-void	draw_circle(int i, int j, int color)
+void	draw_rect2(int i, int j, int color)
 {
-	int	angle;
-	int radius;
-	int	x;
-	int	y;
+	int x;
+	int y;
 
-	angle = 0;
-	radius = 0;
-	g_init.radius = (color == 0x0040BF40) ? 8 : 32;
-	while (radius < g_init.radius)
+	x = 0;
+	while (x < 10)
 	{
-		angle = 0;
-		while (angle < 360)
+		y = 0;
+		while (y < 10)
 		{
-			x = i + (radius * cos(angle * M_PI / 180));
-			y = j + (radius * sin(angle * M_PI / 180));
-			mlx_pixel_put_img(x, y, color);
-			angle++;
+			mlx_pixel_put_img((x + i), (y + j), color);
+			y++;
 		}
-		radius++;
+		x++;
+	}
+}
+
+int		abs(int n)
+{
+	return ((n > 0) ? n : (n * (-1)));
+}
+
+void	draw_line(int x0, int y0, int x1, int y1)
+{
+	int dx = x1 - x0;
+	int dy = y1 - y0;
+
+	int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+
+	float x_inc = dx / (float)steps;
+	float y_inc = dy / (float)steps;
+
+	float x = x0;
+	float y = y0;
+	for (int i = 0; i <= steps; i++)
+	{
+		mlx_pixel_put_img(x, y, 0x0000FF);
+		x += x_inc;
+		y += y_inc;
 	}
 }
