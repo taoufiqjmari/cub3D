@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/11/26 20:31:12 by tjmari           ###   ########.fr        #
+#    Updated: 2020/11/28 17:03:22 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB = -L /usr/local/lib -lmlx
 
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = cub3d.c
+SRC = cub3d.c draw.c
 
 OBJ = $(SRC:.c=.o)
 

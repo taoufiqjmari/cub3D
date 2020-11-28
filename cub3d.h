@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/27 18:21:32 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/28 17:09:05 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <math.h>
 # include <mlx.h>
 
-# define map_num_rows 14
-# define map_num_cols 33
+# define MAP_NUM_ROWS 14
+# define MAP_NUM_COLS 33
 
 typedef	struct	s_init
 {
@@ -38,8 +38,24 @@ typedef	struct	s_init
 	int			tile_size;
 	float		img_x;
 	float		img_y;
-	float		minimap_scale_factor;
+
+	int			ply_x;
+	int			ply_y;
+	int			radius;
+	int			turn_direction;
+	int			walk_direction;
+	int			rotation_angle;
+	float		move_speed;
+	float		rotation_speed;
 }				t_init;
 t_init			g_init;
+
+void			setup(void);
+void			update(void);
+void			draw(void);
+void			render_map(void);
+void			draw_rect(int i, int j, int color);
+void			draw_circle(int i, int j, int color);
+void			mlx_pixel_put_img(int x, int y, int color);
 
 #endif
