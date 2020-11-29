@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/29 12:14:55 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/29 20:53:58 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	render_map(void)
 				draw_rect(tile_x, tile_y, 0x00F9F9F9); //white background
 				g_init.ply_x = tile_x;
 				g_init.ply_y = tile_y;
+				g_init.orientation = g_map[i][j];
 			}
 			else if (g_map[i][j] == ' ')
 			{
@@ -78,6 +79,7 @@ void	render_player(void)
 	draw_circle(g_init.ply_x + g_init.tile_size / 2,
 				g_init.ply_y + g_init.tile_size / 2,
 				0x000000FF);
+	printf("%f\n", g_init.rotation_angle);
 	draw_line(g_init.ply_x + g_init.tile_size / 2,
 				g_init.ply_y + g_init.tile_size / 2,
 				g_init.ply_x + cos(g_init.rotation_angle) * g_init.tile_size / 2 + g_init.tile_size / 2,
@@ -87,7 +89,30 @@ void	render_player(void)
 
 void	update_player(void)
 {
+	float move_step;
 
+	g_init.rotation_angle += g_init.turn_direction * g_init.rotation_speed;
+
+	move_step = g_init.walk_direction * g_init.move_speed;
+	g_init.ply_x += cos(g_init.rotation_angle) * move_step;
+	g_init.ply_y += sin(g_init.rotation_angle) * move_step;
+
+	g_init.turn_direction = 0;
+	g_init.walk_direction = 0;
+}
+
+int		key_pressed(int keycode, t_init *g_init)
+{
+	if (keycode == 123)
+		g_init->turn_direction -= 1;
+	else if (keycode == 124)
+		g_init->turn_direction += 1;
+	else if (keycode == 125)
+		g_init->walk_direction -= 1;
+	else if (keycode == 126)
+		g_init->walk_direction += 1;
+	draw();
+	return (0);
 }
 
 void	setup(void)
@@ -117,7 +142,7 @@ void	setup(void)
 
 void	update(void)
 {
-
+	update_player();
 }
 
 void	draw(void)
@@ -126,15 +151,15 @@ void	draw(void)
 
 	render_map();
 	render_player();
+	mlx_put_image_to_window(g_init.mlx, g_init.mlx_win,
+								g_init.img, g_init.img_x, g_init.img_y);
 }
 
 int		main(void)
 {
 	setup();
-	update();
 	draw();
-	mlx_put_image_to_window(g_init.mlx, g_init.mlx_win,
-								g_init.img, g_init.img_x, g_init.img_y);
+	mlx_hook(g_init.mlx_win, 2, 1L<<0, key_pressed, &g_init);
 	mlx_loop(g_init.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/29 12:14:47 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/29 19:45:22 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef	struct	s_init
 	float		ply_x;
 	float		ply_y;
 	int			radius;
+	char		orientation;
 	int			turn_direction;
 	int			walk_direction;
 	float		rotation_angle;
