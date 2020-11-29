@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/28 20:54:48 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/29 12:14:55 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{'1', '1', '1', '1', '1', '1', '1', '1', ' ', '1', '1', '1', '1', '1', '1', '1', ' ', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', ' ', ' ', ' ', ' '}
 };
 
-void	mlx_pixel_put_img(int x, int y, int color)
-{
-	char	*dst;
-
-	dst = g_init.addr + (y * g_init.line_length +
-							x * (g_init.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 void	render_map(void)
 {
 	int i;
@@ -54,16 +45,20 @@ void	render_map(void)
 			tile_x = j * g_init.tile_size;
 			tile_y = i * g_init.tile_size;
 			if (g_map[i][j] == '1')
-				draw_rect(tile_x, tile_y, 0x00FFFFFF);
+				draw_rect(tile_x, tile_y, 0x00ADADAD); //grey borders
 			else if (g_map[i][j] == '2')
-				draw_rect(tile_x, tile_y, 0x00BF4040);
+			{
+				draw_rect(tile_x, tile_y, 0x00F9F9F9); //white background
+				draw_circle(tile_x + g_init.tile_size / 2,
+							tile_y + g_init.tile_size / 2,
+							0x00BF4040); //red sprite
+			}
 			else if (g_map[i][j] == 'N' || g_map[i][j] == 'R'
 						|| g_map[i][j] == 'S' || g_map[i][j] == 'W')
 			{
-				draw_rect(tile_x, tile_y, 0x00999999);
+				draw_rect(tile_x, tile_y, 0x00F9F9F9); //white background
 				g_init.ply_x = tile_x;
 				g_init.ply_y = tile_y;
-				render_player();
 			}
 			else if (g_map[i][j] == ' ')
 			{
@@ -71,7 +66,7 @@ void	render_map(void)
 				continue;
 			}
 			else
-				draw_rect(tile_x, tile_y, 0x00999999);
+				draw_rect(tile_x, tile_y, 0x00F9F9F9); //while board
 			j++;
 		}
 		i++;
@@ -80,11 +75,13 @@ void	render_map(void)
 
 void	render_player(void)
 {
-	draw_rect2(g_init.ply_x + g_init.tile_size / 2 - 5, g_init.ply_y + g_init.tile_size / 2 - 5, 0x0000FF);
+	draw_circle(g_init.ply_x + g_init.tile_size / 2,
+				g_init.ply_y + g_init.tile_size / 2,
+				0x000000FF);
 	draw_line(g_init.ply_x + g_init.tile_size / 2,
 				g_init.ply_y + g_init.tile_size / 2,
-				g_init.ply_x + cos(g_init.rotation_angle) * 100 + g_init.tile_size / 2,
-				g_init.ply_y + sin(g_init.rotation_angle) * 100 + g_init.tile_size / 2
+				g_init.ply_x + cos(g_init.rotation_angle) * g_init.tile_size / 2 + g_init.tile_size / 2,
+				g_init.ply_y + sin(g_init.rotation_angle) * g_init.tile_size / 2 + g_init.tile_size / 2
 			);
 }
 
@@ -99,8 +96,8 @@ void	setup(void)
 	g_init.tile_size = 64;
 	g_init.img_width = MAP_NUM_COLS * g_init.tile_size;
 	g_init.img_height = MAP_NUM_ROWS * g_init.tile_size;
-	g_init.win_width = g_init.img_width + 64;
-	g_init.win_height = g_init.img_height + 64;
+	g_init.win_width = g_init.img_width + g_init.tile_size;
+	g_init.win_height = g_init.img_height + g_init.tile_size;
 	g_init.mlx_win = mlx_new_window(g_init.mlx, g_init.win_width,
 										g_init.win_height, "cub3D");
 
@@ -128,6 +125,7 @@ void	draw(void)
 	update();
 
 	render_map();
+	render_player();
 }
 
 int		main(void)

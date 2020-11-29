@@ -6,11 +6,20 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/28 20:53:07 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/29 12:16:41 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	mlx_pixel_put_img(int x, int y, int color)
+{
+	char	*dst;
+
+	dst = g_init.addr + (y * g_init.line_length +
+							x * (g_init.bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
 
 void	draw_rect(int i, int j, int color)
 {
@@ -30,21 +39,27 @@ void	draw_rect(int i, int j, int color)
 	}
 }
 
-void	draw_rect2(int i, int j, int color)
+void	draw_circle(int i, int j, int color)
 {
-	int x;
-	int y;
+	int	angle;
+	int radius;
+	int	x;
+	int	y;
 
-	x = 0;
-	while (x < 10)
+	angle = 0;
+	radius = 0;
+	g_init.radius = (color == 0x000000FF) ? g_init.tile_size / 16 : g_init.tile_size / 4;
+	while (radius < g_init.radius)
 	{
-		y = 0;
-		while (y < 10)
+		angle = 0;
+		while (angle < 360)
 		{
-			mlx_pixel_put_img((x + i), (y + j), color);
-			y++;
+			x = i + (radius * cos(angle * M_PI / 180));
+			y = j + (radius * sin(angle * M_PI / 180));
+			mlx_pixel_put_img(x, y, color);
+			angle++;
 		}
-		x++;
+		radius++;
 	}
 }
 
