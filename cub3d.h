@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/29 19:45:22 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/30 17:50:44 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef	struct	s_init
 	float		img_x;
 	float		img_y;
 
+	_Bool		player_defined;
 	float		ply_x;
 	float		ply_y;
 	int			radius;
-	char		orientation;
 	int			turn_direction;
 	int			walk_direction;
 	float		rotation_angle;
@@ -60,6 +60,8 @@ void			draw_rect(int i, int j, int color);
 void			draw_circle(int i, int j, int color);
 void			draw_line(int x0, int y0, int x1, int y1);
 void			mlx_pixel_put_img(int x, int y, int color);
+double			deg_rad(double degrees);
+double			rad_deg(double radians);
 int				abs (int n);
 
 #endif

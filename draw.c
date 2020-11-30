@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/29 20:53:54 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/30 17:50:53 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	draw_circle(int i, int j, int color)
 		angle = 0;
 		while (angle < 360)
 		{
-			x = i + (radius * cos(angle * M_PI / 180));
-			y = j + (radius * sin(angle * M_PI / 180));
+			x = i + (radius * cos(deg_rad(angle)));
+			y = j + (radius * sin(deg_rad(angle)));
 			mlx_pixel_put_img(x, y, color);
 			angle++;
 		}

@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/11/29 12:17:13 by tjmari           ###   ########.fr        #
+#    Updated: 2020/11/30 16:27:02 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB = -L /usr/local/lib -lmlx
 
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = cub3d.c draw.c
+SRC = cub3d.c draw.c deg_rad.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -41,5 +41,5 @@ fclean: clean
 
 re: fclean all
 
-run:
+run: re
 	./cub3D

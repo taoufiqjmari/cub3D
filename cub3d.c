@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/29 20:53:58 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/11/30 17:51:30 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,24 @@ void	render_map(void)
 							tile_y + g_init.tile_size / 2,
 							0x00BF4040); //red sprite
 			}
-			else if (g_map[i][j] == 'N' || g_map[i][j] == 'R'
-						|| g_map[i][j] == 'S' || g_map[i][j] == 'W')
+			else if (g_map[i][j] == 'W' || g_map[i][j] == 'E'
+						|| g_map[i][j] == 'S' || g_map[i][j] == 'N')
 			{
 				draw_rect(tile_x, tile_y, 0x00F9F9F9); //white background
-				g_init.ply_x = tile_x;
-				g_init.ply_y = tile_y;
-				g_init.orientation = g_map[i][j];
+				if(!g_init.player_defined)
+				{
+					g_init.ply_x = tile_x;
+					g_init.ply_y = tile_y;
+					if(g_map[i][j] == 'W')
+						g_init.rotation_angle = deg_rad(180);
+					else if(g_map[i][j] == 'E')
+						g_init.rotation_angle = deg_rad(0);
+					else if(g_map[i][j] == 'S')
+						g_init.rotation_angle = deg_rad(90);
+					else if(g_map[i][j] == 'N')
+						g_init.rotation_angle = deg_rad(270);
+					g_init.player_defined = 1;
+				}
 			}
 			else if (g_map[i][j] == ' ')
 			{
@@ -79,7 +90,6 @@ void	render_player(void)
 	draw_circle(g_init.ply_x + g_init.tile_size / 2,
 				g_init.ply_y + g_init.tile_size / 2,
 				0x000000FF);
-	printf("%f\n", g_init.rotation_angle);
 	draw_line(g_init.ply_x + g_init.tile_size / 2,
 				g_init.ply_y + g_init.tile_size / 2,
 				g_init.ply_x + cos(g_init.rotation_angle) * g_init.tile_size / 2 + g_init.tile_size / 2,
@@ -107,9 +117,9 @@ int		key_pressed(int keycode, t_init *g_init)
 		g_init->turn_direction -= 1;
 	else if (keycode == 124)
 		g_init->turn_direction += 1;
-	else if (keycode == 125)
+	else if (keycode == 125 || keycode == 1)
 		g_init->walk_direction -= 1;
-	else if (keycode == 126)
+	else if (keycode == 126 || keycode == 13)
 		g_init->walk_direction += 1;
 	draw();
 	return (0);
@@ -133,11 +143,11 @@ void	setup(void)
 	g_init.img_x = (g_init.win_width - g_init.img_width) / 2;
 	g_init.img_y = (g_init.win_height - g_init.img_height) / 2;
 
+	g_init.player_defined = 0;
 	g_init.turn_direction = 0;
 	g_init.walk_direction = 0;
-	g_init.rotation_angle = M_PI / 2;
-	g_init.move_speed = 2.0;
-	g_init.rotation_speed = 3 * (M_PI / 180);
+	g_init.move_speed = 5.0;
+	g_init.rotation_speed = deg_rad(5);
 }
 
 void	update(void)
