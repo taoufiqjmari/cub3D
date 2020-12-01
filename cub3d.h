@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/11/30 17:50:44 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/01 16:49:58 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 
 # define MAP_NUM_ROWS 14
 # define MAP_NUM_COLS 33
+
+# define LEFT 0
+# define RIGHT 2
+# define DOWN 1
+# define UP 13
+# define LEFT_VIEW 123
+# define RIGHT_VIEW 124
 
 typedef	struct	s_init
 {
@@ -46,6 +53,8 @@ typedef	struct	s_init
 	int			turn_direction;
 	int			walk_direction;
 	float		rotation_angle;
+	float		side_rotation_angle;
+	_Bool		straight;
 	float		move_speed;
 	float		rotation_speed;
 }				t_init;

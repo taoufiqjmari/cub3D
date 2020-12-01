@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/01 13:28:43 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/01 17:19:45 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', '0', '1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '2', '0', '0', '0', '0', '0', '1'},
 	{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1'},
 	{'1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '0', '1', '0', '1', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '1', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '0', '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
-	{'1', '0', '0', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
+	{'1', '0', '0', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '0', '1', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '0', '1', '0', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '0', 'N', '0', '1', '1', '1', ' ', ' '},
 	{'1', '1', '1', '1', '0', '1', '1', '1', ' ', '1', '1', '1', '0', '1', '0', '1', ' ', '1', '0', '1', '1', '1', '1', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
@@ -92,7 +92,9 @@ _Bool	map_has_wall_at(float new_ply_x, float new_ply_y)
 
 	map_index_x = floor(new_ply_x / g_init.tile_size);
 	map_index_y = floor(new_ply_y / g_init.tile_size);
-	return(g_map[map_index_y][map_index_x] != '0');
+	return(g_map[map_index_y][map_index_x] == ' ' ||
+			g_map[map_index_y][map_index_x] == '1' ||
+			g_map[map_index_y][map_index_x] == '2');
 }
 
 void	render_player(void)
@@ -118,10 +120,19 @@ void	update_player(void)
 		g_init.rotation_angle = deg_rad(360);
 	else if (g_init.rotation_angle > deg_rad(360))
 		g_init.rotation_angle = deg_rad(0);
+	g_init.side_rotation_angle = g_init.rotation_angle + deg_rad(90);
 
 	move_step = g_init.walk_direction * g_init.move_speed;
-	new_ply_x = g_init.ply_x + cos(g_init.rotation_angle) * move_step;
-	new_ply_y = g_init.ply_y + sin(g_init.rotation_angle) * move_step;
+	if (g_init.straight)
+	{
+		new_ply_x = g_init.ply_x + cos(g_init.rotation_angle) * move_step;
+		new_ply_y = g_init.ply_y + sin(g_init.rotation_angle) * move_step;
+	}
+	else
+	{
+		new_ply_x = g_init.ply_x + cos(g_init.side_rotation_angle) * move_step;
+		new_ply_y = g_init.ply_y + sin(g_init.side_rotation_angle) * move_step;
+	}
 	if (!map_has_wall_at(new_ply_x, new_ply_y))
 	{
 		g_init.ply_x = new_ply_x;
@@ -134,14 +145,23 @@ void	update_player(void)
 
 int		key_pressed(int keycode, t_init *g_init)
 {
-	if (keycode == 123)
-		g_init->turn_direction -= 1;
-	else if (keycode == 124)
-		g_init->turn_direction += 1;
-	else if (keycode == 125 || keycode == 1)
-		g_init->walk_direction -= 1;
-	else if (keycode == 126 || keycode == 13)
-		g_init->walk_direction += 1;
+	g_init->straight = 1;
+	if (keycode == LEFT) {
+		g_init->walk_direction = -1;
+		g_init->straight = 0;
+	}
+	else if (keycode == RIGHT) {
+		g_init->walk_direction = +1;
+		g_init->straight = 0;
+	}
+	if (keycode == DOWN)
+		g_init->walk_direction = -1;
+	else if (keycode == UP)
+		g_init->walk_direction = +1;
+	if (keycode == LEFT_VIEW)
+		g_init->turn_direction = -1;
+	else if (keycode == RIGHT_VIEW)
+		g_init->turn_direction = +1;
 	draw();
 	return (0);
 }
