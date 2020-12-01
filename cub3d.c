@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/01 17:19:45 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/01 18:53:11 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	render_map(void)
 				draw_rect(tile_x, tile_y, 0x00F9F9F9); //white background
 				if(!g_init.player_defined)
 				{
-					g_init.ply_x = tile_x;
-					g_init.ply_y = tile_y;
+					g_init.ply_x = tile_x + g_init.tile_size / 2;
+					g_init.ply_y = tile_y + g_init.tile_size / 2;
 					if(g_map[i][j] == 'W')
 						g_init.rotation_angle = deg_rad(180);
 					else if(g_map[i][j] == 'E')
@@ -154,11 +154,11 @@ int		key_pressed(int keycode, t_init *g_init)
 		g_init->walk_direction = +1;
 		g_init->straight = 0;
 	}
-	if (keycode == DOWN)
+	else if (keycode == DOWN)
 		g_init->walk_direction = -1;
 	else if (keycode == UP)
 		g_init->walk_direction = +1;
-	if (keycode == LEFT_VIEW)
+	else if (keycode == LEFT_VIEW)
 		g_init->turn_direction = -1;
 	else if (keycode == RIGHT_VIEW)
 		g_init->turn_direction = +1;
@@ -187,8 +187,8 @@ void	setup(void)
 	g_init.player_defined = 0;
 	g_init.turn_direction = 0;
 	g_init.walk_direction = 0;
-	g_init.move_speed = 5.0;
-	g_init.rotation_speed = deg_rad(5);
+	g_init.move_speed = 3.0;
+	g_init.rotation_speed = deg_rad(3);
 }
 
 void	update(void)
