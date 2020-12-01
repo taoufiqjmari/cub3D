@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/01 16:49:58 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/01 20:01:09 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define UP 13
 # define LEFT_VIEW 123
 # define RIGHT_VIEW 124
+# define ESC 53
 
 typedef	struct	s_init
 {
@@ -65,12 +66,16 @@ void			update(void);
 void			draw(void);
 void			render_map(void);
 void			render_player(void);
+void			update_player(void);
+int				key_pressed(int keycode, t_init *g_init);
 void			draw_rect(int i, int j, int color);
 void			draw_circle(int i, int j, int color);
 void			draw_line(int x0, int y0, int x1, int y1);
+_Bool			map_has_wall_at(float new_ply_x, float new_ply_y);
 void			mlx_pixel_put_img(int x, int y, int color);
 double			deg_rad(double degrees);
 double			rad_deg(double radians);
 int				abs (int n);
+void			my_exit(int errno);
 
 #endif
