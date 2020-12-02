@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/02 11:12:06 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:52:29 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		key_pressed(int keycode, t_init *g_init)
 void	setup(void)
 {
 	if(!(g_init.mlx = mlx_init()))
-		my_exit(1);
+		my_exit(2);
 	g_init.tile_size = 64;
 	g_init.img_width = MAP_NUM_COLS * g_init.tile_size;
 	g_init.img_height = MAP_NUM_ROWS * g_init.tile_size;
@@ -133,11 +133,11 @@ void	setup(void)
 	g_init.win_height = g_init.img_height + g_init.tile_size;
 	if(!(g_init.mlx_win = mlx_new_window(g_init.mlx, g_init.win_width,
 										g_init.win_height, "cub3D")))
-		my_exit(2);
+		my_exit(3);
 
 	if(!(g_init.img = mlx_new_image(g_init.mlx,
 								g_init.img_width, g_init.img_height)))
-		my_exit(3);
+		my_exit(4);
 	g_init.addr = mlx_get_data_addr(g_init.img, &g_init.bits_per_pixel,
 										&g_init.line_length, &g_init.endian);
 	g_init.img_x = (g_init.win_width - g_init.img_width) / 2;
@@ -170,6 +170,7 @@ int		main(void)
 	setup();
 	draw();
 	mlx_hook(g_init.mlx_win, 2, 1L<<0, key_pressed, &g_init);
+	mlx_hook(g_init.mlx_win, 17, 0L, red_cross, &g_init);
 	mlx_loop(g_init.mlx);
 	return (0);
 }

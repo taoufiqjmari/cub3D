@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/02 10:46:54 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/02 12:53:13 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ double			deg_rad(double degrees);
 double			rad_deg(double radians);
 int				abs (int n);
 void			my_exit(int errno);
+int				red_cross(void);
 
 #endif
