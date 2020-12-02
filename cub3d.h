@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/01 20:01:09 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/02 10:46:54 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef	struct	s_init
 	int			turn_direction;
 	int			walk_direction;
 	float		rotation_angle;
-	float		side_rotation_angle;
 	_Bool		straight;
 	float		move_speed;
 	float		rotation_speed;
