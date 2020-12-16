@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/16 17:46:12 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/16 20:20:46 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	mlx_pixel_put_img(int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_rect(int i, int j, int color)
+void	rect(int i, int j, int color)
 {
 	int x;
 	int y;
@@ -39,7 +39,7 @@ void	draw_rect(int i, int j, int color)
 	}
 }
 
-void	draw_circle(int i, int j, int color)
+void	circle(int i, int j, int color)
 {
 	int	angle;
 	int radius;
@@ -48,14 +48,15 @@ void	draw_circle(int i, int j, int color)
 
 	angle = 0;
 	radius = 0;
-	g_init.radius = (color == 0x000000FF) ? g_init.tile_size / 16 : g_init.tile_size / 4;
+	g_init.radius = (color == 0x000000FF)
+					? g_init.tile_size / 16 : g_init.tile_size / 4;
 	while (radius < g_init.radius)
 	{
 		angle = 0;
 		while (angle < 360)
 		{
-			x = i + (radius * cos(deg_rad(angle)));
-			y = j + (radius * sin(deg_rad(angle)));
+			x = i + (radius * cos(rad(angle)));
+			y = j + (radius * sin(rad(angle)));
 			mlx_pixel_put_img(x, y, color);
 			angle++;
 		}
@@ -68,22 +69,23 @@ int		abs(int n)
 	return ((n > 0) ? n : (n * (-1)));
 }
 
-void	draw_line(int x0, int y0, int x1, int y1)
+void	line(int x0, int y0, int x1, int y1)
 {
-	int dx = x1 - x0;
-	int dy = y1 - y0;
+	struct s_line line;
 
-	int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-
-	float x_inc = dx / (float)steps;
-	float y_inc = dy / (float)steps;
-
-	float x = x0;
-	float y = y0;
-	for (int i = 0; i <= steps; i++)
+	line.dx = x1 - x0;
+	line.dy = y1 - y0;
+	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
+	line.x_inc = line.dx / (float)line.steps;
+	line.y_inc = line.dy / (float)line.steps;
+	line.x = x0;
+	line.y = y0;
+	line.i = 0;
+	while (line.i <= line.steps)
 	{
-		mlx_pixel_put_img(x, y, 0x0000FF);
-		x += x_inc;
-		y += y_inc;
+		mlx_pixel_put_img(line.x, line.y, 0x0000FF);
+		line.x += line.x_inc;
+		line.y += line.y_inc;
+		line.i++;
 	}
 }

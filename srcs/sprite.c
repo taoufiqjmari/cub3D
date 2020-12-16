@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 19:38:26 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/16 20:03:06 by tjmari           ###   ########.fr       */
+/*   Created: 2020/12/16 17:59:19 by tjmari            #+#    #+#             */
+/*   Updated: 2020/12/16 18:09:17 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-void	my_exit(int errno)
+void	sprite(int tile_x, int tile_y)
 {
-	if (errno == 0)
-		printf("ESC Clicked!\n");
-	else if (errno == 1)
-		printf("Red X Clicked!\n");
-	else if (errno == 2)
-		printf("Problem with mlx_init()\n");
-	else if (errno == 3)
-		printf("Problem with mlx_new_window()\n");
-	else if (errno == 4)
-		printf("Problem with mlx_new_image()\n");
-	exit(0);
-}
-
-int		red_cross(void)
-{
-	my_exit(1);
-	return (0);
+	rect(tile_x, tile_y, 0x00F9F9F9);
+	circle(tile_x + g_init.tile_size / 2,
+				tile_y + g_init.tile_size / 2,
+				0x00BF4040);
 }

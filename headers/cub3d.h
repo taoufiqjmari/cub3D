@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/02 12:53:13 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/16 20:38:28 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,50 @@ typedef	struct	s_init
 	float		img_y;
 
 	_Bool		player_defined;
+	char		ply_init_dir;
 	float		ply_x;
 	float		ply_y;
 	int			radius;
 	int			turn_direction;
 	int			walk_direction;
-	float		rotation_angle;
+	float		rotation_ang;
 	_Bool		straight;
 	float		move_speed;
 	float		rotation_speed;
 }				t_init;
 t_init			g_init;
 
+struct			s_line
+{
+	int			dx;
+	int			dy;
+	int			steps;
+	float		x_inc;
+	float		y_inc;
+	float		x;
+	float		y;
+	int			i;
+};
+
 void			setup(void);
 void			update(void);
-void			draw(void);
+void			render(void);
 void			render_map(void);
-void			render_player(void);
+void			map(int tile_x, int tile_y, int i, int j);
+void			define_ply(int tile_x, int tile_y);
 void			update_player(void);
+void			normalize_degree(void);
+void			render_player(void);
+void			sprite(int tile_x, int tile_y);
 int				key_pressed(int keycode, t_init *g_init);
-void			draw_rect(int i, int j, int color);
-void			draw_circle(int i, int j, int color);
-void			draw_line(int x0, int y0, int x1, int y1);
+void			rect(int i, int j, int color);
+void			circle(int i, int j, int color);
+void			line(int x0, int y0, int x1, int y1);
 _Bool			map_has_wall_at(float new_ply_x, float new_ply_y);
 void			mlx_pixel_put_img(int x, int y, int color);
-double			deg_rad(double degrees);
-double			rad_deg(double radians);
-int				abs (int n);
+double			rad(double degrees);
+double			deg(double radians);
+int				abs(int n);
 void			my_exit(int errno);
 int				red_cross(void);
 
