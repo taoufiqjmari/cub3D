@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/12/02 10:35:48 by tjmari           ###   ########.fr        #
+#    Updated: 2020/12/16 17:44:16 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB = -L /usr/local/lib -lmlx
 
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = cub3d.c draw.c player.c deg_rad.c exit.c
+SRC = ./srcs/cub3d.c ./srcs/draw.c ./srcs/player.c ./srcs/deg_rad.c ./srcs/exit.c
 
 OBJ = $(SRC:.c=.o)
 
