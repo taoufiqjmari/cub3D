@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/16 20:24:27 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/17 18:16:03 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void	define_ply(int tile_x, int tile_y)
 {
 	rect(tile_x, tile_y, 0x00F9F9F9);
-	if (!g_init.player_defined)
+	if (!g_ply.player_defined)
 	{
-		g_init.ply_x = tile_x + g_init.tile_size / 2;
-		g_init.ply_y = tile_y + g_init.tile_size / 2;
-		if (g_init.ply_init_dir == 'W')
-			g_init.rotation_ang = rad(180);
-		else if (g_init.ply_init_dir == 'E')
-			g_init.rotation_ang = rad(0);
-		else if (g_init.ply_init_dir == 'S')
-			g_init.rotation_ang = rad(90);
-		else if (g_init.ply_init_dir == 'N')
-			g_init.rotation_ang = rad(270);
-		g_init.player_defined = 1;
+		g_ply.ply_x = tile_x + TILE_SIZE / 2;
+		g_ply.ply_y = tile_y + TILE_SIZE / 2;
+		if (g_ply.ply_init_dir == 'W')
+			g_ply.rotation_ang = rad(180);
+		else if (g_ply.ply_init_dir == 'E')
+			g_ply.rotation_ang = rad(0);
+		else if (g_ply.ply_init_dir == 'S')
+			g_ply.rotation_ang = rad(90);
+		else if (g_ply.ply_init_dir == 'N')
+			g_ply.rotation_ang = rad(270);
+		g_ply.player_defined = 1;
 	}
 }
 
@@ -37,43 +37,35 @@ void	update_player(void)
 	float	new_x;
 	float	new_y;
 
-	g_init.rotation_ang += g_init.turn_direction * g_init.rotation_speed;
-	normalize_degree();
-	move_step = g_init.walk_direction * g_init.move_speed;
-	if (g_init.straight)
+	g_ply.rotation_ang += g_ply.turn_direction * g_ply.rotation_speed;
+	g_ply.rotation_ang = normalize_ang(g_ply.rotation_ang);
+	move_step = g_ply.walk_direction * g_ply.move_speed;
+	if (g_ply.straight)
 	{
-		new_x = g_init.ply_x + cos(g_init.rotation_ang) * move_step;
-		new_y = g_init.ply_y + sin(g_init.rotation_ang) * move_step;
+		new_x = g_ply.ply_x + cos(g_ply.rotation_ang) * move_step;
+		new_y = g_ply.ply_y + sin(g_ply.rotation_ang) * move_step;
 	}
 	else
 	{
-		new_x = g_init.ply_x + cos(g_init.rotation_ang + rad(90)) * move_step;
-		new_y = g_init.ply_y + sin(g_init.rotation_ang + rad(90)) * move_step;
+		new_x = g_ply.ply_x + cos(g_ply.rotation_ang + rad(90)) * move_step;
+		new_y = g_ply.ply_y + sin(g_ply.rotation_ang + rad(90)) * move_step;
 	}
 	if (!map_has_wall_at(new_x, new_y))
 	{
-		g_init.ply_x = new_x;
-		g_init.ply_y = new_y;
+		g_ply.ply_x = new_x;
+		g_ply.ply_y = new_y;
 	}
-	g_init.turn_direction = 0;
-	g_init.walk_direction = 0;
-}
-
-void	normalize_degree(void)
-{
-	if (g_init.rotation_ang < rad(0))
-		g_init.rotation_ang = rad(360);
-	else if (g_init.rotation_ang > rad(360))
-		g_init.rotation_ang = rad(0);
+	g_ply.turn_direction = 0;
+	g_ply.walk_direction = 0;
 }
 
 void	render_player(void)
 {
-	circle(g_init.ply_x,
-				g_init.ply_y,
+	circle(g_ply.ply_x,
+				g_ply.ply_y,
 				0x000000FF);
-	line(g_init.ply_x,
-				g_init.ply_y,
-				g_init.ply_x + cos(g_init.rotation_ang) * g_init.tile_size / 2,
-				g_init.ply_y + sin(g_init.rotation_ang) * g_init.tile_size / 2);
+	line(g_ply.ply_x,
+				g_ply.ply_y,
+				g_ply.ply_x + cos(g_ply.rotation_ang) * TILE_SIZE / 2,
+				g_ply.ply_y + sin(g_ply.rotation_ang) * TILE_SIZE / 2);
 }
