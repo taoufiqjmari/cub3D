@@ -6,13 +6,13 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/17 18:16:27 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/18 16:28:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-float	distanceBetweenPoints(float x1, float y1, float x2, float y2)
+float	distance_between_points(float x1, float y1, float x2, float y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
@@ -24,7 +24,7 @@ void	update_rays(void)
 
 	ray_ang = g_ply.rotation_ang - (FOV_ANG / 2);
 	strip_id = 0;
-	while(strip_id < NUM_RAYS)
+	while (strip_id < NUM_RAYS)
 	{
 		cast_ray(ray_ang, strip_id);
 		ray_ang += FOV_ANG / NUM_RAYS;

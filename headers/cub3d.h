@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/17 18:17:01 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/18 16:27:41 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ typedef	struct	s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	// int			img_width;
-	// int			img_height;
-	// int			tile_size;
 	float		img_x;
 	float		img_y;
 }				t_img;
@@ -117,7 +114,7 @@ void			render_player(void);
 void			update_rays(void);
 void			render_rays(void);
 void			cast_ray(float ray_ang, int strip_id);
-float			distanceBetweenPoints(float x1, float y1, float x2, float y2);
+float			distance_between_points(float x1, float y1, float x2, float y2);
 void			sprite(int tile_x, int tile_y);
 int				key_pressed(int keycode, t_ply *g_ply);
 void			rect(int i, int j, int color);

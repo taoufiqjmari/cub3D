@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/17 18:13:38 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/18 16:40:34 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,24 @@ _Bool	map_has_wall_at(float new_ply_x, float new_ply_y)
 {
 	int	map_index_x;
 	int	map_index_y;
+	int	angle;
+	int	x;
+	int	y;
 
-	map_index_x = floor(new_ply_x / TILE_SIZE);
-	map_index_y = floor(new_ply_y / TILE_SIZE);
-	return (g_map[map_index_y][map_index_x] == ' ' ||
+	angle = 0;
+	while (angle < 360)
+	{
+		x = new_ply_x + cos(rad(angle));
+		y = new_ply_y + sin(rad(angle));
+		map_index_x = floor(x / TILE_SIZE);
+		map_index_y = floor(y / TILE_SIZE);
+		if (g_map[map_index_y][map_index_x] == ' ' ||
 			g_map[map_index_y][map_index_x] == '1' ||
-			g_map[map_index_y][map_index_x] == '2');
+			g_map[map_index_y][map_index_x] == '2')
+			return (1);
+		angle++;
+	}
+	return (0);
 }
 
 void	cast_ray(float ray_ang, int strip_id)
@@ -119,9 +131,6 @@ void	setup(void)
 {
 	if (!(g_mlx.mlx = mlx_init()))
 		my_exit(2);
-	// g_init.tile_size = 64;
-	// g_init.img_width = MAP_NUM_COLS * g_init.tile_size;
-	// g_init.img_height = MAP_NUM_ROWS * g_init.tile_size;
 	g_mlx.win_width = IMG_WIDTH + TILE_SIZE;
 	g_mlx.win_height = IMG_HEIGHT + TILE_SIZE;
 	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,

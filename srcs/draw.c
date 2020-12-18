@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/17 18:14:29 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/18 16:28:28 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	rect(int i, int j, int color)
 		y = 0;
 		while (y < TILE_SIZE)
 		{
-			if(x == 0 || x == TILE_SIZE - 1 || y == 0 || y == TILE_SIZE - 1)
+			if (x == 0 || x == TILE_SIZE - 1 || y == 0 || y == TILE_SIZE - 1)
 				mlx_pixel_put_img((x + i), (y + j), 0x00ADADAD);
 			else
 				mlx_pixel_put_img((x + i), (y + j), color);
