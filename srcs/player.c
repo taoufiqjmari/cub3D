@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 17:23:37 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 18:32:09 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	define_ply(int tile_x, int tile_y)
 {
-	rect(tile_x, tile_y, 0x00F9F9F9);
+	rect(MINIMAP_SCALE_FACTOR * tile_x,
+			MINIMAP_SCALE_FACTOR * tile_y,
+			0x00F9F9F9);
 	if (!g_ply.player_defined)
 	{
 		g_ply.ply_x = tile_x + TILE_SIZE / 2;

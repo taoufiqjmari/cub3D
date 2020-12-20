@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 17:17:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 18:31:56 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 void	map(int tile_x, int tile_y, int i, int j)
 {
 	if (g_map[i][j] == '1')
-		rect(tile_x, tile_y, 0x00ADADAD);
+		rect(MINIMAP_SCALE_FACTOR * tile_x,
+				MINIMAP_SCALE_FACTOR * tile_y,
+				0x00ADADAD);
 	else if (g_map[i][j] == '2')
-		sprite(tile_x, tile_y);
+		sprite(MINIMAP_SCALE_FACTOR * tile_x,
+				MINIMAP_SCALE_FACTOR * tile_y);
 	else if (g_map[i][j] == 'W' || g_map[i][j] == 'E'
 				|| g_map[i][j] == 'S' || g_map[i][j] == 'N')
 	{
@@ -44,7 +47,9 @@ void	map(int tile_x, int tile_y, int i, int j)
 	else if (g_map[i][j] == ' ')
 		return ;
 	else
-		rect(tile_x, tile_y, 0x00F9F9F9);
+		rect(MINIMAP_SCALE_FACTOR * tile_x,
+				MINIMAP_SCALE_FACTOR * tile_y,
+				0x00F9F9F9);
 }
 
 void	render_map(void)

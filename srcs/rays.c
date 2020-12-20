@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 16:17:27 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 18:48:06 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ void	render_rays(void)
 	i = 0;
 	while (i < NUM_RAYS)
 	{
-		line(g_rays[i].wall_hit_x, g_rays[i].wall_hit_y, 0x000000FF);
+		line(MINIMAP_SCALE_FACTOR * g_rays[i].wall_hit_x,
+				MINIMAP_SCALE_FACTOR * g_rays[i].wall_hit_y,
+				0x000000FF);
 		i++;
 	}
 }

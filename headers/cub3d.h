@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 17:18:12 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 19:11:53 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define INT_MAX 2147483647
 # define FLT_MAX 340282346638528859811704183484516925440.000000
 
+# define MINIMAP_SCALE_FACTOR 0.2
 # define MAP_NUM_ROWS 14
 # define MAP_NUM_COLS 33
 # define TILE_SIZE 64
@@ -30,7 +31,8 @@
 # define IMG_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 
 # define FOV_ANG (60 * (M_PI / 180))
-# define NUM_RAYS IMG_WIDTH
+# define WALL_STRIP_WIDTH 1
+# define NUM_RAYS (IMG_WIDTH / WALL_STRIP_WIDTH)
 
 # define CLICK_LEFT 0
 # define CLICK_RIGHT 2

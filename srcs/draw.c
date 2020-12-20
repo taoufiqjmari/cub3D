@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 17:25:02 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 19:25:20 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	rect(int i, int j, int color)
 	int y;
 
 	x = 0;
-	while (x < TILE_SIZE)
+	while (x < MINIMAP_SCALE_FACTOR * TILE_SIZE)
 	{
 		y = 0;
-		while (y < TILE_SIZE)
+		while (y < MINIMAP_SCALE_FACTOR * TILE_SIZE)
 		{
 			if (x == 0 || x == TILE_SIZE - 1 || y == 0 || y == TILE_SIZE - 1)
 				mlx_pixel_put_img((x + i), (y + j), 0x00000000);
@@ -78,13 +78,13 @@ void	line(int x, int y, int color)
 {
 	t_line	line;
 
-	line.dx = x - (int)g_ply.ply_x;
-	line.dy = y - (int)g_ply.ply_y;
+	line.dx = x - (int)(MINIMAP_SCALE_FACTOR * g_ply.ply_x);
+	line.dy = y - (int)(MINIMAP_SCALE_FACTOR * g_ply.ply_y);
 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
 	line.x_inc = line.dx / (float)line.steps;
 	line.y_inc = line.dy / (float)line.steps;
-	line.x = (int)g_ply.ply_x;
-	line.y = (int)g_ply.ply_y;
+	line.x = (int)(MINIMAP_SCALE_FACTOR * g_ply.ply_x);
+	line.y = (int)(MINIMAP_SCALE_FACTOR * g_ply.ply_y);
 	line.i = 0;
 	while (line.i <= line.steps)
 	{
