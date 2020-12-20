@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/19 20:52:02 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 17:17:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{'1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '0', '1', '0', '1', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '1', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '0', '1', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
-	{'1', '0', '0', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
+	{'1', '0', '0', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '0', '1', '0', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
 	{'1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '0', '1', '0', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '0', 'N', '0', '1', '1', '1', ' ', ' '},
 	{'1', '1', '1', '1', '0', '1', '1', '1', ' ', '1', '1', '1', '0', '1', '0', '1', ' ', '1', '0', '1', '1', '1', '1', '0', '1', '0', '0', '0', '1', ' ', ' ', ' ', ' '},
@@ -80,8 +80,8 @@ _Bool	map_has_wall_at(float new_x, float new_y)
 	angle = 0;
 	while (angle < 360)
 	{
-		x = new_x + cos(rad(angle));
-		y = new_y + sin(rad(angle));
+		x = new_x + cos(rad(angle)) * 5;
+		y = new_y + sin(rad(angle)) * 5;
 		map_index_x = x / TILE_SIZE;
 		map_index_y = y / TILE_SIZE;
 		if (g_map[map_index_y][map_index_x] == ' ' ||
@@ -97,6 +97,18 @@ _Bool	map_has_wall_at(float new_x, float new_y)
 //						RAYS_CODE_START						////
 ////////////////////////////////////////////////////////////////
 
+_Bool	rays_map_has_wall_at(float new_x, float new_y)
+{
+	int	map_index_x;
+	int	map_index_y;
+
+	map_index_x = new_x / TILE_SIZE;
+	map_index_y = new_y / TILE_SIZE;
+	return (g_map[map_index_y][map_index_x] == ' ' ||
+			g_map[map_index_y][map_index_x] == '1' ||
+			g_map[map_index_y][map_index_x] == '2');
+}
+
 void	cast_ray(float ray_ang, int strip_id)
 {
 	ray_ang = normalize_ang(ray_ang);
@@ -106,8 +118,10 @@ void	cast_ray(float ray_ang, int strip_id)
 	int		is_ray_facing_right = ray_ang > rad(270) || ray_ang < rad(90);
 	int		is_ray_facing_left = !is_ray_facing_right;
 
-	float	xintercept, yintercept;
-	float	xstep, ystep;
+	float	xintercept;
+	float	yintercept;
+	float	xstep;
+	float	ystep;
 
 	/*
 	**	HORIZONTAL RAY_GRID INTERSECTION
@@ -141,7 +155,7 @@ void	cast_ray(float ray_ang, int strip_id)
 		float x_to_check = next_horz_touch_x;
 		float y_to_check = next_horz_touch_y + (is_ray_facing_up ? -1 : 0);
 
-		if(map_has_wall_at(x_to_check, y_to_check))
+		if (rays_map_has_wall_at(x_to_check, y_to_check))
 		{
 			horz_wall_hit_x = next_horz_touch_x;
 			horz_wall_hit_y = next_horz_touch_y;
@@ -188,7 +202,7 @@ void	cast_ray(float ray_ang, int strip_id)
 		float x_to_check = next_vert_touch_x + (is_ray_facing_left ? -1 : 0);
 		float y_to_check = next_vert_touch_y;
 
-		if(map_has_wall_at(x_to_check, y_to_check))
+		if (rays_map_has_wall_at(x_to_check, y_to_check))
 		{
 			vert_wall_hit_x = next_vert_touch_x;
 			vert_wall_hit_y = next_vert_touch_y;
@@ -206,12 +220,12 @@ void	cast_ray(float ray_ang, int strip_id)
 	// Calculate both horizontal and vertical hit distances and choose the smallest one
 	float	horz_hit_distance = found_horz_wall_hit
 		? distance_between_points(g_ply.ply_x, g_ply.ply_y, horz_wall_hit_x, horz_wall_hit_y)
-		: INT_MAX;
+		: FLT_MAX;
 	float	vert_hit_distance = found_vert_wall_hit
 		? distance_between_points(g_ply.ply_x, g_ply.ply_y, vert_wall_hit_x, vert_wall_hit_y)
-		: INT_MAX;
+		: FLT_MAX;
 
-	if(vert_hit_distance < horz_hit_distance)
+	if (vert_hit_distance < horz_hit_distance)
 	{
 		g_rays[strip_id].distance = vert_hit_distance;
 		g_rays[strip_id].wall_hit_x = vert_wall_hit_x;
@@ -241,25 +255,25 @@ void	cast_ray(float ray_ang, int strip_id)
 int		key_pressed(int keycode, t_ply *g_ply)
 {
 	g_ply->straight = 1;
-	if (keycode == LEFT)
+	if (keycode == CLICK_LEFT)
 	{
 		g_ply->walk_direction = -1;
 		g_ply->straight = 0;
 	}
-	else if (keycode == RIGHT)
+	else if (keycode == CLICK_RIGHT)
 	{
 		g_ply->walk_direction = +1;
 		g_ply->straight = 0;
 	}
-	else if (keycode == DOWN || keycode == 125)
+	else if (keycode == CLICK_DOWN)
 		g_ply->walk_direction = -1;
-	else if (keycode == UP || keycode == 126)
+	else if (keycode == CLICK_UP)
 		g_ply->walk_direction = +1;
-	else if (keycode == LEFT_VIEW)
+	else if (keycode == CLICK_LEFT_VIEW)
 		g_ply->turn_direction = -1;
-	else if (keycode == RIGHT_VIEW)
+	else if (keycode == CLICK_RIGHT_VIEW)
 		g_ply->turn_direction = +1;
-	else if (keycode == ESC)
+	else if (keycode == CLICK_ESC)
 		my_exit(0);
 	render();
 	return (0);
@@ -272,10 +286,10 @@ void	setup(void)
 	g_mlx.win_width = IMG_WIDTH + TILE_SIZE;
 	g_mlx.win_height = IMG_HEIGHT + TILE_SIZE;
 	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
-										g_mlx.win_height, "cub3D")))
+											g_mlx.win_height, "cub3D")))
 		my_exit(3);
 	if (!(g_img.img = mlx_new_image(g_mlx.mlx,
-								IMG_WIDTH, IMG_HEIGHT)))
+										IMG_WIDTH, IMG_HEIGHT)))
 		my_exit(4);
 	g_img.addr = mlx_get_data_addr(g_img.img, &g_img.bits_per_pixel,
 										&g_img.line_length, &g_img.endian);
@@ -298,7 +312,7 @@ void	render(void)
 {
 	update();
 	render_map();
-	render_player();
+	// render_player();
 	render_rays();
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win,
 								g_img.img, g_img.img_x, g_img.img_y);

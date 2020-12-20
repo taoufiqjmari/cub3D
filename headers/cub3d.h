@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/19 19:33:32 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 17:18:12 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@
 # define IMG_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 
 # define FOV_ANG (60 * (M_PI / 180))
-# define WALL_STRIP_WIDTH 1
-# define NUM_RAYS (IMG_WIDTH / WALL_STRIP_WIDTH)
+# define NUM_RAYS IMG_WIDTH
 
-# define LEFT 0
-# define RIGHT 2
-# define DOWN 1
-# define UP 13
-# define LEFT_VIEW 123
-# define RIGHT_VIEW 124
-# define ESC 53
+# define CLICK_LEFT 0
+# define CLICK_RIGHT 2
+# define CLICK_DOWN 1
+# define CLICK_UP 13
+# define CLICK_LEFT_VIEW 123
+# define CLICK_RIGHT_VIEW 124
+# define CLICK_ESC 53
 
 typedef	struct	s_mlx
 {
@@ -112,17 +111,18 @@ void			render_map(void);
 void			map(int tile_x, int tile_y, int i, int j);
 void			define_ply(int tile_x, int tile_y);
 void			update_player(void);
-void			render_player(void);
+_Bool			map_has_wall_at(float new_ply_x, float new_ply_y);
+// void			render_player(void);
 void			update_rays(void);
-void			render_rays(void);
 void			cast_ray(float ray_ang, int strip_id);
+_Bool			rays_map_has_wall_at(float new_x, float new_y);
 float			distance_between_points(float x1, float y1, float x2, float y2);
+void			render_rays(void);
 void			sprite(int tile_x, int tile_y);
 int				key_pressed(int keycode, t_ply *g_ply);
 void			rect(int i, int j, int color);
-void			circle(int i, int j, int color);
-void			line(int x0, int y0, int x1, int y1);
-_Bool			map_has_wall_at(float new_ply_x, float new_ply_y);
+// void			circle(int i, int j, int color);
+void			line(int x1, int y1, int color);
 void			mlx_pixel_put_img(int x, int y, int color);
 float			normalize_ang(float ang);
 double			rad(double degrees);

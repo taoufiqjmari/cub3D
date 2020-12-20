@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/17 18:16:03 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/20 17:23:37 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,12 @@ void	update_player(void)
 	g_ply.walk_direction = 0;
 }
 
-void	render_player(void)
-{
-	circle(g_ply.ply_x,
-				g_ply.ply_y,
-				0x000000FF);
-	line(g_ply.ply_x,
-				g_ply.ply_y,
-				g_ply.ply_x + cos(g_ply.rotation_ang) * TILE_SIZE / 2,
-				g_ply.ply_y + sin(g_ply.rotation_ang) * TILE_SIZE / 2);
-}
+/*
+** void	render_player(void)
+** {
+** 	circle(g_ply.ply_x, g_ply.ply_y, 0x00000000);
+** 	line(g_ply.ply_x + cos(g_ply.rotation_ang) * TILE_SIZE / 2,
+** 			g_ply.ply_y + sin(g_ply.rotation_ang) * TILE_SIZE / 2,
+** 			0x00FF0000);
+** }
+*/
