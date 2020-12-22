@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 19:11:53 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/22 18:01:33 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define CLICK_LEFT_VIEW 123
 # define CLICK_RIGHT_VIEW 124
 # define CLICK_ESC 53
+
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
 typedef	struct	s_mlx
 {
@@ -121,6 +124,7 @@ _Bool			rays_map_has_wall_at(float new_x, float new_y);
 float			distance_between_points(float x1, float y1, float x2, float y2);
 void			render_rays(void);
 void			sprite(int tile_x, int tile_y);
+void			render_3d(void);
 int				key_pressed(int keycode, t_ply *g_ply);
 void			rect(int i, int j, int color);
 // void			circle(int i, int j, int color);

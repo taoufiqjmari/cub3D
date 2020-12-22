@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 18:31:56 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/22 16:05:56 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,6 +316,7 @@ void	update(void)
 void	render(void)
 {
 	update();
+	render_3d();
 	render_map();
 	// render_player();
 	render_rays();
