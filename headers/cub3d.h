@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 16:13:54 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/23 18:02:03 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ typedef	struct	s_texture
 	int			width;
 	int			height;
 	int			color;
-	int			texel[4096];
+	int			*texel;
+	int			bpp;
+	int			line_length;
+	int			endian;
 }				t_texture;
 t_texture		g_texture;
 
