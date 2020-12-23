@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 15:48:01 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/23 18:24:47 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,30 @@ void	rect(int i, int j, int color)
 	}
 }
 
-/*
-** void	circle(int i, int j, int color)
-** {
-** 	int	angle;
-** 	int radius;
-** 	int	x;
-** 	int	y;
+void	circle(int i, int j, int color)
+{
+	int	angle;
+	int radius;
+	int	x;
+	int	y;
 
-** 	angle = 0;
-** 	radius = 0;
-** 	g_ply.radius = (color == 0x00000000)
-** 					? TILE_SIZE / 16 : TILE_SIZE / 4;
-** 	while (radius < g_ply.radius)
-** 	{
-** 		angle = 0;
-** 		while (angle < 360)
-** 		{
-** 			x = i + (radius * cos(rad(angle)));
-** 			y = j + (radius * sin(rad(angle)));
-** 			mlx_pixel_put_img(x, y, color);
-** 			angle++;
-** 		}
-** 		radius++;
-** 	}
-** }
-*/
+	angle = 0;
+	radius = 0;
+	g_ply.radius = (color == 0x00000000)
+					? TILE_SIZE / 16 : TILE_SIZE / 4;
+	while (radius < g_ply.radius)
+	{
+		angle = 0;
+		while (angle < 360)
+		{
+			x = i + (radius * cos(rad(angle)));
+			y = j + (radius * sin(rad(angle)));
+			mlx_pixel_put_img(x, y, color);
+			angle++;
+		}
+		radius++;
+	}
+}
 
 int		abs(int n)
 {

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 18:14:49 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/23 18:27:19 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,8 +323,8 @@ void	render(void)
 	update();
 	render_3d();
 	render_map();
-	// render_player();
 	render_rays();
+	render_player();
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 18:02:03 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/23 18:22:53 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void			map(int tile_x, int tile_y, int i, int j);
 void			define_ply(int tile_x, int tile_y);
 void			update_player(void);
 _Bool			map_has_wall_at(float new_ply_x, float new_ply_y);
-// void			render_player(void);
+void			render_player(void);
 void			update_rays(void);
 void			cast_ray(float ray_ang, int strip_id);
 _Bool			rays_map_has_wall_at(float new_x, float new_y);
@@ -128,7 +128,7 @@ void			sprite(int tile_x, int tile_y);
 void			render_3d(void);
 int				key_pressed(int keycode, t_ply *g_ply);
 void			rect(int i, int j, int color);
-// void			circle(int i, int j, int color);
+void			circle(int i, int j, int color);
 void			line(int x1, int y1, int color);
 void			mlx_pixel_put_img(int x, int y, int color);
 float			normalize_ang(float ang);
