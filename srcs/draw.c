@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 19:25:20 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/23 15:48:01 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	mlx_pixel_put_img(int x, int y, int color)
 {
 	char	*dst;
 
-	dst = g_img.addr + (y * g_img.line_length +
-							x * (g_img.bits_per_pixel / 8));
+	dst = g_mlx.addr + (y * g_mlx.line_length +
+							x * (g_mlx.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/22 20:11:57 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/23 16:07:58 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	cast_ray(float ray_ang, int strip_id)
 	float next_horz_touch_y = yintercept;
 
 	// Increment xstep and ystep until we find a wall
-	while (next_horz_touch_x >= 0 && next_horz_touch_x <= IMG_WIDTH && next_horz_touch_y >= 0 && next_horz_touch_y <= IMG_HEIGHT)
+	while (next_horz_touch_x >= 0 && next_horz_touch_x <= WIN_WIDTH && next_horz_touch_y >= 0 && next_horz_touch_y <= WIN_HEIGHT)
 	{
 		float x_to_check = next_horz_touch_x;
 		float y_to_check = next_horz_touch_y + (is_ray_facing_up ? -1 : 0);
@@ -202,7 +202,7 @@ void	cast_ray(float ray_ang, int strip_id)
 	float next_vert_touch_y = yintercept;
 
 	// Increment xstep and ystep until we find a wall
-	while (next_vert_touch_x >= 0 && next_vert_touch_x <= IMG_WIDTH && next_vert_touch_y >= 0 && next_vert_touch_y <= IMG_HEIGHT)
+	while (next_vert_touch_x >= 0 && next_vert_touch_x <= WIN_WIDTH && next_vert_touch_y >= 0 && next_vert_touch_y <= WIN_HEIGHT)
 	{
 		float x_to_check = next_vert_touch_x + (is_ray_facing_left ? -1 : 0);
 		float y_to_check = next_vert_touch_y;
@@ -288,18 +288,14 @@ void	setup(void)
 {
 	if (!(g_mlx.mlx = mlx_init()))
 		my_exit(2);
-	g_mlx.win_width = IMG_WIDTH + TILE_SIZE;
-	g_mlx.win_height = IMG_HEIGHT + TILE_SIZE;
-	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
-											g_mlx.win_height, "cub3D")))
+	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, WIN_WIDTH,
+											WIN_HEIGHT, "cub3D")))
 		my_exit(3);
-	if (!(g_img.img = mlx_new_image(g_mlx.mlx,
-										IMG_WIDTH, IMG_HEIGHT)))
+	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
+										WIN_WIDTH, WIN_HEIGHT)))
 		my_exit(4);
-	g_img.addr = mlx_get_data_addr(g_img.img, &g_img.bits_per_pixel,
-										&g_img.line_length, &g_img.endian);
-	g_img.img_x = (g_mlx.win_width - IMG_WIDTH) / 2;
-	g_img.img_y = (g_mlx.win_height - IMG_HEIGHT) / 2;
+	g_mlx.addr = mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
+										&g_mlx.line_length, &g_mlx.endian);
 	g_ply.player_defined = 0;
 	g_ply.turn_direction = 0;
 	g_ply.walk_direction = 0;
@@ -320,8 +316,7 @@ void	render(void)
 	render_map();
 	// render_player();
 	render_rays();
-	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win,
-								g_img.img, g_img.img_x, g_img.img_y);
+	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }
 
 int		main(void)
