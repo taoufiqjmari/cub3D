@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/24 10:45:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/24 17:03:12 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 # define MAP_NUM_ROWS 14
 # define MAP_NUM_COLS 33
 # define TILE_SIZE 64
-# define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
-# define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+// # define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
+// # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 # define FOV_ANG (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
