@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 18:27:19 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/24 09:13:54 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,15 +301,6 @@ void	setup(void)
 	g_ply.walk_direction = 0;
 	g_ply.move_speed = 10.0;
 	g_ply.rotation_speed = rad(5);
-
-	g_texture.file = "./textures/wall_3.xpm";
-	if(!(g_texture.txt = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file,
-		&g_texture.width, &g_texture.height)))
-		printf("mlx_xpm_file_to_image() failed\n");
-
-	g_texture.texel = (int *)mlx_get_data_addr(g_texture.txt,
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-
 }
 
 void	update(void)

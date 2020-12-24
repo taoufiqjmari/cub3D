@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 18:22:53 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/24 10:45:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ typedef	struct	s_line
 
 typedef	struct	s_texture
 {
-	void		*txt;
-	char		*file;
-	int			width;
-	int			height;
+	void		*txt[5];
+	char		*file[5];
+	int			width[5];
+	int			height[5];
 	int			color;
-	int			*texel;
+	int			*texel[5];
 	int			bpp;
 	int			line_length;
 	int			endian;
