@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 18:27:22 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/25 09:53:56 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,30 @@ void	define_ply(int tile_x, int tile_y)
 			g_ply.rotation_ang = rad(270);
 		g_ply.player_defined = 1;
 	}
+}
+
+_Bool	map_has_wall_at(float new_x, float new_y)
+{
+	int	map_index_x;
+	int	map_index_y;
+	int	angle;
+	int	x;
+	int	y;
+
+	angle = 0;
+	while (angle < 360)
+	{
+		x = new_x + cos(rad(angle)) * 5;
+		y = new_y + sin(rad(angle)) * 5;
+		map_index_x = x / TILE_SIZE;
+		map_index_y = y / TILE_SIZE;
+		if (g_map[map_index_y][map_index_x] == ' ' ||
+			g_map[map_index_y][map_index_x] == '1' ||
+			g_map[map_index_y][map_index_x] == '2')
+			return (1);
+		angle += 90;
+	}
+	return (0);
 }
 
 void	update_player(void)

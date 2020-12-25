@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/12/22 14:40:31 by tjmari           ###   ########.fr        #
+#    Updated: 2020/12/25 09:58:37 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ LIB = -L /usr/local/lib -lmlx
 
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = ./srcs/cub3d.c ./srcs/player.c ./srcs/rays.c ./srcs/sprite.c \
-./srcs/draw.c ./srcs/angles.c ./srcs/three_d.c ./srcs/exit.c
+SRC = ./srcs/cub3d.c ./srcs/map.c ./srcs/player.c ./srcs/rays.c \
+./srcs/sprite.c ./srcs/draw.c ./srcs/angles.c ./srcs/three_d.c ./srcs/exit.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -44,3 +44,4 @@ re: fclean all
 
 run: re
 	./cub3D
+	rm $(NAME)

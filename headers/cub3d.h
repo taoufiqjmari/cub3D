@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/24 17:03:12 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/25 09:54:17 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define CLICK_LEFT_VIEW 123
 # define CLICK_RIGHT_VIEW 124
 # define CLICK_ESC 53
+
+char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS];
 
 typedef	struct	s_mlx
 {

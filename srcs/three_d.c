@@ -6,11 +6,21 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 14:37:50 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/24 10:58:25 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/25 09:59:29 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
+
+void	change_color_intensity(int *color, float factor)
+{
+	int a = (*color & 0xFF000000);
+	int r = (*color & 0x00FF0000) * factor;
+	int g = (*color & 0x0000FF00) * factor;
+	int b = (*color & 0x000000FF) * factor;
+
+	*color = a | (r & 0x00FF0000) | (g & 0x0000FF00) | (b & 0x000000FF);
+}
 
 void	ceiling(int i, int wall_top_pixel)
 {
@@ -54,6 +64,8 @@ void	grounding(int i, int wall_t_p, int wall_b_p, int wall_strip_h)
 							((float)g_texture.height[index] / wall_strip_h);
 		texel_color = g_texture.texel[index][(g_texture.height[index] * texture_offset_y)
 						+ texture_offset_x];
+		if (g_rays[i].was_hit_ver)
+			change_color_intensity(&texel_color, 1.0);
 		mlx_pixel_put_img(i, y, texel_color);
 		y++;
 	}
@@ -80,10 +92,6 @@ void	render_3d(void)
 	int		wall_top_pixel;
 	int		wall_bottom_pixel;
 
-////////////////////////////////////////////////////////////////
-//						TEXTURES							////
-////////////////////////////////////////////////////////////////
-
 	g_texture.file[0] = "./textures/bluestone.xpm";
 	g_texture.file[1] = "./textures/wall_4.xpm";
 	g_texture.file[2] = "./textures/wood.xpm";
@@ -109,10 +117,6 @@ void	render_3d(void)
 			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
 	g_texture.texel[3] = (int *)mlx_get_data_addr(g_texture.txt[3],
 			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-
-////////////////////////////////////////////////////////////////
-//						TEXTURES							////
-////////////////////////////////////////////////////////////////
 
 	i = 0;
 	while (i < NUM_RAYS)
