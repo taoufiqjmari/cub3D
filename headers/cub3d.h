@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/25 09:54:17 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/25 12:38:38 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@
 
 # define MINIMAP_SCALE_FACTOR 0.2
 # define MAP_NUM_ROWS 14
-# define MAP_NUM_COLS 33
+# define MAP_NUM_COLS 14
 # define TILE_SIZE 64
-// # define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
-// # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
@@ -115,7 +113,7 @@ typedef	struct	s_texture
 t_texture		g_texture;
 
 void			setup(void);
-void			update(void);
+void			textures(void);
 void			render(void);
 void			render_map(void);
 void			map(int tile_x, int tile_y, int i, int j);
@@ -130,6 +128,10 @@ float			distance_between_points(float x1, float y1, float x2, float y2);
 void			render_rays(void);
 void			sprite(int tile_x, int tile_y);
 void			render_3d(void);
+void			ceiling(int i, int wall_top_pixel);
+void			grounding(int i, int wall_t_p, int wall_b_p, int wall_strip_h);
+void			flooring(int i, int wall_bottom_pixel);
+void			what_index(int i, int *index);
 int				key_pressed(int keycode, t_ply *g_ply);
 void			rect(int i, int j, int color);
 void			circle(int i, int j, int color);

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/25 09:53:56 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/25 10:14:36 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ void	render_player(void)
 	circle(MINIMAP_SCALE_FACTOR * g_ply.ply_x,
 			MINIMAP_SCALE_FACTOR * g_ply.ply_y,
 			0x00000000);
-	line(MINIMAP_SCALE_FACTOR * g_ply.ply_x + cos(g_ply.rotation_ang) * TILE_SIZE / 2,
-			MINIMAP_SCALE_FACTOR * g_ply.ply_y + sin(g_ply.rotation_ang) * TILE_SIZE / 2,
+	line(MINIMAP_SCALE_FACTOR * g_ply.ply_x + cos(g_ply.rotation_ang)
+			* TILE_SIZE / 2,
+			MINIMAP_SCALE_FACTOR * g_ply.ply_y + sin(g_ply.rotation_ang)
+			* TILE_SIZE / 2,
 			0x00000000);
 }
