@@ -12,6 +12,8 @@
 
 NAME = cub3D
 
+LIBFT = libft.a
+
 FLAGS = -Wall -Wextra -Werror
 
 SEARCH_PATH = -I /usr/local/include
@@ -27,21 +29,27 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	@gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) -o $(NAME)
+$(NAME): libft_lib
+	@gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) $(LIBFT) -o $(NAME)
+	@echo "\033[1;32mCUB3D: ./$(NAME) made\n-------------------"
 
-debug:
-	@gcc $(FLAGS) -g $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) -o $(NAME)
+libft_lib:
+	@make -C ./libft
+	@mv ./libft/$(LIBFT) ./
+	@echo "\033[1;32mCUB3D: ./$(LIBFT) moved to $(NAME)\n-------------------------------"
 
 clean:
-	@rm -rf $(OBJ)
+	@make clean -C ./libft
 
 fclean: clean
-	@rm -rf $(NAME)*
-	@rm -rf .vscode
+	@rm -f $(LIBFT)
+	@echo "\033[1;31mCUB3D: ./$(LIBFT) deleted\n------------------------"
+	@rm -f $(NAME)
+	@echo "\033[1;31mCUB3D: ./$(NAME) deleted\n----------------------"
 
 re: fclean all
 
 run: re
-	./cub3D
-	rm $(NAME)
+	@./cub3D
+	@rm $(NAME)
+	@echo "\033[1;32m----------------------\n\033[1;31mCUB3D: ./$(NAME) deleted\n----------------------"

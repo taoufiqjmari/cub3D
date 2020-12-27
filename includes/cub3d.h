@@ -17,10 +17,10 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
+# include "../libft/libft.h"
 
 # define FALSE 0
 # define TRUE 1
-# define FLT_MAX 340282346638528859811704183484516925440.000000
 
 # define MINIMAP_SCALE_FACTOR 0.2
 # define MAP_NUM_ROWS 14

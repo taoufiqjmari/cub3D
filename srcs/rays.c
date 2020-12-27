@@ -140,10 +140,10 @@ void	cast_ray(float ray_ang, int strip_id)
 	// Calculate both horizontal and vertical hit distances and choose the smallest one
 	float	horz_hit_distance = found_horz_wall_hit
 		? distance_between_points(g_ply.ply_x, g_ply.ply_y, horz_wall_hit_x, horz_wall_hit_y)
-		: FLT_MAX;
+		: MAXFLOAT;
 	float	vert_hit_distance = found_vert_wall_hit
 		? distance_between_points(g_ply.ply_x, g_ply.ply_y, vert_wall_hit_x, vert_wall_hit_y)
-		: FLT_MAX;
+		: MAXFLOAT;
 
 	if (vert_hit_distance < horz_hit_distance)
 	{

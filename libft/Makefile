@@ -35,20 +35,20 @@ $(NAME):
 	@gcc $(FLAGS) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\033[1;32mlibft.a made\n------------"
+	@echo "\033[1;32mLIBFT: ./libft.a made\n---------------------"
 
 bonus:
 	@gcc	$(FLAGS) $(SRCB)
 	@ar rc $(NAME) $(OBJB)
 	@ranlib $(NAME)
-	@echo "\033[1;32mlibft.a bonus made\n------------------"
+	@echo "\033[1;32mLIBFT: ./libft.a _bonus made\n----------------------------"
 
 clean:
 	@rm -f $(OBJ) $(OBJB)
-	@echo "\033[1;33m*.o deleted\n-----------"
+	@echo "\033[1;33mLIBFT: *.o deleted\n------------------"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[1;31mlibft.a deleted\n---------------"
+	@echo "\033[1;31mLIBFT: ./libft.a deleted\n------------------------"
 
 re: fclean all
