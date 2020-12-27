@@ -10,6 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
+NC = \033[0m
+RED = \033[1;31m
+GREEN = \033[1;32m
+ORANGE = \033[1;33m
+
 NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror -c
@@ -19,7 +24,7 @@ ft_isdigit.c ft_isprint.c ft_itoa.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c \
 ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_strjoin.c \
 ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
-ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
+ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
 SRCB = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
@@ -35,20 +40,20 @@ $(NAME):
 	@gcc $(FLAGS) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\033[1;32mLIBFT: ./libft.a made\n---------------------"
+	@echo "\033[1;32mLIBFT: ./libft.a made\n---------------------$(NC)"
 
 bonus:
 	@gcc	$(FLAGS) $(SRCB)
 	@ar rc $(NAME) $(OBJB)
 	@ranlib $(NAME)
-	@echo "\033[1;32mLIBFT: ./libft.a _bonus made\n----------------------------"
+	@echo "\033[1;32mLIBFT: ./libft.a _bonus made\n----------------------------$(NC)"
 
 clean:
 	@rm -f $(OBJ) $(OBJB)
-	@echo "\033[1;33mLIBFT: *.o deleted\n------------------"
+	@echo "\033[1;33mLIBFT: *.o deleted\n------------------$(NC)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[1;31mLIBFT: ./libft.a deleted\n------------------------"
+	@echo "\033[1;31mLIBFT: ./libft.a deleted\n------------------------$(NC)"
 
 re: fclean all
