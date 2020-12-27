@@ -6,11 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:59:19 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/20 16:49:16 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	sprite(int tile_x, int tile_y)
 {

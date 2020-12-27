@@ -6,11 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 16:20:48 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/18 16:25:35 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../includes/cub3d.h"
 
 double	rad(double degrees)
 {

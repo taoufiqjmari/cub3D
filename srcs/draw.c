@@ -6,11 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/23 18:24:47 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	mlx_pixel_put_img(int x, int y, int color)
 {

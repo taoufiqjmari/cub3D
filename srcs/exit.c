@@ -6,11 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 19:38:26 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/16 20:03:06 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	my_exit(int errno)
 {

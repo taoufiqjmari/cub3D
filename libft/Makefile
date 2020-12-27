@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/29 19:54:39 by tjmari            #+#    #+#              #
-#    Updated: 2020/01/30 11:17:59 by tjmari           ###   ########.fr        #
+#    Updated: 2020/12/27 12:43:04 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,19 +32,23 @@ OBJB = $(SRCB:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc $(FLAGS) $(SRC)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\033[1;32mlibft.a made\n------------"
 
 bonus:
-	gcc	$(FLAGS) $(SRCB)
-	ar rc $(NAME) $(OBJB)
-	ranlib $(NAME)
+	@gcc	$(FLAGS) $(SRCB)
+	@ar rc $(NAME) $(OBJB)
+	@ranlib $(NAME)
+	@echo "\033[1;32mlibft.a bonus made\n------------------"
 
 clean:
-	rm -f $(OBJ) $(OBJB)
+	@rm -f $(OBJ) $(OBJB)
+	@echo "\033[1;33m*.o deleted\n-----------"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[1;31mlibft.a deleted\n---------------"
 
 re: fclean all

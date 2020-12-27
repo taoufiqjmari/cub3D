@@ -6,11 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/25 10:43:42 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../includes/cub3d.h"
 
 char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{' ', ' ', ' ', ' ', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
