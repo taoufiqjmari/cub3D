@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/25 12:38:38 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 19:16:23 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
 # include "../libft/libft.h"
 
 # define FALSE 0
 # define TRUE 1
+
+# define BUFFER_SIZE 100
 
 # define MINIMAP_SCALE_FACTOR 0.2
 # define MAP_NUM_ROWS 14
@@ -112,6 +115,8 @@ typedef	struct	s_texture
 }				t_texture;
 t_texture		g_texture;
 
+void    		basic_reading(void);
+int				get_next_line(int fd, char **line);
 void			setup(void);
 void			textures(void);
 void			render(void);
