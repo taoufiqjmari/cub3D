@@ -6,45 +6,28 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/28 15:59:35 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS] = {
-	{' ', ' ', ' ', ' ', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
-	{' ', ' ', ' ', ' ', '1', '1', '0', '0', '0', '0', '0', '0', '0', '1'},
-	{' ', ' ', ' ', ' ', '1', '1', '0', '0', '0', '0', '2', '0', '0', '1'},
-	{' ', ' ', ' ', ' ', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1', '1', '1', '0', '1', '1', '1'},
-	{'1', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '1', ' '},
-	{'1', '1', '0', '1', '1', '1', '0', '1', '1', '0', '0', '0', '1', ' '},
-	{'1', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '1', ' '},
-	{'1', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', ' '},
-	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', ' '},
-	{'1', '0', '0', '1', '1', '1', '0', '0', '0', '0', 'N', '0', '1', ' '},
-	{'1', '1', '0', '1', ' ', '1', '1', '1', '1', '0', '0', '0', '1', ' '},
-	{'1', '1', '1', '1', ' ', '1', '1', '1', '1', '1', '1', '1', '1', ' '}
-};
-
 void	map(int tile_x, int tile_y, int i, int j)
 {
-	if (g_map[i][j] == '1')
+	if (g_reading.map[i][j] == '1')
 		rect(MINIMAP_SCALE_FACTOR * tile_x,
 				MINIMAP_SCALE_FACTOR * tile_y,
 				0x00ADADAD);
-	else if (g_map[i][j] == '2')
+	else if (g_reading.map[i][j] == '2')
 		sprite(MINIMAP_SCALE_FACTOR * tile_x,
 				MINIMAP_SCALE_FACTOR * tile_y);
-	else if (g_map[i][j] == 'W' || g_map[i][j] == 'E'
-				|| g_map[i][j] == 'S' || g_map[i][j] == 'N')
+	else if (g_reading.map[i][j] == 'W' || g_reading.map[i][j] == 'E'
+				|| g_reading.map[i][j] == 'S' || g_reading.map[i][j] == 'N')
 	{
-		g_ply.ply_init_dir = g_map[i][j];
+		g_ply.ply_init_dir = g_reading.map[i][j];
 		define_ply(tile_x, tile_y);
 	}
-	else if (g_map[i][j] == ' ')
+	else if (g_reading.map[i][j] == ' ')
 		return ;
 	else
 		rect(MINIMAP_SCALE_FACTOR * tile_x,
@@ -60,10 +43,10 @@ void	render_map(void)
 	int	tile_y;
 
 	i = 0;
-	while (i < MAP_NUM_ROWS)
+	while (i < g_reading.map_height)
 	{
 		j = 0;
-		while (j < MAP_NUM_COLS)
+		while (j < g_reading.map_longest_line)
 		{
 			tile_x = j * TILE_SIZE;
 			tile_y = i * TILE_SIZE;

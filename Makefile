@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/12/27 19:15:37 by tjmari           ###   ########.fr        #
+#    Updated: 2020/12/28 15:57:13 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ FLAGS = -Wall -Wextra -Werror
 SEARCH_PATH = -I /usr/local/include
 LIB = -L /usr/local/lib -lmlx
 FRAMEWORKS = -framework OpenGL -framework AppKit
+SANITIZE = -fsanitize=address
 
 SRC = ./srcs/cub3d.c ./srcs/reading.c ./srcs/get_next_line.c ./srcs/map.c ./srcs/player.c \
 ./srcs/rays.c ./srcs/sprite.c ./srcs/draw.c ./srcs/angles.c ./srcs/three_d.c ./srcs/exit.c
@@ -31,6 +32,10 @@ all: $(NAME)
 
 $(NAME): libft_lib
 	@gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)CUB3D: ./$(NAME) made\n-------------------$(NC)"
+
+sanitize: libft_lib
+	@gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) $(SANITIZE) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)CUB3D: ./$(NAME) made\n-------------------$(NC)"
 
 libft_lib:
@@ -50,4 +55,8 @@ fclean: clean
 re: fclean all
 
 run: re
+	@./cub3D
+
+resan: fclean sanitize
+runsan: resan
 	@./cub3D

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/28 16:00:59 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ _Bool	rays_map_has_wall_at(float new_x, float new_y)
 
 	map_index_x = new_x / TILE_SIZE;
 	map_index_y = new_y / TILE_SIZE;
-	return (g_map[map_index_y][map_index_x] == ' ' ||
-			g_map[map_index_y][map_index_x] == '1' ||
-			g_map[map_index_y][map_index_x] == '2');
+	return (g_reading.map[map_index_y][map_index_x] == ' ' ||
+			g_reading.map[map_index_y][map_index_x] == '1' ||
+			g_reading.map[map_index_y][map_index_x] == '2');
 }
 
 void	cast_ray(float ray_ang, int strip_id)
@@ -70,7 +70,7 @@ void	cast_ray(float ray_ang, int strip_id)
 	float next_horz_touch_y = yintercept;
 
 	// Increment xstep and ystep until we find a wall
-	while (next_horz_touch_x >= 0 && next_horz_touch_x <= MAP_NUM_COLS * TILE_SIZE && next_horz_touch_y >= 0 && next_horz_touch_y <= MAP_NUM_ROWS * TILE_SIZE)
+	while (next_horz_touch_x >= 0 && next_horz_touch_x <= g_reading.map_longest_line * TILE_SIZE && next_horz_touch_y >= 0 && next_horz_touch_y <= g_reading.map_height * TILE_SIZE)
 	{
 		float x_to_check = next_horz_touch_x;
 		float y_to_check = next_horz_touch_y + (is_ray_facing_up ? -1 : 0);
@@ -79,7 +79,7 @@ void	cast_ray(float ray_ang, int strip_id)
 		{
 			horz_wall_hit_x = next_horz_touch_x;
 			horz_wall_hit_y = next_horz_touch_y;
-			horz_wall_content = g_map[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
+			horz_wall_content = g_reading.map[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
 			found_horz_wall_hit = TRUE;
 			break;
 		}
@@ -117,7 +117,7 @@ void	cast_ray(float ray_ang, int strip_id)
 	float next_vert_touch_y = yintercept;
 
 	// Increment xstep and ystep until we find a wall
-	while (next_vert_touch_x >= 0 && next_vert_touch_x <= MAP_NUM_COLS * TILE_SIZE && next_vert_touch_y >= 0 && next_vert_touch_y <= MAP_NUM_ROWS * TILE_SIZE)
+	while (next_vert_touch_x >= 0 && next_vert_touch_x <= g_reading.map_longest_line * TILE_SIZE && next_vert_touch_y >= 0 && next_vert_touch_y <= g_reading.map_height * TILE_SIZE)
 	{
 		float x_to_check = next_vert_touch_x + (is_ray_facing_left ? -1 : 0);
 		float y_to_check = next_vert_touch_y;
@@ -126,7 +126,7 @@ void	cast_ray(float ray_ang, int strip_id)
 		{
 			vert_wall_hit_x = next_vert_touch_x;
 			vert_wall_hit_y = next_vert_touch_y;
-			vert_wall_content = g_map[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
+			vert_wall_content = g_reading.map[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
 			found_vert_wall_hit = TRUE;
 			break;
 		}

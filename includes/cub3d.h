@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/28 12:50:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/28 16:00:08 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@
 # define CLICK_RIGHT_VIEW 124
 # define CLICK_ESC 53
 
-char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS];
-
 typedef	struct	s_reading
 {
 	int		fd;
@@ -57,7 +55,7 @@ typedef	struct	s_reading
 	int		map_height;
 	int		map_longest_line;
 	_Bool	sec_read;
-	char	**other_map;
+	char	**map;
 	int		i;
 }				t_reading;
 t_reading		g_reading;

@@ -6,74 +6,13 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/28 12:57:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/28 16:24:20 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/cub3d.h"
 
-char	*ft_cub_strjoin(char const *s1, char const *s2)
-{
-	size_t	i;
-	char	*s3;
-
-	if (!s1 && !s2)
-		return (NULL);
-
-	else if (!s1)
-	{
-		if(!(s3 = (char *)malloc((ft_strlen(s2) + 1) * sizeof(char))))
-			return (NULL);	
-		i = 0;
-		while (*s2)
-		{
-			s3[i] = *s2++;
-			i++;
-		}
-		s3[i] = '\0';
-		return (s3);
-	}
-
-	else if (!s2)
-	{
-		if(!(s3 = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char))))
-			return (NULL);
-		i = 0;
-		while (*s1)
-		{
-			s3[i] = *s1++;
-			i++;
-		}
-		s3[i] = '\0';
-		return (s3);
-	}
-
-	else
-	{
-		s3 = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-		if (!s3)
-			return (NULL);
-		i = 0;
-		while (*s1)
-		{
-			s3[i] = *s1++;
-			i++;
-		}
-		while (*s2)
-		{
-			s3[i] = *s2++;
-			i++;
-		}
-		s3[i] = '\0';
-		return (s3);
-	}
-}
-
-int		create_trgb(int t, int r, int g, int b)
-{
-	return(t << 24 | r << 16 | g << 8 | b);
-}
-
+// file R NO SO WE EA S
 void	handle_r(char *line)
 {
 	g_reading.info = ft_split(line, ' ');
@@ -111,6 +50,12 @@ void	handle_s(char *line)
 	g_texture.file[4] = *(g_reading.info + 1);
 }
 
+// file colors
+int		create_trgb(int t, int r, int g, int b)
+{
+	return(t << 24 | r << 16 | g << 8 | b);
+}
+
 void	handle_f(char *line)
 {
 	g_reading.info = ft_split(line, ' ');
@@ -131,6 +76,8 @@ void	handle_c(char *line)
 	g_texture.floor_color = create_trgb(0, g_texture.r_floor, g_texture.g_floor, g_texture.b_floor);
 }
 
+
+// file map
 void	first_read(char *line)
 {
 	if (g_reading.map_longest_line < (int)ft_strlen(line))
@@ -140,9 +87,8 @@ void	first_read(char *line)
 
 void	second_read(char *line)
 {
-	*(g_reading.other_map + g_reading.i) = NULL;
-	*(g_reading.other_map + g_reading.i) = ft_cub_strjoin(*(g_reading.other_map + g_reading.i), line);
-	printf("%s\n", *(g_reading.other_map + g_reading.i));
+	*(g_reading.map + g_reading.i) = NULL;
+	*(g_reading.map + g_reading.i) = ft_strdup(line);
 	g_reading.i++;
 }
 
@@ -189,7 +135,7 @@ void    basic_reading(void)
 	close(g_reading.fd);
 	g_reading.fd = open("./map.cub", O_RDONLY);
 	g_reading.sec_read = 1;
-	g_reading.other_map = (char **)malloc(sizeof(char *) * g_reading.map_height + 2);
+	g_reading.map = (char **)malloc(sizeof(char *) * (g_reading.map_height + 1));
 	g_reading.read = 1;
 	while (g_reading.read)
 	{
@@ -201,5 +147,5 @@ void    basic_reading(void)
 		else
 			handle_map(g_reading.line);
 	}
-	*(g_reading.other_map + g_reading.i) = NULL;
+	*(g_reading.map + g_reading.i) = NULL;
 }
