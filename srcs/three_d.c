@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 14:37:50 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/28 09:28:39 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ceiling(int i, int wall_top_pixel)
 	y = 0;
 	while (y < wall_top_pixel)
 	{
-		mlx_pixel_put_img(i, y, 0x0000CEE1);
+		mlx_pixel_put_img(i, y, g_texture.ceiling_color);
 		y++;
 	}
 }
@@ -70,7 +70,7 @@ void	flooring(int i, int wall_bottom_pixel)
 	y = wall_bottom_pixel;
 	while (y < WIN_HEIGHT)
 	{
-		mlx_pixel_put_img(i, y, 0x0000E10F);
+		mlx_pixel_put_img(i, y, g_texture.floor_color);
 		y++;
 	}
 }
@@ -89,13 +89,13 @@ void	render_3d(void)
 	{
 		perp_distance = g_rays[i].distance * cos(g_rays[i].ray_ang
 						- g_ply.rotation_ang);
-		distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANG / 1.5);
+		distance_proj_plane = (g_mlx.win_width / 2) / tan(FOV_ANG / 1.5);
 		wall_strip_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
-		wall_top_pixel = (WIN_HEIGHT / 2) - (wall_strip_height / 2);
+		wall_top_pixel = (g_mlx.win_height / 2) - (wall_strip_height / 2);
 		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
-		wall_bottom_pixel = (WIN_HEIGHT / 2) + (wall_strip_height / 2);
-		wall_bottom_pixel = wall_bottom_pixel > WIN_HEIGHT
-							? WIN_HEIGHT : wall_bottom_pixel;
+		wall_bottom_pixel = (g_mlx.win_height / 2) + (wall_strip_height / 2);
+		wall_bottom_pixel = wall_bottom_pixel > g_mlx.win_height
+							? g_mlx.win_height : wall_bottom_pixel;
 		ceiling(i, wall_top_pixel);
 		grounding(i, wall_top_pixel, wall_bottom_pixel, wall_strip_height);
 		flooring(i, wall_bottom_pixel);

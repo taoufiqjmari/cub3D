@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 19:03:03 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/28 09:36:02 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	textures(void)
 {
-	g_texture.file[0] = "./textures/bluestone.xpm";
-	g_texture.file[1] = "./textures/wall_4.xpm";
-	g_texture.file[2] = "./textures/wood.xpm";
-	g_texture.file[3] = "./textures/wall_3.xpm";
 	if (!(g_texture.txt[0] = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file[0],
 		&g_texture.width[0], &g_texture.height[0])))
 		printf("mlx_xpm_file_to_image() failed\n");
@@ -71,11 +67,11 @@ void	setup(void)
 {
 	if (!(g_mlx.mlx = mlx_init()))
 		my_exit(2);
-	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, WIN_WIDTH,
-											WIN_HEIGHT, "cub3D")))
+	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
+											g_mlx.win_height, "cub3D")))
 		my_exit(3);
 	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
-										WIN_WIDTH, WIN_HEIGHT)))
+										g_mlx.win_width, g_mlx.win_height)))
 		my_exit(4);
 	g_mlx.addr = mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
 										&g_mlx.line_length, &g_mlx.endian);
