@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/28 16:00:32 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ _Bool	map_has_wall_at(float new_x, float new_y)
 		y = new_y + sin(rad(angle)) * 5;
 		map_index_x = x / TILE_SIZE;
 		map_index_y = y / TILE_SIZE;
-		if (g_reading.map[map_index_y][map_index_x] == ' ' ||
-			g_reading.map[map_index_y][map_index_x] == '1' ||
-			g_reading.map[map_index_y][map_index_x] == '2')
+		if (g_map[map_index_y][map_index_x] == ' ' ||
+			g_map[map_index_y][map_index_x] == '1' ||
+			g_map[map_index_y][map_index_x] == '2')
 			return (1);
 		angle += 90;
 	}

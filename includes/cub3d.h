@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/28 16:00:08 by tjmari           ###   ########.fr       */
+/*   Updated: 2020/12/27 19:16:23 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,12 @@
 # define CLICK_RIGHT_VIEW 124
 # define CLICK_ESC 53
 
-typedef	struct	s_reading
-{
-	int		fd;
-	char	*line;
-	int		read;
-	char	**info;
-	char	**colors;
-	char	**map_info;
-	int		map_height;
-	int		map_longest_line;
-	_Bool	sec_read;
-	char	**map;
-	int		i;
-}				t_reading;
-t_reading		g_reading;
+char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS];
 
 typedef	struct	s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	int			win_width;
-	int			win_height;
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
@@ -119,14 +103,6 @@ typedef	struct	s_line
 
 typedef	struct	s_texture
 {
-	int			ceiling_color;
-	int			r_ceiling;
-	int			g_ceiling;
-	int			b_ceiling;
-	int			floor_color;
-	int			r_floor;
-	int			g_floor;
-	int			b_floor;
 	void		*txt[5];
 	char		*file[5];
 	int			width[5];
