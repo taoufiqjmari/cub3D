@@ -1,3 +1,5 @@
+#!/bin/sh
+
 PS3='Please enter your choice: '
 options=("clean && run" "debug" "clean")
 select opt in "${options[@]}"

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 19:16:23 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/10 10:55:50 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef	struct	s_texture
 }				t_texture;
 t_texture		g_texture;
 
-void    		basic_reading(void);
+void			basic_reading(void);
 int				get_next_line(int fd, char **line);
 void			setup(void);
 void			textures(void);
