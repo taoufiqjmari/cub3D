@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/13 18:04:53 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,16 @@
 
 void	define_ply(int tile_x, int tile_y)
 {
-	rect(MINIMAP_SCALE_FACTOR * tile_x,
-			MINIMAP_SCALE_FACTOR * tile_y,
-			0x00F9F9F9);
-	if (!g_ply.player_defined)
-	{
-		g_ply.ply_x = tile_x + TILE_SIZE / 2;
-		g_ply.ply_y = tile_y + TILE_SIZE / 2;
-		if (g_ply.ply_init_dir == 'W')
-			g_ply.rotation_ang = rad(180);
-		else if (g_ply.ply_init_dir == 'E')
-			g_ply.rotation_ang = rad(0);
-		else if (g_ply.ply_init_dir == 'S')
-			g_ply.rotation_ang = rad(90);
-		else if (g_ply.ply_init_dir == 'N')
-			g_ply.rotation_ang = rad(270);
-		g_ply.player_defined = 1;
-	}
+	g_ply.ply_x = tile_x + TILE_SIZE / 2;
+	g_ply.ply_y = tile_y + TILE_SIZE / 2;
+	if (g_ply.ply_init_dir == 'W')
+		g_ply.rotation_ang = rad(180);
+	else if (g_ply.ply_init_dir == 'E')
+		g_ply.rotation_ang = rad(0);
+	else if (g_ply.ply_init_dir == 'S')
+		g_ply.rotation_ang = rad(90);
+	else if (g_ply.ply_init_dir == 'N')
+		g_ply.rotation_ang = rad(270);
 }
 
 _Bool	map_has_wall_at(float new_x, float new_y)
@@ -48,10 +41,9 @@ _Bool	map_has_wall_at(float new_x, float new_y)
 		y = new_y + sin(rad(angle)) * 5;
 		map_index_x = x / TILE_SIZE;
 		map_index_y = y / TILE_SIZE;
-		if (g_map[map_index_y][map_index_x] == ' ' ||
+		return (g_map[map_index_y][map_index_x] == ' ' ||
 			g_map[map_index_y][map_index_x] == '1' ||
-			g_map[map_index_y][map_index_x] == '2')
-			return (1);
+			g_map[map_index_y][map_index_x] == '2');
 		angle += 90;
 	}
 	return (0);
@@ -91,8 +83,8 @@ void	render_player(void)
 			MINIMAP_SCALE_FACTOR * g_ply.ply_y,
 			0x00000000);
 	line(MINIMAP_SCALE_FACTOR * g_ply.ply_x + cos(g_ply.rotation_ang)
-			* TILE_SIZE / 2,
+			* MINIMAP_SCALE_FACTOR * TILE_SIZE / 2,
 			MINIMAP_SCALE_FACTOR * g_ply.ply_y + sin(g_ply.rotation_ang)
-			* TILE_SIZE / 2,
+			* MINIMAP_SCALE_FACTOR * TILE_SIZE / 2,
 			0x00000000);
 }

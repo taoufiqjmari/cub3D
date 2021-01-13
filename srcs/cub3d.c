@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 19:03:03 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:55:56 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	render(void)
 
 int		main(void)
 {
-	basic_reading();
+	// basic_reading();
 	setup();
 	render_map();
 	render();

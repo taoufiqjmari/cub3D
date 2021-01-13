@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:48:00 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@ void	map(int tile_x, int tile_y, int i, int j)
 	else if (g_map[i][j] == 'W' || g_map[i][j] == 'E'
 				|| g_map[i][j] == 'S' || g_map[i][j] == 'N')
 	{
-		g_ply.ply_init_dir = g_map[i][j];
-		define_ply(tile_x, tile_y);
+		rect(MINIMAP_SCALE_FACTOR * tile_x, MINIMAP_SCALE_FACTOR * tile_y, 0x00F9F9F9);
+		if (!g_ply.player_defined)
+		{
+			g_ply.ply_init_dir = g_map[i][j];
+			define_ply(tile_x, tile_y);
+			g_ply.player_defined = 1;
+		}
 	}
 	else if (g_map[i][j] == ' ')
 		return ;

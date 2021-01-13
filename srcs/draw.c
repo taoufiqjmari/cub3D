@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:44:54 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	circle(int i, int j, int color)
 
 	angle = 0;
 	radius = 0;
-	g_ply.radius = (color == 0x00000000)
-					? TILE_SIZE / 16 : TILE_SIZE / 4;
+	g_ply.radius = TILE_SIZE / 16;
 	while (radius < g_ply.radius)
 	{
 		angle = 0;

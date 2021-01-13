@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/10 10:55:50 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:45:36 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ void			circle(int i, int j, int color);
 void			line(int x1, int y1, int color);
 void			mlx_pixel_put_img(int x, int y, int color);
 float			normalize_ang(float ang);
-double			rad(double degrees);
-double			deg(double radians);
+float			rad(float degrees);
+float			deg(float radians);
 int				abs(int n);
 void			my_exit(int errno);
 int				red_cross(void);

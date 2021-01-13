@@ -6,18 +6,18 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 16:20:48 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:45:36 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-double	rad(double degrees)
+float	rad(float degrees)
 {
 	return (degrees * (M_PI / 180.0));
 }
 
-double	deg(double radians)
+float	deg(float radians)
 {
 	return (radians * (180.0 / M_PI));
 }
