@@ -6,22 +6,21 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/16 11:19:41 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/17 17:59:32 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/draw.h"
 
 void	mlx_pixel_put_img(int x, int y, int color)
 {
 	char	*dst;
-	if (x >= WIN_WIDTH || y  >= WIN_HEIGHT)
+
+	if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
 		return ;
 	dst = g_mlx.addr + (y * g_mlx.line_length +
 							x * (g_mlx.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
-	// g_mlx.addr[y * g_mlx.line_length +
-	// 						x] = color;
 }
 
 void	rect(int i, int j, int color)

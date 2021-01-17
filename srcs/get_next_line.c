@@ -6,11 +6,18 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:01:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/10 10:45:37 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/17 18:13:09 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/reading.h"
+
+int		gnl_return(char *s, int i)
+{
+	free(s);
+	s = NULL;
+	return (i);
+}
 
 int		gnl_put(char **s, char **line)
 {
@@ -37,9 +44,8 @@ int		gnl_put(char **s, char **line)
 	}
 }
 
-int		gnl_read(int fd, char **s, char **line)
+int		gnl_read(int fd, char **s, char **line, int i)
 {
-	int		i;
 	char	*s2;
 	char	*temp;
 
@@ -54,31 +60,17 @@ int		gnl_read(int fd, char **s, char **line)
 		free(*s);
 		*s = temp;
 		if (ft_strchr(*s, '\n'))
-		{
-			free(s2);
-			s2 = NULL;
-			return (gnl_put(s, line));
-		}
+			return (gnl_return(s2, gnl_put(s, line)));
 	}
 	if (i == -1)
-	{
-		free(s2);
-		s2 = NULL;
-		return (i);
-	}
+		return (gnl_return(s2, i));
 	else if (!*s && i == 0)
 	{
 		*line = ft_substr("", 0, 0);
-		free(s2);
-		s2 = NULL;
-		return (i);
+		return (gnl_return(s2, i));
 	}
 	else
-	{
-		free(s2);
-		s2 = NULL;
-		return (gnl_put(s, line));
-	}
+		return (gnl_return(s2, gnl_put(s, line)));
 }
 
 int		get_next_line(int fd, char **line)
@@ -88,5 +80,5 @@ int		get_next_line(int fd, char **line)
 	if (str && ft_strchr(str, '\n'))
 		return (gnl_put(&str, line));
 	else
-		return (gnl_read(fd, &str, line));
+		return (gnl_read(fd, &str, line, 0));
 }

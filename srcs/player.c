@@ -6,11 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/13 18:04:53 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/17 19:00:55 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/player.h"
 
 void	define_ply(int tile_x, int tile_y)
 {
@@ -26,25 +26,55 @@ void	define_ply(int tile_x, int tile_y)
 		g_ply.rotation_ang = rad(270);
 }
 
+int		key_pressed(int keycode, t_ply *g_ply)
+{
+	g_ply->straight = 1;
+	if (keycode == CLICK_LEFT)
+	{
+		g_ply->walk_direction = -1;
+		g_ply->straight = 0;
+	}
+	else if (keycode == CLICK_RIGHT)
+	{
+		g_ply->walk_direction = +1;
+		g_ply->straight = 0;
+	}
+	else if (keycode == CLICK_DOWN)
+		g_ply->walk_direction = -1;
+	else if (keycode == CLICK_UP)
+		g_ply->walk_direction = +1;
+	else if (keycode == CLICK_LEFT_VIEW)
+		g_ply->turn_direction = -1;
+	else if (keycode == CLICK_RIGHT_VIEW)
+		g_ply->turn_direction = +1;
+	else if (keycode == CLICK_ESC)
+		my_exit(0);
+	render();
+	return (0);
+}
+
 _Bool	map_has_wall_at(float new_x, float new_y)
 {
-	int	map_index_x;
-	int	map_index_y;
-	int	angle;
-	int	x;
-	int	y;
+	int	cur_ply_x;
+	int	cur_ply_y;
+	int	new_ply_x;
+	int	new_ply_y;
 
-	angle = 0;
-	while (angle < 360)
+	cur_ply_x = g_ply.ply_x / TILE_SIZE;
+	cur_ply_y = g_ply.ply_y / TILE_SIZE;
+	new_ply_x = new_x / TILE_SIZE;
+	new_ply_y = new_y / TILE_SIZE;
+	if (g_map[new_ply_y][new_ply_x] == ' ' ||
+			g_map[new_ply_y][new_ply_x] == '1' ||
+			g_map[new_ply_y][new_ply_x] == '2')
+		return (1);
+	if (cur_ply_x != new_ply_x && cur_ply_y != new_ply_y)
 	{
-		x = new_x + cos(rad(angle)) * 5;
-		y = new_y + sin(rad(angle)) * 5;
-		map_index_x = x / TILE_SIZE;
-		map_index_y = y / TILE_SIZE;
-		return (g_map[map_index_y][map_index_x] == ' ' ||
-			g_map[map_index_y][map_index_x] == '1' ||
-			g_map[map_index_y][map_index_x] == '2');
-		angle += 90;
+		if (g_map[new_ply_y][cur_ply_x] == '1' ||
+				g_map[new_ply_y][cur_ply_x] == '2')
+			if (g_map[cur_ply_y][new_ply_x] == '1' ||
+					g_map[cur_ply_y][new_ply_x] == '2')
+				return (1);
 	}
 	return (0);
 }

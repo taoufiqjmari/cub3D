@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2020/12/27 19:15:37 by tjmari           ###   ########.fr        #
+#    Updated: 2021/01/17 18:29:56 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ SEARCH_PATH = -I /usr/local/include
 LIB = -L /usr/local/lib -lmlx
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = ./srcs/cub3d.c ./srcs/reading.c ./srcs/get_next_line.c ./srcs/map.c ./srcs/player.c \
-./srcs/rays.c ./srcs/sprite.c ./srcs/draw.c ./srcs/angles.c ./srcs/three_d.c ./srcs/exit.c
+SRC = ./srcs/cub3d.c ./srcs/reading.c ./srcs/get_next_line.c \
+		./srcs/map.c ./srcs/player.c ./srcs/rays.c ./srcs/sprite.c ./srcs/three_d.c ./srcs/textures.c \
+		./srcs/draw.c ./srcs/angles.c ./srcs/exit.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -51,3 +52,4 @@ re: fclean all
 
 run: re
 	@./cub3D
+	@make fclean

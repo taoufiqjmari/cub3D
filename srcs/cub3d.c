@@ -6,66 +6,11 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/13 17:55:56 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/17 19:04:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	textures(void)
-{
-	g_texture.file[0] = "./textures/bluestone.xpm";
-	g_texture.file[1] = "./textures/wall_4.xpm";
-	g_texture.file[2] = "./textures/wood.xpm";
-	g_texture.file[3] = "./textures/wall_3.xpm";
-	if (!(g_texture.txt[0] = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file[0],
-		&g_texture.width[0], &g_texture.height[0])))
-		printf("mlx_xpm_file_to_image() failed\n");
-	if (!(g_texture.txt[1] = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file[1],
-		&g_texture.width[1], &g_texture.height[1])))
-		printf("mlx_xpm_file_to_image() failed\n");
-	if (!(g_texture.txt[2] = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file[2],
-		&g_texture.width[2], &g_texture.height[2])))
-		printf("mlx_xpm_file_to_image() failed\n");
-	if (!(g_texture.txt[3] = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file[3],
-		&g_texture.width[3], &g_texture.height[3])))
-		printf("mlx_xpm_file_to_image() failed\n");
-	g_texture.texel[0] = (int *)mlx_get_data_addr(g_texture.txt[0],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_texture.texel[1] = (int *)mlx_get_data_addr(g_texture.txt[1],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_texture.texel[2] = (int *)mlx_get_data_addr(g_texture.txt[2],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_texture.texel[3] = (int *)mlx_get_data_addr(g_texture.txt[3],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-}
-
-int		key_pressed(int keycode, t_ply *g_ply)
-{
-	g_ply->straight = 1;
-	if (keycode == CLICK_LEFT)
-	{
-		g_ply->walk_direction = -1;
-		g_ply->straight = 0;
-	}
-	else if (keycode == CLICK_RIGHT)
-	{
-		g_ply->walk_direction = +1;
-		g_ply->straight = 0;
-	}
-	else if (keycode == CLICK_DOWN)
-		g_ply->walk_direction = -1;
-	else if (keycode == CLICK_UP)
-		g_ply->walk_direction = +1;
-	else if (keycode == CLICK_LEFT_VIEW)
-		g_ply->turn_direction = -1;
-	else if (keycode == CLICK_RIGHT_VIEW)
-		g_ply->turn_direction = +1;
-	else if (keycode == CLICK_ESC)
-		my_exit(0);
-	render();
-	return (0);
-}
 
 void	setup(void)
 {
@@ -84,6 +29,7 @@ void	setup(void)
 	g_ply.walk_direction = 0;
 	g_ply.move_speed = 10.0;
 	g_ply.rotation_speed = rad(5);
+	g_distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANG / 1.5);
 	textures();
 }
 
@@ -100,7 +46,7 @@ void	render(void)
 
 int		main(void)
 {
-	// basic_reading();
+	reading_file();
 	setup();
 	render_map();
 	render();

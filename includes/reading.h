@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reading.c                                          :+:      :+:    :+:   */
+/*   reading.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 14:44:46 by tjmari           ###   ########.fr       */
+/*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
+/*   Updated: 2021/01/17 18:32:20 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/reading.h"
+#ifndef READING_H
+# define READING_H
 
-void	reading_file(void)
-{
-	int		fd;
-	char	*line;
-	int		ret;
+# include "cub3d.h"
 
-	fd = open("./map.cub", O_RDONLY);
-	ret = 1;
-	while (ret)
-	{
-		ret = get_next_line(fd, &line);
-		printf("%s\n", line);
-	}
-}
+# define BUFFER_SIZE 100
+
+void	reading_file(void);
+int		get_next_line(int fd, char **line);
+int		gnl_read(int fd, char **s, char **line, int i);
+int		gnl_put(char **s, char **line);
+int		gnl_return(char *s, int i);
+
+#endif

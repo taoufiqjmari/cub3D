@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reading.c                                          :+:      :+:    :+:   */
+/*   sprite.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 14:44:46 by tjmari           ###   ########.fr       */
+/*   Created: 2021/01/17 17:09:39 by tjmari            #+#    #+#             */
+/*   Updated: 2021/01/17 17:54:26 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/reading.h"
+#ifndef SPRITE_H
+# define SPRITE_H
 
-void	reading_file(void)
-{
-	int		fd;
-	char	*line;
-	int		ret;
+# include "cub3d.h"
 
-	fd = open("./map.cub", O_RDONLY);
-	ret = 1;
-	while (ret)
-	{
-		ret = get_next_line(fd, &line);
-		printf("%s\n", line);
-	}
-}
+void	sprite(int tile_x, int tile_y);
+
+#endif
