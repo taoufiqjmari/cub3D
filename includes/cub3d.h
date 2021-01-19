@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 17:48:36 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/19 16:19:39 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@
 # define FALSE 0
 # define TRUE 1
 
-# define MINIMAP_SCALE_FACTOR 0.5
+# define MINIMAP_SCALE_FACTOR 0.2
 # define MAP_NUM_ROWS 14
 # define MAP_NUM_COLS 14
 # define TILE_SIZE 64
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
 
 char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS];
 
@@ -44,6 +42,8 @@ typedef	struct	s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
+	int			win_width;
+	int			win_height;
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;

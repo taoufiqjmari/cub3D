@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 19:38:26 by tjmari            #+#    #+#             */
-/*   Updated: 2020/12/27 12:45:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/18 09:04:00 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	my_exit(int errno)
 		printf("Problem with mlx_new_window()\n");
 	else if (errno == 4)
 		printf("Problem with mlx_new_image()\n");
+	else if (errno == 5)
+		printf("Error in file\n");
 	exit(0);
 }
 

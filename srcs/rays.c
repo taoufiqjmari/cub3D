@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 19:01:06 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/18 08:45:47 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,10 @@ void	update_rays(void)
 
 	ray_ang = g_ply.rotation_ang - (FOV_ANG / 2);
 	strip_id = 0;
-	while (strip_id < WIN_WIDTH)
+	while (strip_id < g_mlx.win_width)
 	{
 		cast_ray(ray_ang, strip_id);
-		ray_ang += FOV_ANG / WIN_WIDTH;
+		ray_ang += FOV_ANG / g_mlx.win_width;
 		strip_id++;
 	}
 }
@@ -188,7 +188,7 @@ void	render_rays(void)
 	int	i;
 
 	i = 0;
-	while (i < WIN_WIDTH)
+	while (i < g_mlx.win_width)
 	{
 		line(MINIMAP_SCALE_FACTOR * g_rays[i].wall_hit_x,
 				MINIMAP_SCALE_FACTOR * g_rays[i].wall_hit_y,

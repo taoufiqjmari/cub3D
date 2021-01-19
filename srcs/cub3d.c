@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 19:04:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/19 16:38:31 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	setup(void)
 {
 	if (!(g_mlx.mlx = mlx_init()))
 		my_exit(2);
-	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, WIN_WIDTH,
-											WIN_HEIGHT, "cub3D")))
+	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
+											g_mlx.win_height, "cub3D")))
 		my_exit(3);
 	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
-										WIN_WIDTH, WIN_HEIGHT)))
+										g_mlx.win_width, g_mlx.win_height)))
 		my_exit(4);
 	g_mlx.addr = mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
 										&g_mlx.line_length, &g_mlx.endian);
@@ -29,7 +29,7 @@ void	setup(void)
 	g_ply.walk_direction = 0;
 	g_ply.move_speed = 10.0;
 	g_ply.rotation_speed = rad(5);
-	g_distance_proj_plane = (WIN_WIDTH / 2) / tan(FOV_ANG / 1.5);
+	g_distance_proj_plane = (g_mlx.win_width / 2) / tan(FOV_ANG / 1.5);
 	textures();
 }
 

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:00:17 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 19:01:49 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/18 10:54:35 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef	struct	s_ray
 	_Bool		is_ray_right;
 	int			wall_hit_content;
 }				t_rays;
-t_rays			g_rays[1920];
+t_rays			g_rays[2560];
 
 void			update_rays(void);
 void			cast_ray(float ray_ang, int strip_id);
