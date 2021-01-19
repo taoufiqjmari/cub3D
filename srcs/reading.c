@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/19 16:35:18 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/19 19:20:31 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	init_elements(void)
 	g_elements.c = 0;
 	g_elements.read = 0;
 	g_elements.start_map = 0;
-	g_elements.map = "";
-	g_elements.map_lenght = 0;
+	g_elements.temp_map = "";
+	g_elements.map_width = 0;
+	g_elements.map_height = 0;
 }
 
 void	all_read(void)
@@ -395,13 +396,30 @@ void	reading_file(void)
 			else if (*line != '\0')
 			{
 				g_elements.start_map = 1;
-				g_elements.map = ft_strjoin(g_elements.map, line);
-				g_elements.map = ft_strjoin(g_elements.map, "\n");
-				if (g_elements.map_lenght < ft_strlen(line))
-					g_elements.map_lenght = ft_strlen(line);
+				g_elements.temp_map = ft_strjoin(g_elements.temp_map, "\n");
+				g_elements.temp_map = ft_strjoin(g_elements.temp_map, line);
+				if (g_elements.map_width < ft_strlen(line))
+					g_elements.map_width = ft_strlen(line);
+				g_elements.map_height++;
 			}
 			else
 				my_exit(5);
 		}
 	}
+}
+
+void	final_map(void)
+{
+	size_t	i;
+
+	i = 0;
+	g_elements.map_splitted = ft_split(g_elements.temp_map, '\n');
+	g_elements.map = (char **)malloc(sizeof(char *) * (g_elements.map_height + 1));
+	while (i < g_elements.map_height)
+	{
+		g_elements.map[i] = (char *)malloc(sizeof(char) * (g_elements.map_width + 1));
+		ft_strlcpy(g_elements.map[i], g_elements.map_splitted[i], g_elements.map_width);
+		i++;
+	}
+	g_elements.map[i] = NULL;
 }

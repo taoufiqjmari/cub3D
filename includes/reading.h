@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/19 16:28:22 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/19 19:04:49 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ typedef struct	s_elements
 	_Bool		c;
 	_Bool		read;
 	_Bool		start_map;
-	char		*map;
-	size_t		map_lenght;
+	char		*temp_map;
+	char		**map_splitted;
+	char		**map;
+	size_t		map_width;
+	size_t		map_height;
 }				t_elements;
 t_elements		g_elements;
 
@@ -44,5 +47,6 @@ void	validate_ea(char *line);
 void	validate_s(char *line);
 void	validate_f(char *line);
 void	validate_c(char *line);
+void	final_map(void);
 
 #endif

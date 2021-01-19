@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 10:40:34 by tjmari            #+#    #+#             */
-/*   Updated: 2020/01/30 23:58:50 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/19 18:44:47 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		return (ft_strlen(src));
 	if (size)
 	{
-		while (size - 1 > 0 && src[i])
+		while (src[i] && i < size)
 		{
 			dst[i] = src[i];
 			i++;
-			size--;
 		}
+		while (i < size)
+			dst[i++] = ' ';
 	}
 	dst[i] = '\0';
 	return (ft_strlen(src));
