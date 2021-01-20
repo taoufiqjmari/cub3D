@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 08:26:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:37:16 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@
 # define TRUE 1
 
 # define MINIMAP_SCALE_FACTOR 0.2
-# define MAP_NUM_ROWS 14
-# define MAP_NUM_COLS 14
 # define TILE_SIZE 64
-
-char	g_map[MAP_NUM_ROWS][MAP_NUM_COLS];
 
 typedef	struct	s_mlx
 {

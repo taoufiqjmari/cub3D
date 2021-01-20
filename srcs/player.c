@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 09:45:49 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:24:16 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ _Bool	map_has_wall_at(float new_x, float new_y)
 	cur_ply_y = g_ply.ply_y / TILE_SIZE;
 	new_ply_x = new_x / TILE_SIZE;
 	new_ply_y = new_y / TILE_SIZE;
-	if (g_map[new_ply_y][new_ply_x] == ' ' ||
-			g_map[new_ply_y][new_ply_x] == '1' ||
-			g_map[new_ply_y][new_ply_x] == '2')
+	if (g_elements.map[new_ply_y][new_ply_x] == ' ' ||
+			g_elements.map[new_ply_y][new_ply_x] == '1' ||
+			g_elements.map[new_ply_y][new_ply_x] == '2')
 		return (1);
 	if (cur_ply_x != new_ply_x && cur_ply_y != new_ply_y)
 	{
-		if (g_map[new_ply_y][cur_ply_x] == '1' ||
-				g_map[new_ply_y][cur_ply_x] == '2')
-			if (g_map[cur_ply_y][new_ply_x] == '1' ||
-					g_map[cur_ply_y][new_ply_x] == '2')
+		if (g_elements.map[new_ply_y][cur_ply_x] == '1' ||
+				g_elements.map[new_ply_y][cur_ply_x] == '2')
+			if (g_elements.map[cur_ply_y][new_ply_x] == '1' ||
+					g_elements.map[cur_ply_y][new_ply_x] == '2')
 				return (1);
 	}
 	return (0);

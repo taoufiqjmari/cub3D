@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 09:56:53 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:35:05 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,9 +271,7 @@ void	validate_f(char *line)
 			rgb = ft_split(*(part + 1), ',');
 			if (how_many_part(rgb) == 3)
 			{
-				printf("%s\n", *rgb);
 				*rgb = ft_strtrim(*rgb, "0");
-				printf("%s\n", *rgb);
 				if (ft_strlen(*rgb) <= 3)
 				{
 					g_fc.floor_r = ft_atoi(*rgb);
@@ -282,10 +280,8 @@ void	validate_f(char *line)
 				}
 				else
 					my_exit("Floor RGB input is in wrong format");
-					
-				printf("%s\n", *(rgb + 1));
+
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
-				printf("%s\n", *(rgb + 1));
 				if (ft_strlen(*(rgb + 1)) <= 3)
 				{
 					g_fc.floor_g = ft_atoi(*(rgb + 1));
@@ -294,10 +290,8 @@ void	validate_f(char *line)
 				}
 				else
 					my_exit("Floor RGB input is in wrong format");
-					
-				printf("%s\n", *(rgb + 2));
+
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
-				printf("%s\n", *(rgb + 2));
 				if (ft_strlen(*(rgb + 2)) <= 3)
 				{
 					g_fc.floor_b = ft_atoi(*(rgb + 2));
@@ -450,43 +444,4 @@ void	final_map(void)
 		i++;
 	}
 	g_elements.map[i] = NULL;
-}
-
-void	map_parsing(void)
-{
-	size_t		i;
-	size_t		j;
-
-	i = 0;
-	while (g_elements.map[i])
-	{
-		j = 0;
-		while (j < g_elements.map_width)
-		{
-			if (g_elements.map[i][j] != '1' && g_elements.map[i][j] != ' ')
-				to_check(i, j);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	to_check(size_t i, size_t j)
-{
-	if (i - 1 < 0 || j - 1 < 0 || i + 1 >= g_elements.map_height
-		|| j + 1 >= g_elements.map_width)
-		my_exit("map not closed");
-	else if (g_elements.map[i][j] == '0')
-	{
-		if (g_elements.map[i][j - 1] == ' ' || g_elements.map[i][j + 1] == ' '
-			|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
-			my_exit("spaces inside map");
-	}
-	// else if (g_elements.map[i][j] == 'N' || g_elements.map[i][j] == 'W'
-	// 		|| g_elements.map[i][j] == 'E' || g_elements.map[i][j] == 'S')
-	// 		define_ply();
-	// else if (g_elements.map[i][j] == '2')
-	// 	sprite();
-	// else
-	// 	my_exit("invalid character in map");
 }

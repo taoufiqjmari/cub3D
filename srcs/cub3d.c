@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 09:45:35 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:57:00 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ int		main(void)
 {
 	reading_file();
 	final_map();
-	// for (size_t i = 0; i < g_elements.map_height; i++)
-	// 	printf("%s|\n", g_elements.map[i]);
-	map_parsing();
 	setup();
 	render_map();
 	render();
