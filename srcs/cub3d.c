@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/19 19:22:24 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 09:45:35 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	setup(void)
 {
 	if (!(g_mlx.mlx = mlx_init()))
-		my_exit(2);
+		my_exit("Problem with mlx_init()");
 	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
 											g_mlx.win_height, "cub3D")))
-		my_exit(3);
+		my_exit("Problem with mlx_new_window()");
 	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
 										g_mlx.win_width, g_mlx.win_height)))
-		my_exit(4);
+		my_exit("Problem with mlx_new_image()");
 	g_mlx.addr = mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
 										&g_mlx.line_length, &g_mlx.endian);
 	g_ply.player_defined = 0;
@@ -48,6 +48,9 @@ int		main(void)
 {
 	reading_file();
 	final_map();
+	// for (size_t i = 0; i < g_elements.map_height; i++)
+	// 	printf("%s|\n", g_elements.map[i]);
+	map_parsing();
 	setup();
 	render_map();
 	render();

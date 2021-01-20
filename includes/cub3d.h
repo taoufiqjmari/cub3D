@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/19 16:19:39 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 08:26:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_mlx			g_mlx;
 
 void			setup(void);
 void			render(void);
-void			my_exit(int errno);
+void			my_exit(const char *str);
 int				red_cross(void);
 
 #endif

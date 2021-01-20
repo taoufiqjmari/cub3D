@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/19 19:04:49 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 08:42:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ void	validate_s(char *line);
 void	validate_f(char *line);
 void	validate_c(char *line);
 void	final_map(void);
+void	map_parsing(void);
+void	to_check(size_t i, size_t j);
 
 #endif

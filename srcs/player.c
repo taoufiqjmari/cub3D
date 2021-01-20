@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 19:00:55 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 09:45:49 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		key_pressed(int keycode, t_ply *g_ply)
 	else if (keycode == CLICK_RIGHT_VIEW)
 		g_ply->turn_direction = +1;
 	else if (keycode == CLICK_ESC)
-		my_exit(0);
+		my_exit("ESP Clicked");
 	render();
 	return (0);
 }

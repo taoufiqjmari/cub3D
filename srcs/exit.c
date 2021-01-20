@@ -6,31 +6,21 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 19:38:26 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/18 09:04:00 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 09:45:44 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	my_exit(int errno)
+void	my_exit(const char *str)
 {
-	if (errno == 0)
-		printf("ESC Clicked!\n");
-	else if (errno == 1)
-		printf("Red X Clicked!\n");
-	else if (errno == 2)
-		printf("Problem with mlx_init()\n");
-	else if (errno == 3)
-		printf("Problem with mlx_new_window()\n");
-	else if (errno == 4)
-		printf("Problem with mlx_new_image()\n");
-	else if (errno == 5)
-		printf("Error in file\n");
+	printf("Error\n");
+	printf("%s\n", str);
 	exit(0);
 }
 
 int		red_cross(void)
 {
-	my_exit(1);
+	my_exit("Red X Clicked!");
 	return (0);
 }
