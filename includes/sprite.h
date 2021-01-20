@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 17:09:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/19 14:18:14 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 18:04:01 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct  s_sprite
 {
+	int			count;
 	char		*texture;
 }				t_sprite;
 t_sprite		g_sprite;

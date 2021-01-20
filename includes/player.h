@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:47:22 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 19:00:01 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 18:51:35 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef	struct	s_ply
 {
-	int			player_defined;
+	_Bool		player_defined;
 	char		ply_init_dir;
 	float		ply_x;
 	float		ply_y;

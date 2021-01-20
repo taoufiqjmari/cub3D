@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 14:35:05 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 18:54:38 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_elements(void)
 	g_elements.temp_map = "";
 	g_elements.map_width = 0;
 	g_elements.map_height = 0;
+	g_ply.player_defined = 0;
+	g_sprite.count = 0;
 }
 
 void	all_read(void)
@@ -444,4 +446,54 @@ void	final_map(void)
 		i++;
 	}
 	g_elements.map[i] = NULL;
+}
+
+void	map_parsing(void)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < g_elements.map_height)
+	{
+		j = 0;
+		while (j < g_elements.map_width)
+		{
+			if (g_elements.map[i][j] != ' ' && g_elements.map[i][j] != '1')
+				to_check(i, j);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	to_check(size_t i, size_t j)
+{
+	if (i - 1 < 0 || j - 1 < 0 || i + 1 >= g_elements.map_height
+		|| j + 1 >= g_elements.map_width)
+		my_exit("map is not closed");
+	else if (g_elements.map[i][j] == '0')
+	{
+		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
+				|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
+			my_exit("0 next to space");
+	}
+	else if (g_elements.map[i][j] == 'N' || g_elements.map[i][j] == 'W'
+			|| g_elements.map[i][j] == 'E' || g_elements.map[i][j] == 'S')
+	{
+		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
+			|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
+			my_exit("player next to space");
+		g_ply.ply_init_dir = g_elements.map[i][j];			
+		define_ply(i, j);
+	}
+	else if (g_elements.map[i][j] == '2')
+	{
+		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
+			|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
+			my_exit("sprite next to space");
+		g_sprite.count++;
+	}
+	else
+		my_exit("invalid character in map");
 }

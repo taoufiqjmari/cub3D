@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 14:57:00 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 17:50:48 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	setup(void)
 		my_exit("Problem with mlx_new_image()");
 	g_mlx.addr = mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
 										&g_mlx.line_length, &g_mlx.endian);
-	g_ply.player_defined = 0;
 	g_ply.turn_direction = 0;
 	g_ply.walk_direction = 0;
 	g_ply.move_speed = 10.0;
@@ -48,8 +47,8 @@ int		main(void)
 {
 	reading_file();
 	final_map();
+	map_parsing();
 	setup();
-	render_map();
 	render();
 	mlx_hook(g_mlx.mlx_win, 2, 1L << 0, key_pressed, &g_ply);
 	mlx_hook(g_mlx.mlx_win, 17, 0L, red_cross, &g_mlx);

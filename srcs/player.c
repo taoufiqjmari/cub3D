@@ -6,24 +6,30 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 14:24:16 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 18:47:45 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/player.h"
 
-void	define_ply(int tile_x, int tile_y)
+void	define_ply(int i, int j)
 {
-	g_ply.ply_x = tile_x + TILE_SIZE / 2;
-	g_ply.ply_y = tile_y + TILE_SIZE / 2;
-	if (g_ply.ply_init_dir == 'W')
-		g_ply.rotation_ang = rad(180);
-	else if (g_ply.ply_init_dir == 'E')
-		g_ply.rotation_ang = rad(0);
-	else if (g_ply.ply_init_dir == 'S')
-		g_ply.rotation_ang = rad(90);
-	else if (g_ply.ply_init_dir == 'N')
-		g_ply.rotation_ang = rad(270);
+	if (!g_ply.player_defined)
+	{
+		g_ply.player_defined = 1;
+		g_ply.ply_x = (j * TILE_SIZE) + TILE_SIZE / 2;
+		g_ply.ply_y = (i * TILE_SIZE) + TILE_SIZE / 2;
+		if (g_ply.ply_init_dir == 'W')
+			g_ply.rotation_ang = rad(180);
+		else if (g_ply.ply_init_dir == 'E')
+			g_ply.rotation_ang = rad(0);
+		else if (g_ply.ply_init_dir == 'S')
+			g_ply.rotation_ang = rad(90);
+		else if (g_ply.ply_init_dir == 'N')
+			g_ply.rotation_ang = rad(270);
+	}
+	else
+		my_exit("multiple players in map");
 }
 
 int		key_pressed(int keycode, t_ply *g_ply)

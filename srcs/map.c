@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 15:03:24 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/20 17:01:55 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void	map(int tile_x, int tile_y, int i, int j)
 	{
 		rect(MINIMAP_SCALE_FACTOR * tile_x,
 			MINIMAP_SCALE_FACTOR * tile_y, 0x00F9F9F9);
-		if (!g_ply.player_defined)
-		{
-			g_ply.ply_init_dir = g_elements.map[i][j];
-			define_ply(tile_x, tile_y);
-			g_ply.player_defined = 1;
-		}
 	}
 	else if (g_elements.map[i][j] == ' ')
 		return ;
