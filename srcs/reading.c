@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/21 08:51:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/21 18:30:43 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,6 +273,7 @@ void	validate_f(char *line)
 			rgb = ft_split(*(part + 1), ',');
 			if (how_many_part(rgb) == 3)
 			{
+				is_info_correct(*rgb, 'r');
 				*rgb = ft_strtrim(*rgb, "0");
 				if (ft_strlen(*rgb) <= 3)
 				{
@@ -283,6 +284,7 @@ void	validate_f(char *line)
 				else
 					my_exit("Floor RGB input is in wrong format");
 
+				is_info_correct(*(rgb + 1), 'r');
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
 				if (ft_strlen(*(rgb + 1)) <= 3)
 				{
@@ -293,6 +295,7 @@ void	validate_f(char *line)
 				else
 					my_exit("Floor RGB input is in wrong format");
 
+				is_info_correct(*(rgb + 2), 'r');
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
 				if (ft_strlen(*(rgb + 2)) <= 3)
 				{
@@ -333,6 +336,7 @@ void	validate_c(char *line)
 			rgb = ft_split(*(part + 1), ',');
 			if (how_many_part(rgb) == 3)
 			{
+				is_info_correct(*rgb, 'r');	
 				*rgb = ft_strtrim(*rgb, "0");
 				if (ft_strlen(*rgb) <= 3)
 				{
@@ -342,7 +346,8 @@ void	validate_c(char *line)
 				}
 				else
 					my_exit("Ceiling RGB input is in wrong format");
-					
+
+				is_info_correct(*(rgb + 1), 'r');	
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
 				if (ft_strlen(*(rgb + 1)) <= 3)
 				{
@@ -353,6 +358,7 @@ void	validate_c(char *line)
 				else
 					my_exit("Ceiling RGB input is in wrong format");
 					
+				is_info_correct(*(rgb + 2), 'r');	
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
 				if (ft_strlen(*(rgb + 2)) <= 3)
 				{
