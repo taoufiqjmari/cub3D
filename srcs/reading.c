@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 18:54:38 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/21 08:51:21 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -453,6 +453,9 @@ void	map_parsing(void)
 	size_t	i;
 	size_t	j;
 
+	if (!ft_strchr(g_elements.temp_map, 'N') && !ft_strchr(g_elements.temp_map, 'E')
+		&& !ft_strchr(g_elements.temp_map, 'S') && !ft_strchr(g_elements.temp_map, 'W'))
+		my_exit("no player in map");
 	i = 0;
 	while (i < g_elements.map_height)
 	{
@@ -469,8 +472,8 @@ void	map_parsing(void)
 
 void	to_check(size_t i, size_t j)
 {
-	if (i - 1 < 0 || j - 1 < 0 || i + 1 >= g_elements.map_height
-		|| j + 1 >= g_elements.map_width)
+	if (i == 0 || j == 0 || i == g_elements.map_height - 1
+		|| j == g_elements.map_width - 1)
 		my_exit("map is not closed");
 	else if (g_elements.map[i][j] == '0')
 	{
