@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 14:20:46 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/22 14:44:32 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ _Bool	rays_map_has_wall_at(float new_x, float new_y)
 	map_index_x = new_x / TILE_SIZE;
 	map_index_y = new_y / TILE_SIZE;
 	return (g_elements.map[map_index_y][map_index_x] == ' ' ||
-			g_elements.map[map_index_y][map_index_x] == '1' ||
-			g_elements.map[map_index_y][map_index_x] == '2');
+			g_elements.map[map_index_y][map_index_x] == '1');
 }
 
 void	cast_ray(float ray_ang, int strip_id)
