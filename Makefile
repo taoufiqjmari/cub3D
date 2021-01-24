@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2021/01/17 18:29:56 by tjmari           ###   ########.fr        #
+#    Updated: 2021/01/24 16:11:58 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,3 @@ fclean: clean
 	@echo "$(RED)CUB3D: ./$(NAME) deleted\n----------------------$(NC)"
 
 re: fclean all
-
-run: re
-	@./cub3D
-	@make fclean

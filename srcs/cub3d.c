@@ -6,11 +6,30 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 11:39:37 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 15:54:52 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	arguments(int argc, char **argv)
+{
+	int		len;
+
+	if (argc >= 2 && argc <= 3)
+	{
+		len = ft_strlen(argv[1]);
+		if ((g_elements.fd = open(argv[1], O_RDONLY)) == -1
+			|| (argv[1][len - 4] != '.' && argv[1][len - 3] != 'c'
+			&& argv[1][len - 2] != 'u' && argv[1][len - 1] != 'b'))
+			my_exit("problem with file");
+		if (argc == 3)
+			if (ft_strncmp(argv[2], "--save", 7))
+				my_exit("maybe --save");
+	}
+	else
+		my_exit("wrong number of arguments");
+}
 
 void	setup(void)
 {
@@ -46,8 +65,9 @@ void	render(void)
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
+	arguments(argc, argv);
 	reading_file();
 	final_map();
 	map_parsing();

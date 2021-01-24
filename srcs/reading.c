@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/21 18:30:43 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 16:13:25 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,16 +382,14 @@ void	validate_c(char *line)
 
 void	reading_file(void)
 {
-	int		fd;
 	char	*line;
 	int		ret;
 
 	init_elements();
-	fd = open("./map.cub", O_RDONLY);
 	ret = 1;
 	while (ret)
 	{
-		ret = get_next_line(fd, &line);
+		ret = get_next_line(g_elements.fd, &line);
 		if (!g_elements.read)
 		{
 			if (*line == 'R')

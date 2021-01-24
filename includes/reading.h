@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 08:42:04 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 15:16:17 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct	s_elements
 {
+	int			fd;
 	_Bool		r;
 	_Bool		no;
 	_Bool		so;
@@ -38,6 +39,7 @@ typedef struct	s_elements
 t_elements		g_elements;
 
 void	reading_file(void);
+void	arguments(int argc, char **argv);
 int		get_next_line(int fd, char **line);
 void	validate_r(char *line);
 void	validate_no(char *line);
