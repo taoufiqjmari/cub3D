@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 14:37:50 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/18 09:53:58 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 11:44:21 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ceiling(int x, int wall_top_pixel)
 	y = 0;
 	while (y < wall_top_pixel)
 	{
-		mlx_pixel_put_img(x, y, g_fc.ceiling);
+		put_pixel_to_img(x, y, g_fc.ceiling);
 		y++;
 	}
 }
@@ -44,7 +44,7 @@ void	grounding(int x, int wall_t_p, int wall_b_p, int wall_strip_h)
 							((float)g_texture.h[index] / wall_strip_h);
 		texel_color = g_texture.texel[index][(g_texture.h[index]
 			* g_texture.offset_y) + g_texture.offset_x];
-		mlx_pixel_put_img(x, y, texel_color);
+		put_pixel_to_img(x, y, texel_color);
 		y++;
 	}
 }
@@ -56,7 +56,7 @@ void	flooring(int x, int wall_bottom_pixel)
 	y = wall_bottom_pixel;
 	while (y < g_mlx.win_height)
 	{
-		mlx_pixel_put_img(x, y, g_fc.floor);
+		put_pixel_to_img(x, y, g_fc.floor);
 		y++;
 	}
 }

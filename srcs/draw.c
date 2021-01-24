@@ -6,13 +6,13 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/18 08:47:13 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 11:44:21 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/draw.h"
 
-void	mlx_pixel_put_img(int x, int y, int color)
+void	put_pixel_to_img(int x, int y, int color)
 {
 	char	*dst;
 
@@ -35,9 +35,9 @@ void	rect(int i, int j, int color)
 		while (y < MINIMAP_SCALE_FACTOR * TILE_SIZE)
 		{
 			if (x == 0 || x == TILE_SIZE - 1 || y == 0 || y == TILE_SIZE - 1)
-				mlx_pixel_put_img((x + i), (y + j), 0x00000000);
+				put_pixel_to_img((x + i), (y + j), 0x00000000);
 			else
-				mlx_pixel_put_img((x + i), (y + j), color);
+				put_pixel_to_img((x + i), (y + j), color);
 			y++;
 		}
 		x++;
@@ -61,7 +61,7 @@ void	circle(int i, int j, int color)
 		{
 			x = i + (radius * cos(rad(angle)));
 			y = j + (radius * sin(rad(angle)));
-			mlx_pixel_put_img(x, y, color);
+			put_pixel_to_img(x, y, color);
 			angle++;
 		}
 		radius++;
@@ -87,7 +87,7 @@ void	line(int x, int y, int color)
 	line.i = 0;
 	while (line.i <= line.steps)
 	{
-		mlx_pixel_put_img(line.x, line.y, color);
+		put_pixel_to_img(line.x, line.y, color);
 		line.x += line.x_inc;
 		line.y += line.y_inc;
 		line.i++;

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 17:04:11 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/17 17:57:43 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 11:44:21 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef	struct	s_line
 void			rect(int i, int j, int color);
 void			circle(int i, int j, int color);
 void			line(int x1, int y1, int color);
-void			mlx_pixel_put_img(int x, int y, int color);
+void			put_pixel_to_img(int x, int y, int color);
 int				abs(int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 18:27:51 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/21 08:54:27 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 10:28:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	textures(void)
 	if (!(g_texture.txt[3] = mlx_xpm_file_to_image(g_mlx.mlx, g_texture.file[3],
 		&g_texture.w[3], &g_texture.h[3])))
 		my_exit("mlx_xpm_file_to_image() failed");
+	if (!(g_sprite.txt = mlx_xpm_file_to_image(g_mlx.mlx, g_sprite.texture,
+		&g_sprite.w, &g_sprite.h)))
+		my_exit("mlx_xpm_file_to_image() failed");
 	g_texture.texel[0] = (int *)mlx_get_data_addr(g_texture.txt[0],
 			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
 	g_texture.texel[1] = (int *)mlx_get_data_addr(g_texture.txt[1],
@@ -34,6 +37,8 @@ void	textures(void)
 			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
 	g_texture.texel[3] = (int *)mlx_get_data_addr(g_texture.txt[3],
 			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
+	g_sprite.texel = (int *)mlx_get_data_addr(g_sprite.txt,
+			&g_sprite.bpp, &g_sprite.line_length, &g_sprite.endian);
 }
 
 void	what_index(int i, int *index)

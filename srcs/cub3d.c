@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 17:50:48 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/24 11:39:37 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	setup(void)
 	g_ply.rotation_speed = rad(5);
 	g_distance_proj_plane = (g_mlx.win_width / 2) / tan(FOV_ANG / 1.5);
 	textures();
+	salloc();
+	sprite_data();
 }
 
 void	render(void)
@@ -40,6 +42,7 @@ void	render(void)
 	render_map();
 	render_rays();
 	render_player();
+	render_sprite();
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }
 
