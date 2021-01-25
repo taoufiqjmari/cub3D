@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:59:19 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 12:02:58 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:25:52 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,10 @@ void	ft_sort(void)
 
 void	put_spixel_to_img(int x, int y)
 {
-	char *dst;
-	
 	if (x >= g_mlx.win_width || y >= g_mlx.win_height)
 		return ;
 	if (y < g_mlx.win_height && y >= 0 && g_sprite.color != 0x000000)
-	{
-			dst = g_mlx.addr + (y * g_mlx.line_length +
-							x * (g_mlx.bits_per_pixel / 8));
-		*(unsigned int*)dst = g_sprite.color;
-	}
+			g_mlx.addr[(y * g_mlx.win_width) + x] = g_sprite.color;
 }
 
 void	draw_sprite(int x, float distance, float strip_height)

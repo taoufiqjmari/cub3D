@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2021/01/24 16:11:58 by tjmari           ###   ########.fr        #
+#    Updated: 2021/01/25 18:20:49 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ FRAMEWORKS = -framework OpenGL -framework AppKit
 
 SRC = ./srcs/cub3d.c ./srcs/reading.c ./srcs/get_next_line.c \
 		./srcs/map.c ./srcs/player.c ./srcs/rays.c ./srcs/sprite.c ./srcs/three_d.c ./srcs/textures.c \
-		./srcs/draw.c ./srcs/angles.c ./srcs/exit.c
+		./srcs/bmp.c ./srcs/draw.c ./srcs/angles.c ./srcs/exit.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

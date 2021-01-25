@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 10:52:14 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/25 17:08:14 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "rays.h"
 # include "three.h"
 # include "sprite.h"
+# include "bmp.h"
 # include "angles.h"
 # include "draw.h"
 
@@ -41,7 +42,7 @@ typedef	struct	s_mlx
 	int			win_width;
 	int			win_height;
 	void		*img;
-	char		*addr;
+	int			*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 15:54:52 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/25 18:11:58 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	setup(void)
 	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
 										g_mlx.win_width, g_mlx.win_height)))
 		my_exit("Problem with mlx_new_image()");
-	g_mlx.addr = mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
-										&g_mlx.line_length, &g_mlx.endian);
+	if (!(g_mlx.addr = (int *)mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
+										&g_mlx.line_length, &g_mlx.endian)))
+		my_exit("Problem with mlx_get_data_addr()");
 	g_ply.turn_direction = 0;
 	g_ply.walk_direction = 0;
 	g_ply.move_speed = 10.0;
@@ -62,6 +63,7 @@ void	render(void)
 	render_rays();
 	render_player();
 	render_sprite();
+	bmp();
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }
 
