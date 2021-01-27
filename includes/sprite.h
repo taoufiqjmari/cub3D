@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 17:09:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:34:51 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:49:10 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			put_data(int i, int j);
 void			get_distance(void);
 void			render_sprite(void);
 void			ft_sort(void);
-void			draw_sprite(int x, float distance, float strip_height);
+void			draw_sprite(int x, float distance, float strip_h);
 void			put_spixel_to_img(int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:36:08 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:47:36 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	setup(void)
 	g_ply.walk_direction = 0;
 	g_ply.move_speed = 10.0;
 	g_ply.rotation_speed = rad(5);
-	g_distance_proj_plane = (g_mlx.win_width / 2) / tan(FOV_ANG / 1.5);
+	g_dis_proj_plane = (g_mlx.win_width / 2) / tan(FOV_ANG / 1.5);
 	textures();
 	salloc();
 	sprite_data();

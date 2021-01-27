@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 14:37:50 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 11:44:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:47:36 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	render_3d(void)
 		perp_distance = g_rays[x].distance * cos(g_rays[x].ray_ang
 						- g_ply.rotation_ang);
 		perp_distance = perp_distance == 0 ? 1 : perp_distance;
-		wall_strip_height = (TILE_SIZE / perp_distance) * g_distance_proj_plane;
+		wall_strip_height = (TILE_SIZE / perp_distance) * g_dis_proj_plane;
 		wall_top_pixel = (g_mlx.win_height / 2) - (wall_strip_height / 2);
 		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
 		wall_bottom_pixel = (g_mlx.win_height / 2) + (wall_strip_height / 2);

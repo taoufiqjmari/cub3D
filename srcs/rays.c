@@ -6,13 +6,13 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/22 14:44:32 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:52:38 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/rays.h"
 
-float	distance_between_points(float x1, float y1, float x2, float y2)
+float	pythagore(float x1, float y1, float x2, float y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
@@ -138,10 +138,10 @@ void	cast_ray(float ray_ang, int strip_id)
 
 	// Calculate both horizontal and vertical hit distances and choose the smallest one
 	float	horz_hit_distance = found_horz_wall_hit
-		? distance_between_points(g_ply.ply_x, g_ply.ply_y, horz_wall_hit_x, horz_wall_hit_y)
+		? pythagore(g_ply.ply_x, g_ply.ply_y, horz_wall_hit_x, horz_wall_hit_y)
 		: MAXFLOAT;
 	float	vert_hit_distance = found_vert_wall_hit
-		? distance_between_points(g_ply.ply_x, g_ply.ply_y, vert_wall_hit_x, vert_wall_hit_y)
+		? pythagore(g_ply.ply_x, g_ply.ply_y, vert_wall_hit_x, vert_wall_hit_y)
 		: MAXFLOAT;
 
 	if (vert_hit_distance < horz_hit_distance)

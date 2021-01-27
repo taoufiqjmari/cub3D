@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:07:23 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/18 09:49:38 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:47:36 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef	struct	s_fc
 }				t_fc;
 t_fc			g_fc;
 
-float			g_distance_proj_plane;
+float			g_dis_proj_plane;
 
 void			textures(void);
 void			render_3d(void);
