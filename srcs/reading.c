@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 15:28:47 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 16:54:06 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	reading_file(void)
 			else
 				my_exit("space inside map");
 		}
+		free(line);
 	}
 }
 

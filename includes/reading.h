@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 15:26:12 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 16:52:29 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void			all_read(void);
 void			final_map(void);
 void			map_parsing(void);
 void			to_check(size_t i, size_t j);
+int				splitted_to(char **str);
+void			free_dpointer(char **str, int i);
 
 #endif

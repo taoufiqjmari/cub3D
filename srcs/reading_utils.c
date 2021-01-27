@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:28:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 15:32:02 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 16:51:47 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,28 @@ void	is_info_correct(char *part, char c)
 int		create_trgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+int     splitted_to(char **str)
+{
+    int		i;
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
+
+void   free_dpointer(char **str, int i)
+{
+    if (str)
+    {
+        while (i >= 0)
+        {
+            free(str[i]);
+            str[i] = NULL;
+            i--;
+        }
+        free(str);
+        str = NULL;
+    }
 }
