@@ -6,13 +6,13 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:27 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/25 18:27:14 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:39:02 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/bmp.h"
 
-void    file(void)
+void	file(void)
 {
 	if (!(g_fd = open("screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR
 						| S_IWUSR | S_IRGRP | S_IROTH)))
@@ -40,7 +40,6 @@ void	make_header(void)
 	g_bmp.bits_xpels_per_meter = 2835;
 	g_bmp.total_colors = 0;
 	g_bmp.important_colors = 0;
-
 }
 
 void	write_header(void)
@@ -64,9 +63,9 @@ void	write_header(void)
 
 void	write_file(void)
 {
-	char	*pixel_array;
+	char				*pixel_array;
 	unsigned int		i;
-	int		j;
+	int					j;
 
 	if (!(pixel_array = malloc(sizeof(char) * g_bmp.image_size)))
 		my_exit("write file error");
@@ -84,7 +83,7 @@ void	write_file(void)
 	free(pixel_array);
 }
 
-void    bmp(void)
+void	bmp(void)
 {
 	ft_bzero(&g_bmp, sizeof(t_bmp));
 	file();

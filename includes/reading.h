@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 15:16:17 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:34:06 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ typedef struct	s_elements
 }				t_elements;
 t_elements		g_elements;
 
-void	reading_file(void);
-void	arguments(int argc, char **argv);
-int		get_next_line(int fd, char **line);
-void	validate_r(char *line);
-void	validate_no(char *line);
-void	validate_so(char *line);
-void	validate_we(char *line);
-void	validate_ea(char *line);
-void	validate_s(char *line);
-void	validate_f(char *line);
-void	validate_c(char *line);
-void	final_map(void);
-void	map_parsing(void);
-void	to_check(size_t i, size_t j);
+void			reading_file(void);
+void			arguments(int argc, char **argv);
+int				get_next_line(int fd, char **line);
+void			validate_r(char *line);
+void			validate_no(char *line);
+void			validate_so(char *line);
+void			validate_we(char *line);
+void			validate_ea(char *line);
+void			validate_s(char *line);
+void			validate_f(char *line);
+void			validate_c(char *line);
+void			final_map(void);
+void			map_parsing(void);
+void			to_check(size_t i, size_t j);
 
 #endif

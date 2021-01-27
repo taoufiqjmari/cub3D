@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:24:19 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:36:08 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	arguments(int argc, char **argv)
 		{
 			if (ft_strncmp(argv[2], "--save", 7))
 				my_exit("maybe --save");
-			g_bmp.active = 1;	
+			g_bmp.active = 1;
 		}
 	}
 	else
@@ -45,8 +45,8 @@ void	setup(void)
 	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
 										g_mlx.win_width, g_mlx.win_height)))
 		my_exit("Problem with mlx_new_image()");
-	if (!(g_mlx.addr = (int *)mlx_get_data_addr(g_mlx.img, &g_mlx.bits_per_pixel,
-										&g_mlx.line_length, &g_mlx.endian)))
+	if (!(g_mlx.addr = (int *)mlx_get_data_addr(g_mlx.img,
+		&g_mlx.bits_per_pixel, &g_mlx.line_length, &g_mlx.endian)))
 		my_exit("Problem with mlx_get_data_addr()");
 	g_ply.turn_direction = 0;
 	g_ply.walk_direction = 0;

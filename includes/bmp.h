@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:24 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:14:07 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:33:32 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ typedef struct		s_bmp
 	unsigned int	total_colors;
 	unsigned int	important_colors;
 }					t_bmp;
-t_bmp               g_bmp;
+t_bmp				g_bmp;
 
-int                 g_fd;
+int					g_fd;
 
-void    bmp(void);
-void    file(void);
-void	make_header(void);
-void	write_header(void);
-void	write_file(void);
+void				bmp(void);
+void				file(void);
+void				make_header(void);
+void				write_header(void);
+void				write_file(void);
 
 #endif
