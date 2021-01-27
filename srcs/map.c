@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 17:01:55 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	render_map(void)
 		j = 0;
 		while (j < g_elements.map_width)
 		{
-			tile_x = j * TILE_SIZE;
-			tile_y = i * TILE_SIZE;
+			tile_x = j * TS;
+			tile_y = i * TS;
 			map(tile_x, tile_y, i, j);
 			j++;
 		}

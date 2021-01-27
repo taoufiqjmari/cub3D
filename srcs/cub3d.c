@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:47:36 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 12:38:52 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	arguments(int argc, char **argv)
 		if (argc == 3)
 		{
 			if (ft_strncmp(argv[2], "--save", 7))
-				my_exit("maybe --save");
+				my_exit("did you mean '--save'?");
 			g_bmp.active = 1;
 		}
 	}

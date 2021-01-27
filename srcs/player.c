@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/20 18:47:45 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	define_ply(int i, int j)
 	if (!g_ply.player_defined)
 	{
 		g_ply.player_defined = 1;
-		g_ply.ply_x = (j * TILE_SIZE) + TILE_SIZE / 2;
-		g_ply.ply_y = (i * TILE_SIZE) + TILE_SIZE / 2;
+		g_ply.ply_x = (j * TS) + TS / 2;
+		g_ply.ply_y = (i * TS) + TS / 2;
 		if (g_ply.ply_init_dir == 'W')
 			g_ply.rotation_ang = rad(180);
 		else if (g_ply.ply_init_dir == 'E')
@@ -66,10 +66,10 @@ _Bool	map_has_wall_at(float new_x, float new_y)
 	int	new_ply_x;
 	int	new_ply_y;
 
-	cur_ply_x = g_ply.ply_x / TILE_SIZE;
-	cur_ply_y = g_ply.ply_y / TILE_SIZE;
-	new_ply_x = new_x / TILE_SIZE;
-	new_ply_y = new_y / TILE_SIZE;
+	cur_ply_x = g_ply.ply_x / TS;
+	cur_ply_y = g_ply.ply_y / TS;
+	new_ply_x = new_x / TS;
+	new_ply_y = new_y / TS;
 	if (g_elements.map[new_ply_y][new_ply_x] == ' ' ||
 			g_elements.map[new_ply_y][new_ply_x] == '1' ||
 			g_elements.map[new_ply_y][new_ply_x] == '2')
@@ -119,8 +119,8 @@ void	render_player(void)
 			MINIMAP_SCALE_FACTOR * g_ply.ply_y,
 			0x00000000);
 	line(MINIMAP_SCALE_FACTOR * g_ply.ply_x + cos(g_ply.rotation_ang)
-			* MINIMAP_SCALE_FACTOR * TILE_SIZE / 2,
+			* MINIMAP_SCALE_FACTOR * TS / 2,
 			MINIMAP_SCALE_FACTOR * g_ply.ply_y + sin(g_ply.rotation_ang)
-			* MINIMAP_SCALE_FACTOR * TILE_SIZE / 2,
+			* MINIMAP_SCALE_FACTOR * TS / 2,
 			0x00000000);
 }

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:18 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:53:36 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	put_data(int i, int j)
 {
 	static int	index = 0;
 
-	i += TILE_SIZE / 2;
-	j += TILE_SIZE / 2;
+	i += TS / 2;
+	j += TS / 2;
 	g_sprites[index].x = j;
 	g_sprites[index].y = i;
 	index++;
@@ -46,7 +46,7 @@ void	sprite_data(void)
 		while (j < g_elements.map_width)
 		{
 			if (g_elements.map[i][j] == '2')
-				put_data(i * TILE_SIZE, j * TILE_SIZE);
+				put_data(i * TS, j * TS);
 			j++;
 		}
 		i++;

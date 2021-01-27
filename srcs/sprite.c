@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:59:19 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:55:14 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	render_sprite(void)
 	ft_sort();
 	while (i < g_sprite.count)
 	{
-		strip_h = (TILE_SIZE / g_sprites[i].distance) * g_dis_proj_plane;
+		strip_h = (TS / g_sprites[i].distance) * g_dis_proj_plane;
 		sprite_x = (g_sprites[i].angle - (g_ply.rotation_ang - FOV_ANG / 2))
 						/ (FOV_ANG / g_mlx.win_width) - (strip_h / 2);
 		draw_sprite(sprite_x, g_sprites[i].distance, strip_h);

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/24 16:13:25 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 15:05:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		how_many_part(char **part)
 
 int		create_trgb(int r, int g, int b)
 {
-	return(r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
 
 void	is_info_correct(char *part, char c)
@@ -88,7 +88,7 @@ void	validate_r(char *line)
 {
 	size_t	len;
 	char	**part;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.r)
 	{
@@ -128,7 +128,7 @@ void	validate_no(char *line)
 {
 	size_t	len;
 	char	**part;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.no)
 	{
@@ -154,7 +154,7 @@ void	validate_so(char *line)
 {
 	size_t	len;
 	char	**part;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.so)
 	{
@@ -180,7 +180,7 @@ void	validate_we(char *line)
 {
 	size_t	len;
 	char	**part;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.we)
 	{
@@ -232,7 +232,7 @@ void	validate_s(char *line)
 {
 	size_t	len;
 	char	**part;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.s)
 	{
@@ -259,7 +259,7 @@ void	validate_f(char *line)
 	size_t	len;
 	char	**part;
 	char	**rgb;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.f)
 	{
@@ -283,7 +283,6 @@ void	validate_f(char *line)
 				}
 				else
 					my_exit("Floor RGB input is in wrong format");
-
 				is_info_correct(*(rgb + 1), 'r');
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
 				if (ft_strlen(*(rgb + 1)) <= 3)
@@ -294,7 +293,6 @@ void	validate_f(char *line)
 				}
 				else
 					my_exit("Floor RGB input is in wrong format");
-
 				is_info_correct(*(rgb + 2), 'r');
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
 				if (ft_strlen(*(rgb + 2)) <= 3)
@@ -314,7 +312,7 @@ void	validate_f(char *line)
 			my_exit("Floor RGB input is in wrong format");
 	}
 	else
-	my_exit("Floor RGB input is in wrong format");
+		my_exit("Floor RGB input is in wrong format");
 }
 
 void	validate_c(char *line)
@@ -322,7 +320,7 @@ void	validate_c(char *line)
 	size_t	len;
 	char	**part;
 	char	**rgb;
-	
+
 	len = ft_strlen(line);
 	if (!g_elements.c)
 	{
@@ -336,7 +334,7 @@ void	validate_c(char *line)
 			rgb = ft_split(*(part + 1), ',');
 			if (how_many_part(rgb) == 3)
 			{
-				is_info_correct(*rgb, 'r');	
+				is_info_correct(*rgb, 'r');
 				*rgb = ft_strtrim(*rgb, "0");
 				if (ft_strlen(*rgb) <= 3)
 				{
@@ -346,8 +344,7 @@ void	validate_c(char *line)
 				}
 				else
 					my_exit("Ceiling RGB input is in wrong format");
-
-				is_info_correct(*(rgb + 1), 'r');	
+				is_info_correct(*(rgb + 1), 'r');
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
 				if (ft_strlen(*(rgb + 1)) <= 3)
 				{
@@ -357,8 +354,7 @@ void	validate_c(char *line)
 				}
 				else
 					my_exit("Ceiling RGB input is in wrong format");
-					
-				is_info_correct(*(rgb + 2), 'r');	
+				is_info_correct(*(rgb + 2), 'r');
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
 				if (ft_strlen(*(rgb + 2)) <= 3)
 				{
@@ -491,7 +487,7 @@ void	to_check(size_t i, size_t j)
 		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
 			|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
 			my_exit("player next to space");
-		g_ply.ply_init_dir = g_elements.map[i][j];			
+		g_ply.ply_init_dir = g_elements.map[i][j];
 		define_ply(i, j);
 	}
 	else if (g_elements.map[i][j] == '2')

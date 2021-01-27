@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/25 17:08:14 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define TRUE 1
 
 # define MINIMAP_SCALE_FACTOR 0.1
-# define TILE_SIZE 64
+# define TS 64
 
 typedef	struct	s_mlx
 {

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/25 18:24:49 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	rect(int i, int j, int color)
 	int y;
 
 	x = 0;
-	while (x < MINIMAP_SCALE_FACTOR * TILE_SIZE)
+	while (x < MINIMAP_SCALE_FACTOR * TS)
 	{
 		y = 0;
-		while (y < MINIMAP_SCALE_FACTOR * TILE_SIZE)
+		while (y < MINIMAP_SCALE_FACTOR * TS)
 		{
-			if (x == 0 || x == TILE_SIZE - 1 || y == 0 || y == TILE_SIZE - 1)
+			if (x == 0 || x == TS - 1 || y == 0 || y == TS - 1)
 				put_pixel_to_img((x + i), (y + j), 0x00000000);
 			else
 				put_pixel_to_img((x + i), (y + j), color);
@@ -49,7 +49,7 @@ void	circle(int i, int j, int color)
 
 	angle = 0;
 	radius = 0;
-	g_ply.radius = TILE_SIZE / 16;
+	g_ply.radius = TS / 16;
 	while (radius < g_ply.radius)
 	{
 		angle = 0;
