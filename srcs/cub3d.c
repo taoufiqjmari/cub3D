@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 12:38:52 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 18:46:59 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	arguments(int argc, char **argv)
 
 void	setup(void)
 {
-	if (!(g_mlx.mlx = mlx_init()))
-		my_exit("Problem with mlx_init()");
 	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
 											g_mlx.win_height, "cub3D")))
 		my_exit("Problem with mlx_new_window()");
@@ -77,6 +75,8 @@ void	render(void)
 
 int		main(int argc, char **argv)
 {
+	if (!(g_mlx.mlx = mlx_init()))
+		my_exit("Problem with mlx_init()");
 	arguments(argc, argv);
 	reading_file();
 	final_map();

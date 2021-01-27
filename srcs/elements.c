@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:19:12 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 15:20:03 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:04:57 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	validate_r(char *line)
 {
 	size_t	len;
 	char	**part;
+	char	*tmp;
 
 	len = ft_strlen(line);
 	if (!g_elements.r)
@@ -27,7 +28,9 @@ void	validate_r(char *line)
 		if (how_many_part(part) == 3)
 		{
 			is_info_correct(*(part + 1), 'r');
+			tmp = *(part + 1);
 			*(part + 1) = ft_strtrim(*(part + 1), "0");
+			free(tmp);
 			if (ft_strlen(*(part + 1)) > 4)
 				g_mlx.win_width = 2560;
 			else
@@ -36,7 +39,9 @@ void	validate_r(char *line)
 				g_mlx.win_width = g_mlx.win_width > 2560 ? 2560 : g_mlx.win_width;
 			}
 			is_info_correct(*(part + 2), 'r');
+			tmp = *(part + 2);
 			*(part + 2) = ft_strtrim(*(part + 2), "0");
+			free(tmp);
 			if (ft_strlen(*(part + 2)) > 4)
 				g_mlx.win_height = 1440;
 			else
@@ -47,6 +52,7 @@ void	validate_r(char *line)
 		}
 		else
 			my_exit("Resolution input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("Resolution input is in wrong format");
@@ -66,13 +72,13 @@ void	validate_no(char *line)
 		part = ft_split(line, ' ');
 		if (how_many_part(part) == 2)
 		{
-			if (open(*(part + 1), O_RDONLY) > 0)
-				g_texture.file[0] = *(part + 1);
-			else
+			if (!(g_texture.txt[0] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[0], &g_texture.h[0])))
 				my_exit("North texture input is in wrong format");
 		}
 		else
 			my_exit("North texture input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("North texture input is in wrong format");
@@ -92,13 +98,13 @@ void	validate_so(char *line)
 		part = ft_split(line, ' ');
 		if (how_many_part(part) == 2)
 		{
-			if (open(*(part + 1), O_RDONLY) > 0)
-				g_texture.file[1] = *(part + 1);
-			else
+			if (!(g_texture.txt[1] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[1], &g_texture.h[1])))
 				my_exit("South texture input is in wrong format");
 		}
 		else
 			my_exit("South texture input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("South texture input is in wrong format");
@@ -118,13 +124,13 @@ void	validate_we(char *line)
 		part = ft_split(line, ' ');
 		if (how_many_part(part) == 2)
 		{
-			if (open(*(part + 1), O_RDONLY) > 0)
-				g_texture.file[2] = *(part + 1);
-			else
+			if (!(g_texture.txt[2] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[2], &g_texture.h[2])))
 				my_exit("West texture input is in wrong format");
 		}
 		else
 			my_exit("West texture input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("West texture input is in wrong format");
@@ -144,13 +150,13 @@ void	validate_ea(char *line)
 		part = ft_split(line, ' ');
 		if (how_many_part(part) == 2)
 		{
-			if (open(*(part + 1), O_RDONLY) > 0)
-				g_texture.file[3] = *(part + 1);
-			else
+			if (!(g_texture.txt[3] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[3], &g_texture.h[3])))
 				my_exit("East texture input is in wrong format");
 		}
 		else
 			my_exit("East texture input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("East texture input is in wrong format");
@@ -170,13 +176,13 @@ void	validate_s(char *line)
 		part = ft_split(line, ' ');
 		if (how_many_part(part) == 2)
 		{
-			if (open(*(part + 1), O_RDONLY) > 0)
-				g_sprite.texture = *(part + 1);
-			else
+			if (!(g_sprite.txt = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_sprite.w, &g_sprite.h)))
 				my_exit("Sprite texture input is in wrong format");
 		}
 		else
 			my_exit("Sprite texture input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("Sprite texture input is in wrong format");
@@ -187,6 +193,7 @@ void	validate_f(char *line)
 	size_t	len;
 	char	**part;
 	char	**rgb;
+	char	*tmp;
 
 	len = ft_strlen(line);
 	if (!g_elements.f)
@@ -202,7 +209,9 @@ void	validate_f(char *line)
 			if (how_many_part(rgb) == 3)
 			{
 				is_info_correct(*rgb, 'r');
+				tmp = *rgb;
 				*rgb = ft_strtrim(*rgb, "0");
+				free(tmp);
 				if (ft_strlen(*rgb) <= 3)
 				{
 					g_fc.floor_r = ft_atoi(*rgb);
@@ -212,7 +221,9 @@ void	validate_f(char *line)
 				else
 					my_exit("Floor RGB input is in wrong format");
 				is_info_correct(*(rgb + 1), 'r');
+				tmp = *(rgb + 1);
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
+				free(tmp);
 				if (ft_strlen(*(rgb + 1)) <= 3)
 				{
 					g_fc.floor_g = ft_atoi(*(rgb + 1));
@@ -222,7 +233,9 @@ void	validate_f(char *line)
 				else
 					my_exit("Floor RGB input is in wrong format");
 				is_info_correct(*(rgb + 2), 'r');
+				tmp = *(rgb + 2);
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
+				free(tmp);
 				if (ft_strlen(*(rgb + 2)) <= 3)
 				{
 					g_fc.floor_b = ft_atoi(*(rgb + 2));
@@ -231,13 +244,15 @@ void	validate_f(char *line)
 				}
 				else
 					my_exit("Floor RGB input is in wrong format");
-				g_fc.floor = create_trgb(g_fc.floor_r, g_fc.floor_g, g_fc.floor_b);
+				g_fc.floor = g_fc.floor_r << 16 | g_fc.floor_g << 8 | g_fc.floor_b;
 			}
 			else
 				my_exit("Floor RGB input is in wrong format");
+			free_dpointer(rgb);
 		}
 		else
 			my_exit("Floor RGB input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("Floor RGB input is in wrong format");
@@ -248,6 +263,7 @@ void	validate_c(char *line)
 	size_t	len;
 	char	**part;
 	char	**rgb;
+	char	*tmp;
 
 	len = ft_strlen(line);
 	if (!g_elements.c)
@@ -263,7 +279,9 @@ void	validate_c(char *line)
 			if (how_many_part(rgb) == 3)
 			{
 				is_info_correct(*rgb, 'r');
+				tmp = *rgb;
 				*rgb = ft_strtrim(*rgb, "0");
+				free(tmp);
 				if (ft_strlen(*rgb) <= 3)
 				{
 					g_fc.ceiling_r = ft_atoi(*rgb);
@@ -273,7 +291,9 @@ void	validate_c(char *line)
 				else
 					my_exit("Ceiling RGB input is in wrong format");
 				is_info_correct(*(rgb + 1), 'r');
+				tmp = *(rgb + 1);
 				*(rgb + 1) = ft_strtrim(*(rgb + 1), "0");
+				free(tmp);
 				if (ft_strlen(*(rgb + 1)) <= 3)
 				{
 					g_fc.ceiling_g = ft_atoi(*(rgb + 1));
@@ -283,7 +303,9 @@ void	validate_c(char *line)
 				else
 					my_exit("Ceiling RGB input is in wrong format");
 				is_info_correct(*(rgb + 2), 'r');
+				tmp = *(rgb + 2);
 				*(rgb + 2) = ft_strtrim(*(rgb + 2), "0");
+				free(tmp);
 				if (ft_strlen(*(rgb + 2)) <= 3)
 				{
 					g_fc.ceiling_b = ft_atoi(*(rgb + 2));
@@ -292,13 +314,15 @@ void	validate_c(char *line)
 				}
 				else
 					my_exit("Ceiling RGB input is in wrong format");
-				g_fc.ceiling = create_trgb(g_fc.ceiling_r, g_fc.ceiling_g, g_fc.ceiling_b);
+				g_fc.ceiling = g_fc.ceiling_r << 16 | g_fc.ceiling_g << 8 | g_fc.ceiling_b;
 			}
 			else
 				my_exit("Ceiling RGB input is in wrong format");
+			free_dpointer(rgb);
 		}
 		else
 			my_exit("Ceiling RGB input is in wrong format");
+		free_dpointer(part);
 	}
 	else
 		my_exit("Ceiling RGB input is in wrong format");

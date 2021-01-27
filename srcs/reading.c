@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 16:54:06 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:05:22 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	reading_file(void)
 {
 	char	*line;
 	int		ret;
+	char 	*tmp;
 
 	init_elements();
 	ret = 1;
@@ -44,7 +45,10 @@ void	reading_file(void)
 			else if (*line == 'C')
 				validate_c(line);
 			else if (*line == '\0')
+			{
+				free(line);
 				continue ;
+			}
 			else
 				my_exit("Error in file");
 			all_read();
@@ -52,12 +56,19 @@ void	reading_file(void)
 		else
 		{
 			if (*line == '\0' && !g_elements.start_map)
+			{
+				free(line);
 				continue ;
+			}
 			else if (*line != '\0')
 			{
 				g_elements.start_map = 1;
+				tmp = g_elements.temp_map;
 				g_elements.temp_map = ft_strjoin(g_elements.temp_map, "\n");
+				free(tmp);
+				tmp = g_elements.temp_map;
 				g_elements.temp_map = ft_strjoin(g_elements.temp_map, line);
+				free(tmp);
 				if (g_elements.map_width < ft_strlen(line))
 					g_elements.map_width = ft_strlen(line);
 				g_elements.map_height++;
@@ -75,6 +86,7 @@ void	final_map(void)
 
 	i = 0;
 	g_elements.map_splitted = ft_split(g_elements.temp_map, '\n');
+	free(g_elements.temp_map);
 	g_elements.map = (char **)malloc(sizeof(char *) * (g_elements.map_height + 1));
 	while (i < g_elements.map_height)
 	{
@@ -83,6 +95,7 @@ void	final_map(void)
 		i++;
 	}
 	g_elements.map[i] = NULL;
+	free_dpointer(g_elements.map_splitted);
 }
 
 void	map_parsing(void)

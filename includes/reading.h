@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 16:52:29 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:00:56 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void			validate_ea(char *line);
 void			validate_s(char *line);
 void			validate_f(char *line);
 void			validate_c(char *line);
-int				create_trgb(int r, int g, int b);
 void			is_info_correct(char *part, char c);
 int				how_many_part(char **part);
 void			all_read(void);
@@ -57,6 +56,6 @@ void			final_map(void);
 void			map_parsing(void);
 void			to_check(size_t i, size_t j);
 int				splitted_to(char **str);
-void			free_dpointer(char **str, int i);
+void			free_dpointer(char **str);
 
 #endif

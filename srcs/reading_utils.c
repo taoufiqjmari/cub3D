@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:28:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 16:51:47 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 19:02:58 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_elements(void)
 	g_elements.c = 0;
 	g_elements.read = 0;
 	g_elements.start_map = 0;
-	g_elements.temp_map = "";
+	g_elements.temp_map = ft_strdup("");
 	g_elements.map_width = 0;
 	g_elements.map_height = 0;
 	g_ply.player_defined = 0;
@@ -78,31 +78,20 @@ void	is_info_correct(char *part, char c)
 	}
 }
 
-int		create_trgb(int r, int g, int b)
+void	free_dpointer(char **str)
 {
-	return (r << 16 | g << 8 | b);
-}
+	int		i;
 
-int     splitted_to(char **str)
-{
-    int		i;
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
-}
-
-void   free_dpointer(char **str, int i)
-{
-    if (str)
-    {
-        while (i >= 0)
-        {
-            free(str[i]);
-            str[i] = NULL;
-            i--;
-        }
-        free(str);
-        str = NULL;
-    }
+	if (str)
+	{
+		i = how_many_part(str);
+		while (i >= 0)
+		{
+			free(str[i]);
+			str[i] = NULL;
+			i--;
+		}
+		free(str);
+	}
+	str = NULL;
 }

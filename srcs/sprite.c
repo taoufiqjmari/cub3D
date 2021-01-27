@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:59:19 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 17:27:33 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_sort(void)
 	t_sprites	temp;
 
 	i = 0;
-	while (i < g_sprite.count)
+	while (i < g_sprite.count - 1)
 	{
 		if (g_sprites[i].distance < g_sprites[i + 1].distance)
 		{
