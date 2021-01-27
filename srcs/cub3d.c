@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/25 18:11:58 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:24:19 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ void	arguments(int argc, char **argv)
 			|| (argv[1][len - 4] != '.' && argv[1][len - 3] != 'c'
 			&& argv[1][len - 2] != 'u' && argv[1][len - 1] != 'b'))
 			my_exit("problem with file");
+		g_bmp.active = 0;
 		if (argc == 3)
+		{
 			if (ft_strncmp(argv[2], "--save", 7))
 				my_exit("maybe --save");
+			g_bmp.active = 1;	
+		}
 	}
 	else
 		my_exit("wrong number of arguments");
@@ -63,7 +67,11 @@ void	render(void)
 	render_rays();
 	render_player();
 	render_sprite();
-	bmp();
+	if (g_bmp.active)
+	{
+		bmp();
+		my_exit("screenshot saved");
+	}
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }
 

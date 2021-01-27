@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:24 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/25 18:27:36 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 11:14:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct		s_bmp
 {
+	_Bool			active;
 	char			byte_type[2];
 	unsigned int	byte_size;
 	unsigned int	byte_reserved;
