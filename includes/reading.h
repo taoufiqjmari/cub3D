@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:34:06 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/27 15:26:12 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_elements
 t_elements		g_elements;
 
 void			reading_file(void);
-void			arguments(int argc, char **argv);
+void			init_elements(void);
 int				get_next_line(int fd, char **line);
 void			validate_r(char *line);
 void			validate_no(char *line);
@@ -49,6 +49,10 @@ void			validate_ea(char *line);
 void			validate_s(char *line);
 void			validate_f(char *line);
 void			validate_c(char *line);
+int				create_trgb(int r, int g, int b);
+void			is_info_correct(char *part, char c);
+int				how_many_part(char **part);
+void			all_read(void);
 void			final_map(void);
 void			map_parsing(void);
 void			to_check(size_t i, size_t j);
