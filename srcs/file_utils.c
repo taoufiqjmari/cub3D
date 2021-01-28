@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 16:24:55 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 18:18:59 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:27:17 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	on_map(char **line)
 		g_file.map_height++;
 	}
 	else
-	{	
+	{
 		my_exit("Either a newline inside map or at the end of map ");
 		my_exit("or an element is duplicated.");
 	}

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 17:30:14 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:48:44 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	final_map(void)
 
 	i = 0;
 	g_file.map_splitted = ft_split(g_file.temp_map, '\n');
-	free(g_file.temp_map);
 	g_file.map = (char **)malloc(sizeof(char *) * (g_file.map_height + 1));
 	while (i < g_file.map_height)
 	{
@@ -60,6 +59,7 @@ void	map_parsing(void)
 	if (!ft_strchr(g_file.temp_map, 'N') && !ft_strchr(g_file.temp_map, 'E')
 		&& !ft_strchr(g_file.temp_map, 'S') && !ft_strchr(g_file.temp_map, 'W'))
 		my_exit("No player in map or maybe the file is empty at all.");
+	free(g_file.temp_map);
 	i = 0;
 	while (i < g_file.map_height)
 	{
