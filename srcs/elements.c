@@ -6,54 +6,58 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:19:12 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 12:01:03 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 15:05:35 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/reading.h"
 
+void	res_util(char **part, char *temp, char c)
+{
+	is_info_correct(*part, 'r');
+	temp = *part;
+	*part = ft_strtrim(*part, "0");
+	free(temp);
+	if (c == 'w')
+	{
+		if (ft_strlen(*part) > 4)
+			g_mlx.win_w = 2560;
+		else
+		{
+			g_mlx.win_w = atoi(*part);
+			g_mlx.win_w = g_mlx.win_w > 2560 ? 2560 : g_mlx.win_w;
+		}
+	}
+	else if (c == 'h')
+	{
+		if (ft_strlen(*part) > 4)
+			g_mlx.win_h = 1440;
+		else
+		{
+			g_mlx.win_h = atoi(*part);
+			g_mlx.win_h = g_mlx.win_h > 1440 ? 1440 : g_mlx.win_h;
+		}
+	}
+}
+
 void	validate_r(char *line)
 {
-	size_t	len;
-	char	**part;
 	char	*temp;
 
-	len = ft_strlen(line);
+	temp = NULL;
+	g_file.len = ft_strlen(line);
 	if (!g_file.r)
 	{
-		g_file.r = 1;
-		if (ft_strncmp(line, "R ", 2)
-			|| *(line + 2) == ' ' || *(line + (len - 1)) == ' ')
-			my_exit("Resolution input is in wrong format");
-		part = ft_split(line, ' ');
-		if (how_many_part(part) == 3)
+		g_file.part = ft_split(line, ' ');
+		pre_fc(&line, 'r');
+		if (how_many_part(g_file.part) == 3)
 		{
-			is_info_correct(*(part + 1), 'r');
-			temp = *(part + 1);
-			*(part + 1) = ft_strtrim(*(part + 1), "0");
-			free(temp);
-			if (ft_strlen(*(part + 1)) > 4)
-				g_mlx.win_w = 2560;
-			else
-			{
-				g_mlx.win_w = atoi(*(part + 1));
-				g_mlx.win_w = g_mlx.win_w > 2560 ? 2560 : g_mlx.win_w;
-			}
-			is_info_correct(*(part + 2), 'r');
-			temp = *(part + 2);
-			*(part + 2) = ft_strtrim(*(part + 2), "0");
-			free(temp);
-			if (ft_strlen(*(part + 2)) > 4)
-				g_mlx.win_h = 1440;
-			else
-			{
-				g_mlx.win_h = atoi(*(part + 2));
-				g_mlx.win_h = g_mlx.win_h > 1440 ? 1440 : g_mlx.win_h;
-			}
+			res_util(g_file.part + 1, temp, 'w');
+			res_util(g_file.part + 2, temp, 'h');
 		}
 		else
 			my_exit("Resolution input is in wrong format");
-		free_dpointer(part);
+		free_dpointer(g_file.part);
 	}
 	else
 		my_exit("Resolution input is in wrong format");
@@ -70,12 +74,7 @@ void	validate_f(char *line)
 			g_file.rgb = ft_split(*(g_file.part + 1), ',');
 			if (how_many_part(g_file.rgb) == 3)
 			{
-				pre_rgb(g_file.rgb, 'r');
-				check_rgb_f(*g_file.rgb, 'r');
-				pre_rgb(g_file.rgb, 'g');
-				check_rgb_f(*(g_file.rgb + 1), 'g');
-				pre_rgb(g_file.rgb, 'b');
-				check_rgb_f(*(g_file.rgb + 2), 'b');
+				in_fc('f');
 				g_fc.f = g_fc.f_r << 16 | g_fc.f_g << 8 | g_fc.f_b;
 			}
 			else
@@ -101,12 +100,7 @@ void	validate_c(char *line)
 			g_file.rgb = ft_split(*(g_file.part + 1), ',');
 			if (how_many_part(g_file.rgb) == 3)
 			{
-				pre_rgb(g_file.rgb, 'r');
-				check_rgb_c(*g_file.rgb, 'r');
-				pre_rgb(g_file.rgb, 'g');
-				check_rgb_c(*(g_file.rgb + 1), 'g');
-				pre_rgb(g_file.rgb, 'b');
-				check_rgb_c(*(g_file.rgb + 2), 'b');
+				in_fc('c');
 				g_fc.c = g_fc.c_r << 16 | g_fc.c_g << 8 | g_fc.c_b;
 			}
 			else

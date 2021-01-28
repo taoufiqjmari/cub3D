@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   elements_utils.c                                   :+:      :+:    :+:   */
+/*   rgb_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 10:31:58 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 12:00:35 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 15:09:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 void	pre_fc(char **line, char c)
 {
-	if (c == 'f')
+	if (c == 'r')
+	{
+		g_file.r = 1;
+		if (ft_strncmp(*line, "R ", 2)
+			|| *(*line + 2) == ' ' || *(*line + (g_file.len - 1)) == ' ')
+			my_exit("Resolution input is in wrong format");
+	}
+	else if (c == 'f')
 	{
 		g_file.f = 1;
 		if (ft_strncmp(*line, "F ", 2)
@@ -28,9 +35,31 @@ void	pre_fc(char **line, char c)
 		g_file.c = 1;
 		if (ft_strncmp(*line, "C ", 2)
 			|| *(*line + 2) == ' ' || *(*line + (g_file.len - 1)) == ' ')
-			my_exit("Ceiling RGB input is in wrong format");
+			my_exit("Ceiling RGB input is in wrong format || 122");
 		is_info_correct(*line, 'c');
 		g_file.part = ft_split(*line, ' ');
+	}
+}
+
+void	in_fc(char c)
+{
+	if (c == 'f')
+	{
+		pre_rgb(g_file.rgb, 'r');
+		check_rgb_f(*g_file.rgb, 'r');
+		pre_rgb(g_file.rgb, 'g');
+		check_rgb_f(*(g_file.rgb + 1), 'g');
+		pre_rgb(g_file.rgb, 'b');
+		check_rgb_f(*(g_file.rgb + 2), 'b');
+	}
+	else if (c == 'c')
+	{
+		pre_rgb(g_file.rgb, 'r');
+		check_rgb_c(*g_file.rgb, 'r');
+		pre_rgb(g_file.rgb, 'g');
+		check_rgb_c(*(g_file.rgb + 1), 'g');
+		pre_rgb(g_file.rgb, 'b');
+		check_rgb_c(*(g_file.rgb + 2), 'b');
 	}
 }
 

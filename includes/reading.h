@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 12:01:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 15:21:42 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void			start_map(char **line);
 void			init_elements(void);
 int				get_next_line(int fd, char **line);
 void			validate_r(char *line);
+void			res_util(char **part, char *temp, char c);
 void			validate_no(char *line);
 void			validate_so(char *line);
 void			validate_we(char *line);
@@ -58,6 +59,7 @@ void			validate_c(char *line);
 void			check_rgb_c(char *rgb, char c);
 void			pre_rgb(char **rgb, char c);
 void			pre_fc(char **line, char c);
+void			in_fc(char c);
 void			is_info_correct(char *part, char c);
 int				how_many_part(char **part);
 void			all_read(void);
