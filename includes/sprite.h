@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 17:09:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:49:10 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 11:09:42 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_sprites
 }				t_sprites;
 t_sprites		*g_sprites;
 
-void			sprite(int tile_x, int tile_y);
+void			sprite(int i, int j);
 void			salloc(void);
 void			sprite_data(void);
 void			put_data(int i, int j);

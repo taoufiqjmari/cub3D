@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:45:02 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 11:39:21 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	reading_file(void)
 {
 	char	*line;
 	int		ret;
-	char	*tmp;
+	char	*temp;
 
 	init_elements();
 	ret = 1;
@@ -63,12 +63,12 @@ void	reading_file(void)
 			else if (*line != '\0')
 			{
 				g_file.start_map = 1;
-				tmp = g_file.temp_map;
+				temp = g_file.temp_map;
 				g_file.temp_map = ft_strjoin(g_file.temp_map, "\n");
-				free(tmp);
-				tmp = g_file.temp_map;
+				free(temp);
+				temp = g_file.temp_map;
 				g_file.temp_map = ft_strjoin(g_file.temp_map, line);
-				free(tmp);
+				free(temp);
 				if (g_file.map_width < ft_strlen(line))
 					g_file.map_width = ft_strlen(line);
 				g_file.map_height++;
@@ -141,12 +141,7 @@ void	to_check(size_t i, size_t j)
 		define_ply(i, j);
 	}
 	else if (g_file.map[i][j] == '2')
-	{
-		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
-			|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
-			my_exit("sprite next to space");
-		g_sprite.count++;
-	}
+		sprite(i, j);
 	else
 		my_exit("invalid character in map");
 }

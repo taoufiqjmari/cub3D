@@ -6,15 +6,18 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:18 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 11:08:46 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/sprite.h"
 
-void	sprite(int tile_x, int tile_y)
+void	sprite(int i, int j)
 {
-	rect(tile_x, tile_y, 0x00BF4040);
+	if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
+		|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
+		my_exit("sprite next to space");
+	g_sprite.count++;
 }
 
 void	salloc(void)

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 11:29:00 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	map(int tile_x, int tile_y, int i, int j)
 				MINIMAP_SCALE_FACTOR * tile_y,
 				0x00ADADAD);
 	else if (g_file.map[i][j] == '2')
-		sprite(MINIMAP_SCALE_FACTOR * tile_x,
+		sprite_2d(MINIMAP_SCALE_FACTOR * tile_x,
 				MINIMAP_SCALE_FACTOR * tile_y);
 	else if (g_file.map[i][j] == 'W' || g_file.map[i][j] == 'E'
 				|| g_file.map[i][j] == 'S' || g_file.map[i][j] == 'N')
@@ -55,4 +55,9 @@ void	render_map(void)
 		}
 		i++;
 	}
+}
+
+void	sprite_2d(int tile_x, int tile_y)
+{
+	rect(tile_x, tile_y, 0x00BF4040);
 }

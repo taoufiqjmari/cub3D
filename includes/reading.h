@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 10:06:16 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 12:01:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ typedef struct	s_file
 	char		**map;
 	size_t		map_width;
 	size_t		map_height;
+	size_t		len;
+	char		**part;
+	char		**rgb;
 }				t_file;
 t_file			g_file;
 
 void			reading_file(void);
+void			start_map(char **line);
 void			init_elements(void);
 int				get_next_line(int fd, char **line);
 void			validate_r(char *line);
@@ -49,7 +53,11 @@ void			validate_ea(char *line);
 void			validate_s(char *line);
 void			textures(void);
 void			validate_f(char *line);
+void			check_rgb_f(char *rgb, char c);
 void			validate_c(char *line);
+void			check_rgb_c(char *rgb, char c);
+void			pre_rgb(char **rgb, char c);
+void			pre_fc(char **line, char c);
 void			is_info_correct(char *part, char c);
 int				how_many_part(char **part);
 void			all_read(void);

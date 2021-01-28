@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2021/01/27 15:29:43 by tjmari           ###   ########.fr        #
+#    Updated: 2021/01/28 12:58:43 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SEARCH_PATH = -I /usr/local/include
 LIB = -L /usr/local/lib -lmlx
 FRAMEWORKS = -framework OpenGL -framework AppKit
 
-SRC = ./srcs/cub3d.c ./srcs/reading.c ./srcs/reading_utils.c ./srcs/elements.c ./srcs/get_next_line.c \
+SRC = ./srcs/cub3d.c ./srcs/reading.c ./srcs/reading_utils.c ./srcs/elements.c ./srcs/elements_utils.c ./srcs/get_next_line.c \
 		./srcs/map.c ./srcs/player.c ./srcs/rays.c ./srcs/horz_vert_ray.c \
 		./srcs/sprite_init.c ./srcs/sprite.c ./srcs/three_d.c ./srcs/textures.c \
 		./srcs/bmp.c ./srcs/draw.c ./srcs/angles.c ./srcs/exit.c
