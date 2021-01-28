@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 11:51:35 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:51:39 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ _Bool	rays_map_has_wall_at(float new_x, float new_y)
 
 	map_index_x = new_x / TS;
 	map_index_y = new_y / TS;
-	return (g_elements.map[map_index_y][map_index_x] == ' ' ||
-			g_elements.map[map_index_y][map_index_x] == '1');
+	return (g_file.map[map_index_y][map_index_x] == ' ' ||
+			g_file.map[map_index_y][map_index_x] == '1');
 }
 
 void	cast_ray(float ray_ang, int strip_id)
@@ -55,10 +55,10 @@ void	update_rays(void)
 
 	ray_ang = g_ply.rotation_ang - (FOV_ANG / 2);
 	strip_id = 0;
-	while (strip_id < g_mlx.win_width)
+	while (strip_id < g_mlx.win_w)
 	{
 		cast_ray(ray_ang, strip_id);
-		ray_ang += FOV_ANG / g_mlx.win_width;
+		ray_ang += FOV_ANG / g_mlx.win_w;
 		strip_id++;
 	}
 }
@@ -68,7 +68,7 @@ void	render_rays(void)
 	int	i;
 
 	i = 0;
-	while (i < g_mlx.win_width)
+	while (i < g_mlx.win_w)
 	{
 		line(MINIMAP_SCALE_FACTOR * g_rays[i].wall_hit_x,
 				MINIMAP_SCALE_FACTOR * g_rays[i].wall_hit_y,

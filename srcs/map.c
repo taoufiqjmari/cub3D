@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/25 09:57:09 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	map(int tile_x, int tile_y, int i, int j)
 {
-	if (g_elements.map[i][j] == '1')
+	if (g_file.map[i][j] == '1')
 		rect(MINIMAP_SCALE_FACTOR * tile_x,
 				MINIMAP_SCALE_FACTOR * tile_y,
 				0x00ADADAD);
-	else if (g_elements.map[i][j] == '2')
+	else if (g_file.map[i][j] == '2')
 		sprite(MINIMAP_SCALE_FACTOR * tile_x,
 				MINIMAP_SCALE_FACTOR * tile_y);
-	else if (g_elements.map[i][j] == 'W' || g_elements.map[i][j] == 'E'
-				|| g_elements.map[i][j] == 'S' || g_elements.map[i][j] == 'N')
+	else if (g_file.map[i][j] == 'W' || g_file.map[i][j] == 'E'
+				|| g_file.map[i][j] == 'S' || g_file.map[i][j] == 'N')
 	{
 		rect(MINIMAP_SCALE_FACTOR * tile_x,
 			MINIMAP_SCALE_FACTOR * tile_y, 0x00F9F9F9);
 	}
-	else if (g_elements.map[i][j] == ' ')
+	else if (g_file.map[i][j] == ' ')
 		return ;
 	else
 		rect(MINIMAP_SCALE_FACTOR * tile_x,
@@ -43,10 +43,10 @@ void	render_map(void)
 	int		tile_y;
 
 	i = 0;
-	while (i < g_elements.map_height)
+	while (i < g_file.map_height)
 	{
 		j = 0;
-		while (j < g_elements.map_width)
+		while (j < g_file.map_width)
 		{
 			tile_x = j * TS;
 			tile_y = i * TS;

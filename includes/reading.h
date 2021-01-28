@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 19:00:56 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 10:06:16 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define BUFFER_SIZE 100
 
-typedef struct	s_elements
+typedef struct	s_file
 {
 	int			fd;
 	_Bool		r;
@@ -35,8 +35,8 @@ typedef struct	s_elements
 	char		**map;
 	size_t		map_width;
 	size_t		map_height;
-}				t_elements;
-t_elements		g_elements;
+}				t_file;
+t_file			g_file;
 
 void			reading_file(void);
 void			init_elements(void);
@@ -47,6 +47,7 @@ void			validate_so(char *line);
 void			validate_we(char *line);
 void			validate_ea(char *line);
 void			validate_s(char *line);
+void			textures(void);
 void			validate_f(char *line);
 void			validate_c(char *line);
 void			is_info_correct(char *part, char c);

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 15:07:23 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:47:36 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 10:05:53 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,19 @@ t_texture		g_texture;
 
 typedef	struct	s_fc
 {
-	int			floor;
-	int			floor_r;
-	int			floor_g;
-	int			floor_b;
-	int			ceiling;
-	int			ceiling_r;
-	int			ceiling_g;
-	int			ceiling_b;
+	int			f;
+	int			f_r;
+	int			f_g;
+	int			f_b;
+	int			c;
+	int			c_r;
+	int			c_g;
+	int			c_b;
 }				t_fc;
 t_fc			g_fc;
 
 float			g_dis_proj_plane;
 
-void			textures(void);
 void			render_3d(void);
 void			ceiling(int i, int wall_top_pixel);
 void			grounding(int i, int wall_t_p, int wall_b_p, int wall_strip_h);

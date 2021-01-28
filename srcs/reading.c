@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 19:05:22 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:45:02 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	reading_file(void)
 {
 	char	*line;
 	int		ret;
-	char 	*tmp;
+	char	*tmp;
 
 	init_elements();
 	ret = 1;
 	while (ret)
 	{
-		ret = get_next_line(g_elements.fd, &line);
-		if (!g_elements.read)
+		ret = get_next_line(g_file.fd, &line);
+		if (!g_file.read)
 		{
 			if (*line == 'R')
 				validate_r(line);
@@ -55,23 +55,23 @@ void	reading_file(void)
 		}
 		else
 		{
-			if (*line == '\0' && !g_elements.start_map)
+			if (*line == '\0' && !g_file.start_map)
 			{
 				free(line);
 				continue ;
 			}
 			else if (*line != '\0')
 			{
-				g_elements.start_map = 1;
-				tmp = g_elements.temp_map;
-				g_elements.temp_map = ft_strjoin(g_elements.temp_map, "\n");
+				g_file.start_map = 1;
+				tmp = g_file.temp_map;
+				g_file.temp_map = ft_strjoin(g_file.temp_map, "\n");
 				free(tmp);
-				tmp = g_elements.temp_map;
-				g_elements.temp_map = ft_strjoin(g_elements.temp_map, line);
+				tmp = g_file.temp_map;
+				g_file.temp_map = ft_strjoin(g_file.temp_map, line);
 				free(tmp);
-				if (g_elements.map_width < ft_strlen(line))
-					g_elements.map_width = ft_strlen(line);
-				g_elements.map_height++;
+				if (g_file.map_width < ft_strlen(line))
+					g_file.map_width = ft_strlen(line);
+				g_file.map_height++;
 			}
 			else
 				my_exit("space inside map");
@@ -85,17 +85,17 @@ void	final_map(void)
 	size_t	i;
 
 	i = 0;
-	g_elements.map_splitted = ft_split(g_elements.temp_map, '\n');
-	free(g_elements.temp_map);
-	g_elements.map = (char **)malloc(sizeof(char *) * (g_elements.map_height + 1));
-	while (i < g_elements.map_height)
+	g_file.map_splitted = ft_split(g_file.temp_map, '\n');
+	free(g_file.temp_map);
+	g_file.map = (char **)malloc(sizeof(char *) * (g_file.map_height + 1));
+	while (i < g_file.map_height)
 	{
-		g_elements.map[i] = (char *)malloc(sizeof(char) * g_elements.map_width);
-		ft_strlcpy(g_elements.map[i], g_elements.map_splitted[i], g_elements.map_width);
+		g_file.map[i] = (char *)malloc(sizeof(char) * g_file.map_width);
+		ft_strlcpy(g_file.map[i], g_file.map_splitted[i], g_file.map_width);
 		i++;
 	}
-	g_elements.map[i] = NULL;
-	free_dpointer(g_elements.map_splitted);
+	g_file.map[i] = NULL;
+	free_dpointer(g_file.map_splitted);
 }
 
 void	map_parsing(void)
@@ -103,16 +103,16 @@ void	map_parsing(void)
 	size_t	i;
 	size_t	j;
 
-	if (!ft_strchr(g_elements.temp_map, 'N') && !ft_strchr(g_elements.temp_map, 'E')
-		&& !ft_strchr(g_elements.temp_map, 'S') && !ft_strchr(g_elements.temp_map, 'W'))
+	if (!ft_strchr(g_file.temp_map, 'N') && !ft_strchr(g_file.temp_map, 'E')
+		&& !ft_strchr(g_file.temp_map, 'S') && !ft_strchr(g_file.temp_map, 'W'))
 		my_exit("no player in map");
 	i = 0;
-	while (i < g_elements.map_height)
+	while (i < g_file.map_height)
 	{
 		j = 0;
-		while (j < g_elements.map_width)
+		while (j < g_file.map_width)
 		{
-			if (g_elements.map[i][j] != ' ' && g_elements.map[i][j] != '1')
+			if (g_file.map[i][j] != ' ' && g_file.map[i][j] != '1')
 				to_check(i, j);
 			j++;
 		}
@@ -122,28 +122,28 @@ void	map_parsing(void)
 
 void	to_check(size_t i, size_t j)
 {
-	if (i == 0 || j == 0 || i == g_elements.map_height - 1
-		|| j == g_elements.map_width - 1)
+	if (i == 0 || j == 0 || i == g_file.map_height - 1
+		|| j == g_file.map_width - 1)
 		my_exit("map is not closed");
-	else if (g_elements.map[i][j] == '0')
+	else if (g_file.map[i][j] == '0')
 	{
-		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
-				|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
+		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
+				|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
 			my_exit("0 next to space");
 	}
-	else if (g_elements.map[i][j] == 'N' || g_elements.map[i][j] == 'W'
-			|| g_elements.map[i][j] == 'E' || g_elements.map[i][j] == 'S')
+	else if (g_file.map[i][j] == 'N' || g_file.map[i][j] == 'W'
+			|| g_file.map[i][j] == 'E' || g_file.map[i][j] == 'S')
 	{
-		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
-			|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
+		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
+			|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
 			my_exit("player next to space");
-		g_ply.ply_init_dir = g_elements.map[i][j];
+		g_ply.ply_init_dir = g_file.map[i][j];
 		define_ply(i, j);
 	}
-	else if (g_elements.map[i][j] == '2')
+	else if (g_file.map[i][j] == '2')
 	{
-		if (g_elements.map[i][j + 1] == ' ' || g_elements.map[i][j - 1] == ' '
-			|| g_elements.map[i - 1][j] == ' ' || g_elements.map[i + 1][j] == ' ')
+		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
+			|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
 			my_exit("sprite next to space");
 		g_sprite.count++;
 	}

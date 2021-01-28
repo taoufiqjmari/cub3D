@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:01:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:52:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	put_pixel_to_img(int x, int y, int color)
 {
-	if (x >= g_mlx.win_width || y >= g_mlx.win_height)
+	if (x >= g_mlx.win_w || y >= g_mlx.win_h)
 		return ;
-	g_mlx.addr[y * g_mlx.win_width + x] = color;
+	g_mlx.addr[y * g_mlx.win_w + x] = color;
 }
 
 void	rect(int i, int j, int color)

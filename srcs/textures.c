@@ -6,34 +6,143 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 18:27:51 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 18:53:13 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 10:07:35 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/three.h"
+#include "../includes/reading.h"
 
-void	textures(void)
+void	validate_no(char *line)
 {
-	g_texture.texel[0] = (int *)mlx_get_data_addr(g_texture.txt[0],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_texture.texel[1] = (int *)mlx_get_data_addr(g_texture.txt[1],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_texture.texel[2] = (int *)mlx_get_data_addr(g_texture.txt[2],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_texture.texel[3] = (int *)mlx_get_data_addr(g_texture.txt[3],
-			&g_texture.bpp, &g_texture.line_length, &g_texture.endian);
-	g_sprite.texel = (int *)mlx_get_data_addr(g_sprite.txt,
-			&g_sprite.bpp, &g_sprite.line_length, &g_sprite.endian);
+	size_t	len;
+	char	**part;
+
+	len = ft_strlen(line);
+	if (!g_file.no)
+	{
+		g_file.no = 1;
+		if (ft_strncmp(line, "NO ", 3)
+			|| *(line + 3) == ' ' || *(line + (len - 1)) == ' ')
+			my_exit("North texture input is in wrong format");
+		part = ft_split(line, ' ');
+		if (how_many_part(part) == 2)
+		{
+			if (!(g_texture.txt[0] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[0], &g_texture.h[0])))
+				my_exit("North texture input is in wrong format");
+		}
+		else
+			my_exit("North texture input is in wrong format");
+		free_dpointer(part);
+	}
+	else
+		my_exit("North texture input is in wrong format");
 }
 
-void	what_index(int i, int *index)
+void	validate_so(char *line)
 {
-	if (g_rays[i].is_ray_up && !g_rays[i].was_hit_ver)
-		*index = 1;
-	else if (g_rays[i].is_ray_down && !g_rays[i].was_hit_ver)
-		*index = 0;
-	else if (g_rays[i].is_ray_right && g_rays[i].was_hit_ver)
-		*index = 2;
-	else if (g_rays[i].is_ray_left && g_rays[i].was_hit_ver)
-		*index = 3;
+	size_t	len;
+	char	**part;
+
+	len = ft_strlen(line);
+	if (!g_file.so)
+	{
+		g_file.so = 1;
+		if (ft_strncmp(line, "SO ", 3)
+			|| *(line + 3) == ' ' || *(line + (len - 1)) == ' ')
+			my_exit("South texture input is in wrong format");
+		part = ft_split(line, ' ');
+		if (how_many_part(part) == 2)
+		{
+			if (!(g_texture.txt[1] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[1], &g_texture.h[1])))
+				my_exit("South texture input is in wrong format");
+		}
+		else
+			my_exit("South texture input is in wrong format");
+		free_dpointer(part);
+	}
+	else
+		my_exit("South texture input is in wrong format");
+}
+
+void	validate_we(char *line)
+{
+	size_t	len;
+	char	**part;
+
+	len = ft_strlen(line);
+	if (!g_file.we)
+	{
+		g_file.we = 1;
+		if (ft_strncmp(line, "WE ", 3)
+			|| *(line + 3) == ' ' || *(line + (len - 1)) == ' ')
+			my_exit("West texture input is in wrong format");
+		part = ft_split(line, ' ');
+		if (how_many_part(part) == 2)
+		{
+			if (!(g_texture.txt[2] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[2], &g_texture.h[2])))
+				my_exit("West texture input is in wrong format");
+		}
+		else
+			my_exit("West texture input is in wrong format");
+		free_dpointer(part);
+	}
+	else
+		my_exit("West texture input is in wrong format");
+}
+
+void	validate_ea(char *line)
+{
+	size_t	len;
+	char	**part;
+
+	len = ft_strlen(line);
+	if (!g_file.ea)
+	{
+		g_file.ea = 1;
+		if (ft_strncmp(line, "EA ", 3)
+			|| *(line + 3) == ' ' || *(line + (len - 1)) == ' ')
+			my_exit("East texture input is in wrong format");
+		part = ft_split(line, ' ');
+		if (how_many_part(part) == 2)
+		{
+			if (!(g_texture.txt[3] = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_texture.w[3], &g_texture.h[3])))
+				my_exit("East texture input is in wrong format");
+		}
+		else
+			my_exit("East texture input is in wrong format");
+		free_dpointer(part);
+	}
+	else
+		my_exit("East texture input is in wrong format");
+}
+
+void	validate_s(char *line)
+{
+	size_t	len;
+	char	**part;
+
+	len = ft_strlen(line);
+	if (!g_file.s)
+	{
+		g_file.s = 1;
+		if (ft_strncmp(line, "S ", 2)
+			|| *(line + 2) == ' ' || *(line + (len - 1)) == ' ')
+			my_exit("Sprite texture input is in wrong format");
+		part = ft_split(line, ' ');
+		if (how_many_part(part) == 2)
+		{
+			if (!(g_sprite.txt = mlx_xpm_file_to_image(g_mlx.mlx, part[1],
+				&g_sprite.w, &g_sprite.h)))
+				my_exit("Sprite texture input is in wrong format");
+		}
+		else
+			my_exit("Sprite texture input is in wrong format");
+		free_dpointer(part);
+	}
+	else
+		my_exit("Sprite texture input is in wrong format");
 }

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:18 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 14:54:18 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	sprite_data(void)
 	size_t	j;
 
 	i = 0;
-	while (i < g_elements.map_height)
+	while (i < g_file.map_height)
 	{
 		j = 0;
-		while (j < g_elements.map_width)
+		while (j < g_file.map_width)
 		{
-			if (g_elements.map[i][j] == '2')
+			if (g_file.map[i][j] == '2')
 				put_data(i * TS, j * TS);
 			j++;
 		}

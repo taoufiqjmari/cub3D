@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:28:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 19:02:58 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void	init_elements(void)
 {
-	g_elements.r = 0;
-	g_elements.no = 0;
-	g_elements.so = 0;
-	g_elements.we = 0;
-	g_elements.ea = 0;
-	g_elements.s = 0;
-	g_elements.f = 0;
-	g_elements.c = 0;
-	g_elements.read = 0;
-	g_elements.start_map = 0;
-	g_elements.temp_map = ft_strdup("");
-	g_elements.map_width = 0;
-	g_elements.map_height = 0;
+	g_file.r = 0;
+	g_file.no = 0;
+	g_file.so = 0;
+	g_file.we = 0;
+	g_file.ea = 0;
+	g_file.s = 0;
+	g_file.f = 0;
+	g_file.c = 0;
+	g_file.read = 0;
+	g_file.start_map = 0;
+	g_file.temp_map = ft_strdup("");
+	g_file.map_width = 0;
+	g_file.map_height = 0;
 	g_ply.player_defined = 0;
 	g_sprite.count = 0;
 }
 
 void	all_read(void)
 {
-	if (g_elements.r && g_elements.no && g_elements.so
-		&& g_elements.we && g_elements.ea && g_elements.s
-		&& g_elements.f && g_elements.c)
-		g_elements.read = 1;
+	if (g_file.r && g_file.no && g_file.so
+		&& g_file.we && g_file.ea && g_file.s
+		&& g_file.f && g_file.c)
+		g_file.read = 1;
 }
 
 int		how_many_part(char **part)

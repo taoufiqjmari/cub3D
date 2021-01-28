@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:25:21 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 14:56:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	cast_horz_ray(float ray_ang)
 void	find_horz_ray_limit(void)
 {
 	while (g_r.next_horz_touch_x >= 0
-		&& g_r.next_horz_touch_x <= g_elements.map_width * TS
+		&& g_r.next_horz_touch_x <= g_file.map_width * TS
 		&& g_r.next_horz_touch_y >= 0
-		&& g_r.next_horz_touch_y <= g_elements.map_height * TS)
+		&& g_r.next_horz_touch_y <= g_file.map_height * TS)
 	{
 		g_r.check_x = g_r.next_horz_touch_x;
 		g_r.check_y = g_r.next_horz_touch_y;
@@ -47,7 +47,7 @@ void	find_horz_ray_limit(void)
 		{
 			g_r.horz_wall_hit_x = g_r.next_horz_touch_x;
 			g_r.horz_wall_hit_y = g_r.next_horz_touch_y;
-			g_r.horz_wall_content = g_elements.map[(int)floor(g_r.check_y / TS)]
+			g_r.horz_wall_content = g_file.map[(int)floor(g_r.check_y / TS)]
 												[(int)floor(g_r.check_x / TS)];
 			g_r.found_horz_wall_hit = TRUE;
 			break ;
@@ -83,9 +83,9 @@ void	cast_vert_ray(float ray_ang)
 void	find_vert_ray_limit(void)
 {
 	while (g_r.next_vert_touch_x >= 0
-		&& g_r.next_vert_touch_x <= g_elements.map_width * TS
+		&& g_r.next_vert_touch_x <= g_file.map_width * TS
 		&& g_r.next_vert_touch_y >= 0
-		&& g_r.next_vert_touch_y <= g_elements.map_height * TS)
+		&& g_r.next_vert_touch_y <= g_file.map_height * TS)
 	{
 		g_r.check_x = g_r.next_vert_touch_x;
 		if (g_r.is_ray_facing_left)
@@ -95,7 +95,7 @@ void	find_vert_ray_limit(void)
 		{
 			g_r.vert_wall_hit_x = g_r.next_vert_touch_x;
 			g_r.vert_wall_hit_y = g_r.next_vert_touch_y;
-			g_r.vert_wall_content = g_elements.map[(int)floor(g_r.check_y / TS)]
+			g_r.vert_wall_content = g_file.map[(int)floor(g_r.check_y / TS)]
 												[(int)floor(g_r.check_x / TS)];
 			g_r.found_vert_wall_hit = TRUE;
 			break ;

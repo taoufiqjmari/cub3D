@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 15:22:19 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:52:30 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef	struct	s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	int			win_width;
-	int			win_height;
+	int			win_w;
+	int			win_h;
 	void		*img;
 	int			*addr;
 	int			bits_per_pixel;

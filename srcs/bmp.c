@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:27 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 11:39:02 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:52:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void	make_header(void)
 {
 	g_bmp.byte_type[0] = 'B';
 	g_bmp.byte_type[1] = 'M';
-	g_bmp.byte_size = (g_mlx.win_width *
-					g_mlx.win_height * 3) + 54;
+	g_bmp.byte_size = (g_mlx.win_w *
+					g_mlx.win_h * 3) + 54;
 	g_bmp.byte_reserved = 0x00000000;
 	g_bmp.byte_offset = 0x36;
 	g_bmp.header_size = 40;
-	g_bmp.image_width = g_mlx.win_width;
-	g_bmp.image_height = -g_mlx.win_height;
+	g_bmp.image_width = g_mlx.win_w;
+	g_bmp.image_height = -g_mlx.win_h;
 	g_bmp.color_planes = 1;
 	g_bmp.bits_per_pixel = 32;
 	g_bmp.compression = 0;
-	g_bmp.image_size = (g_mlx.win_width * g_mlx.win_height * 4);
+	g_bmp.image_size = (g_mlx.win_w * g_mlx.win_h * 4);
 	g_bmp.bits_xpels_per_meter = 2835;
 	g_bmp.bits_xpels_per_meter = 2835;
 	g_bmp.total_colors = 0;

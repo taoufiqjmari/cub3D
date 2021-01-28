@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/27 18:46:59 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 09:52:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	arguments(int argc, char **argv)
 	if (argc >= 2 && argc <= 3)
 	{
 		len = ft_strlen(argv[1]);
-		if ((g_elements.fd = open(argv[1], O_RDONLY)) == -1
+		if ((g_file.fd = open(argv[1], O_RDONLY)) == -1
 			|| (argv[1][len - 4] != '.' && argv[1][len - 3] != 'c'
 			&& argv[1][len - 2] != 'u' && argv[1][len - 1] != 'b'))
 			my_exit("problem with file");
@@ -37,20 +37,20 @@ void	arguments(int argc, char **argv)
 
 void	setup(void)
 {
-	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_width,
-											g_mlx.win_height, "cub3D")))
+	if (!(g_mlx.mlx_win = mlx_new_window(g_mlx.mlx, g_mlx.win_w,
+											g_mlx.win_h, "cub3D")))
 		my_exit("Problem with mlx_new_window()");
 	if (!(g_mlx.img = mlx_new_image(g_mlx.mlx,
-										g_mlx.win_width, g_mlx.win_height)))
+										g_mlx.win_w, g_mlx.win_h)))
 		my_exit("Problem with mlx_new_image()");
 	if (!(g_mlx.addr = (int *)mlx_get_data_addr(g_mlx.img,
 		&g_mlx.bits_per_pixel, &g_mlx.line_length, &g_mlx.endian)))
 		my_exit("Problem with mlx_get_data_addr()");
 	g_ply.turn_direction = 0;
 	g_ply.walk_direction = 0;
-	g_ply.move_speed = 10.0;
-	g_ply.rotation_speed = rad(5);
-	g_dis_proj_plane = (g_mlx.win_width / 2) / tan(FOV_ANG / 1.5);
+	g_ply.move_speed = 20.0;
+	g_ply.rotation_speed = rad(10);
+	g_dis_proj_plane = (g_mlx.win_w / 2) / tan(FOV_ANG / 1.5);
 	textures();
 	salloc();
 	sprite_data();
