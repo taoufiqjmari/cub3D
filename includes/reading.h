@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:42:03 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 15:21:42 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 16:17:24 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct	s_file
 t_file			g_file;
 
 void			reading_file(void);
-void			start_map(char **line);
+void			elements(char *line);
+void			on_map(char **line);
 void			init_elements(void);
 int				get_next_line(int fd, char **line);
 void			validate_r(char *line);

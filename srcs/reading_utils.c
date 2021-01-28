@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:28:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 16:22:08 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,24 @@ int		how_many_part(char **part)
 	return (i);
 }
 
+void	free_dpointer(char **str)
+{
+	int		i;
+
+	if (str)
+	{
+		i = how_many_part(str);
+		while (i >= 0)
+		{
+			free(str[i]);
+			str[i] = NULL;
+			i--;
+		}
+		free(str);
+	}
+	str = NULL;
+}
+
 void	is_info_correct(char *part, char c)
 {
 	int		commas;
@@ -76,22 +94,4 @@ void	is_info_correct(char *part, char c)
 		if (commas != 2)
 			my_exit("Error in file");
 	}
-}
-
-void	free_dpointer(char **str)
-{
-	int		i;
-
-	if (str)
-	{
-		i = how_many_part(str);
-		while (i >= 0)
-		{
-			free(str[i]);
-			str[i] = NULL;
-			i--;
-		}
-		free(str);
-	}
-	str = NULL;
 }

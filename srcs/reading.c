@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 11:39:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 16:25:21 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	reading_file(void)
 {
 	char	*line;
 	int		ret;
-	char	*temp;
 
 	init_elements();
 	ret = 1;
@@ -25,57 +24,11 @@ void	reading_file(void)
 		ret = get_next_line(g_file.fd, &line);
 		if (!g_file.read)
 		{
-			if (*line == 'R')
-				validate_r(line);
-			else if (*line == 'N')
-				validate_no(line);
-			else if (*line == 'S')
-			{
-				if (*(line + 1) == 'O')
-					validate_so(line);
-				else
-					validate_s(line);
-			}
-			else if (*line == 'W')
-				validate_we(line);
-			else if (*line == 'E')
-				validate_ea(line);
-			else if (*line == 'F')
-				validate_f(line);
-			else if (*line == 'C')
-				validate_c(line);
-			else if (*line == '\0')
-			{
-				free(line);
-				continue ;
-			}
-			else
-				my_exit("Error in file");
+			elements(line);
 			all_read();
 		}
 		else
-		{
-			if (*line == '\0' && !g_file.start_map)
-			{
-				free(line);
-				continue ;
-			}
-			else if (*line != '\0')
-			{
-				g_file.start_map = 1;
-				temp = g_file.temp_map;
-				g_file.temp_map = ft_strjoin(g_file.temp_map, "\n");
-				free(temp);
-				temp = g_file.temp_map;
-				g_file.temp_map = ft_strjoin(g_file.temp_map, line);
-				free(temp);
-				if (g_file.map_width < ft_strlen(line))
-					g_file.map_width = ft_strlen(line);
-				g_file.map_height++;
-			}
-			else
-				my_exit("space inside map");
-		}
+			on_map(&line);
 		free(line);
 	}
 }
