@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 16:25:21 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 17:30:14 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	reading_file(void)
 			on_map(&line);
 		free(line);
 	}
+	close(g_file.fd);
 }
 
 void	final_map(void)
@@ -58,7 +59,7 @@ void	map_parsing(void)
 
 	if (!ft_strchr(g_file.temp_map, 'N') && !ft_strchr(g_file.temp_map, 'E')
 		&& !ft_strchr(g_file.temp_map, 'S') && !ft_strchr(g_file.temp_map, 'W'))
-		my_exit("no player in map");
+		my_exit("No player in map or maybe the file is empty at all.");
 	i = 0;
 	while (i < g_file.map_height)
 	{
@@ -77,24 +78,24 @@ void	to_check(size_t i, size_t j)
 {
 	if (i == 0 || j == 0 || i == g_file.map_height - 1
 		|| j == g_file.map_width - 1)
-		my_exit("map is not closed");
+		my_exit("Map is not closed somehow.");
 	else if (g_file.map[i][j] == '0')
 	{
 		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
 				|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
-			my_exit("0 next to space");
+			my_exit("Character 0 id next to space.");
 	}
 	else if (g_file.map[i][j] == 'N' || g_file.map[i][j] == 'W'
 			|| g_file.map[i][j] == 'E' || g_file.map[i][j] == 'S')
 	{
 		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
 			|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
-			my_exit("player next to space");
+			my_exit("Player is next to space.");
 		g_ply.ply_init_dir = g_file.map[i][j];
 		define_ply(i, j);
 	}
 	else if (g_file.map[i][j] == '2')
 		sprite(i, j);
 	else
-		my_exit("invalid character in map");
+		my_exit("Invalid character in map.");
 }

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 16:46:38 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:52:30 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 17:31:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void			arguments(int argc, char **argv);
 void			setup(void);
 void			render(void);
 void			my_exit(const char *str);
+void			my_exit_clean(const char *str);
 int				red_cross(void);
 
 #endif

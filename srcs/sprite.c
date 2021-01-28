@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 17:59:19 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:52:07 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:03:45 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	put_spixel_to_img(int x, int y)
 {
 	if (x >= g_mlx.win_w || y >= g_mlx.win_h)
 		return ;
-	if (y < g_mlx.win_h && y >= 0 && g_sprite.color != 0x000000)
+	if (y < g_mlx.win_h && y >= 0 && g_sprite.color > 0x000000)
 		g_mlx.addr[(y * g_mlx.win_w) + x] = g_sprite.color;
 }
 

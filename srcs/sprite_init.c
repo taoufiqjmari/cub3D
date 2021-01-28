@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:18 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 11:08:46 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 17:25:49 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	sprite(int i, int j)
 {
 	if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
 		|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
-		my_exit("sprite next to space");
+		my_exit("Sprite is next to space.");
 	g_sprite.count++;
 }
 
 void	salloc(void)
 {
 	if (!(g_sprites = malloc(sizeof(t_sprites) * g_sprite.count)))
-		my_exit("sprite allocation failed");
+		my_exit("Sprite allocation failed.");
 }
 
 void	put_data(int i, int j)

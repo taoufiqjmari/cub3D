@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:19:12 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 15:05:35 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 17:23:59 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void	validate_r(char *line)
 			res_util(g_file.part + 2, temp, 'h');
 		}
 		else
-			my_exit("Resolution input is in wrong format");
+			my_exit("Problem with resolution input.");
 		free_dpointer(g_file.part);
 	}
 	else
-		my_exit("Resolution input is in wrong format");
+		my_exit("Problem with resolution input.");
 }
 
 void	validate_f(char *line)
@@ -78,15 +78,15 @@ void	validate_f(char *line)
 				g_fc.f = g_fc.f_r << 16 | g_fc.f_g << 8 | g_fc.f_b;
 			}
 			else
-				my_exit("Floor RGB input is in wrong format");
+				my_exit("Problem with resolution input.");
 			free_dpointer(g_file.rgb);
 		}
 		else
-			my_exit("Floor RGB input is in wrong format");
+			my_exit("Problem with floor input.");
 		free_dpointer(g_file.part);
 	}
 	else
-		my_exit("Floor RGB input is in wrong format");
+		my_exit("Problem with floor input.");
 }
 
 void	validate_c(char *line)
@@ -104,15 +104,15 @@ void	validate_c(char *line)
 				g_fc.c = g_fc.c_r << 16 | g_fc.c_g << 8 | g_fc.c_b;
 			}
 			else
-				my_exit("Ceiling RGB input is in wrong format");
+				my_exit("Problem with ceiling input.");
 			free_dpointer(g_file.rgb);
 		}
 		else
-			my_exit("Ceiling RGB input is in wrong format");
+			my_exit("Problem with ceiling input.");
 		free_dpointer(g_file.part);
 	}
 	else
-		my_exit("Ceiling RGB input is in wrong format");
+		my_exit("Problem with ceiling input.");
 }
 
 void	textures(void)

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:27 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:52:07 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:16:50 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	file(void)
 	if (!(g_fd = open("screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR
 						| S_IWUSR | S_IRGRP | S_IROTH)))
 	{
-		my_exit("bmp not created");
+		my_exit("Problem with bitmap file.");
 	}
 }
 
@@ -68,7 +68,7 @@ void	write_file(void)
 	int					j;
 
 	if (!(pixel_array = malloc(sizeof(char) * g_bmp.image_size)))
-		my_exit("write file error");
+		my_exit("Problem with bitmap file.");
 	i = -1;
 	j = 0;
 	g_bmp.image_size /= 4;

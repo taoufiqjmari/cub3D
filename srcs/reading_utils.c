@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:28:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 16:22:08 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 17:20:04 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	is_info_correct(char *part, char c)
 			else if (*part == '\0')
 				return ;
 			else
-				my_exit("Error in file");
+				my_exit("Problem with integer input.");
 		}
 	}
 	if (c == 'c')
@@ -92,6 +92,6 @@ void	is_info_correct(char *part, char c)
 				commas++;
 		}
 		if (commas != 2)
-			my_exit("Error in file");
+			my_exit("Problem with RGB input.");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 17:43:56 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:52:07 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:25:42 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	arguments(int argc, char **argv)
 	{
 		len = ft_strlen(argv[1]);
 		if ((g_file.fd = open(argv[1], O_RDONLY)) == -1
-			|| (argv[1][len - 4] != '.' && argv[1][len - 3] != 'c'
-			&& argv[1][len - 2] != 'u' && argv[1][len - 1] != 'b'))
-			my_exit("problem with file");
+			|| (argv[1][len - 4] != '.' || argv[1][len - 3] != 'c'
+			|| argv[1][len - 2] != 'u' || argv[1][len - 1] != 'b'))
+			my_exit("Problem with info file.");
 		g_bmp.active = 0;
 		if (argc == 3)
 		{
 			if (ft_strncmp(argv[2], "--save", 7))
-				my_exit("did you mean '--save'?");
+				my_exit("Did you mean '--save'?");
 			g_bmp.active = 1;
 		}
 	}
 	else
-		my_exit("wrong number of arguments");
+		my_exit("Wrong number of arguments");
 }
 
 void	setup(void)
@@ -68,7 +68,7 @@ void	render(void)
 	if (g_bmp.active)
 	{
 		bmp();
-		my_exit("screenshot saved");
+		my_exit_clean("Screenshot saved.");
 	}
 	mlx_put_image_to_window(g_mlx.mlx, g_mlx.mlx_win, g_mlx.img, 0, 0);
 }

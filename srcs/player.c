@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 10:34:39 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 09:35:15 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/28 18:24:02 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	define_ply(int i, int j)
 			g_ply.rotation_ang = rad(270);
 	}
 	else
-		my_exit("multiple players in map");
+		my_exit("Multiple players in map");
 }
 
 int		key_pressed(int keycode, t_ply *g_ply)
@@ -54,7 +54,7 @@ int		key_pressed(int keycode, t_ply *g_ply)
 	else if (keycode == CLICK_RIGHT_VIEW)
 		g_ply->turn_direction = +1;
 	else if (keycode == CLICK_ESC)
-		my_exit("ESP Clicked");
+		my_exit_clean("ESP Clicked.");
 	render();
 	return (0);
 }
