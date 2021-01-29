@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:42:18 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 17:25:49 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/29 12:49:33 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	get_distance(void)
 											g_sprites[i].x, g_sprites[i].y);
 		g_sprites[i].angle = atan2(g_sprites[i].y - g_ply.ply_y,
 									g_sprites[i].x - g_ply.ply_x);
-		if ((g_ply.rotation_ang - FOV_ANG / 2) - g_sprites[i].angle > rad(180))
-			g_sprites[i].angle += rad(360);
 		if (g_sprites[i].angle - (g_ply.rotation_ang - FOV_ANG / 2) > rad(180))
 			g_sprites[i].angle -= rad(360);
+		if (g_sprites[i].angle - (g_ply.rotation_ang - FOV_ANG / 2) < -rad(180))
+			g_sprites[i].angle += rad(360);
 		i++;
 	}
 }
