@@ -6,7 +6,7 @@
 #    By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/15 20:17:40 by tjmari            #+#    #+#              #
-#    Updated: 2021/01/28 16:26:42 by tjmari           ###   ########.fr        #
+#    Updated: 2021/01/29 10:21:02 by tjmari           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,12 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): libft_lib
-	@gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)CUB3D: ./$(NAME) made\n-------------------$(NC)"
-
-libft_lib:
+$(NAME): 
 	@make -C ./libft
 	@mv ./libft/$(LIBFT) ./
 	@echo "$(GREEN)CUB3D: ./$(LIBFT) moved to $(NAME)\n-------------------------------$(NC)"
+	@gcc $(FLAGS) $(SEARCH_PATH) $(SRC) $(LIB) $(FRAMEWORKS) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)CUB3D: ./$(NAME) made\n-------------------$(NC)"
 
 clean:
 	@make clean -C ./libft
@@ -50,3 +48,5 @@ fclean: clean
 	@echo "$(RED)CUB3D: ./$(NAME) deleted\n----------------------$(NC)"
 
 re: fclean all
+
+.PHONY: all clean fclean re
