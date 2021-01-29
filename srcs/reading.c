@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 17:52:08 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 18:48:44 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/29 10:35:05 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	to_check(size_t i, size_t j)
 	{
 		if (g_file.map[i][j + 1] == ' ' || g_file.map[i][j - 1] == ' '
 				|| g_file.map[i - 1][j] == ' ' || g_file.map[i + 1][j] == ' ')
-			my_exit("Character 0 id next to space.");
+			my_exit("Character 0 is next to space.");
 	}
 	else if (g_file.map[i][j] == 'N' || g_file.map[i][j] == 'W'
 			|| g_file.map[i][j] == 'E' || g_file.map[i][j] == 'S')
