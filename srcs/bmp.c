@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:27 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/29 09:58:29 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/29 11:52:07 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	make_header(void)
 	g_bmp.width = g_mlx.win_w;
 	g_bmp.height = -g_mlx.win_h;
 	g_bmp.number_of_color_planes = 1;
-	g_bmp.color_depth = 24;
+	g_bmp.color_depth = 32;
 	g_bmp.compression_method = 0;
-	g_bmp.raw_bitmap_data_size = (g_mlx.win_w * g_mlx.win_h * 3);
+	g_bmp.raw_bitmap_data_size = (g_mlx.win_w * g_mlx.win_h * 4);
 	g_bmp.horizontal_resolution = 3780;
 	g_bmp.vertical_resolution = 3780;
 	g_bmp.color_table_entries = 0;
@@ -69,15 +69,16 @@ void	write_file(void)
 		my_exit("Problem with bitmap file.");
 	i = 0;
 	j = 0;
-	g_bmp.raw_bitmap_data_size /= 3;
+	g_bmp.raw_bitmap_data_size /= 4;
 	while (i < g_bmp.raw_bitmap_data_size)
 	{
 		pixel_array[j++] = g_mlx.addr[i] & 255;
 		pixel_array[j++] = (g_mlx.addr[i] & 255 << 8) >> 8;
 		pixel_array[j++] = (g_mlx.addr[i] & 255 << 16) >> 16;
+		j++;
 		i++;
 	}
-	write(g_fd, pixel_array, g_bmp.raw_bitmap_data_size *= 3);
+	write(g_fd, pixel_array, g_bmp.raw_bitmap_data_size *= 4);
 	free(pixel_array);
 }
 
