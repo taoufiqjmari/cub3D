@@ -6,7 +6,7 @@
 /*   By: tjmari <tjmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:13:27 by tjmari            #+#    #+#             */
-/*   Updated: 2021/01/28 18:16:50 by tjmari           ###   ########.fr       */
+/*   Updated: 2021/01/29 09:58:29 by tjmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,46 @@ void	file(void)
 {
 	if (!(g_fd = open("screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR
 						| S_IWUSR | S_IRGRP | S_IROTH)))
-	{
 		my_exit("Problem with bitmap file.");
-	}
 }
 
 void	make_header(void)
 {
-	g_bmp.byte_type[0] = 'B';
-	g_bmp.byte_type[1] = 'M';
-	g_bmp.byte_size = (g_mlx.win_w *
+	g_bmp.bitmap_signature_bytes[0] = 'B';
+	g_bmp.bitmap_signature_bytes[1] = 'M';
+	g_bmp.size_of_bitmap_file = (g_mlx.win_w *
 					g_mlx.win_h * 3) + 54;
-	g_bmp.byte_reserved = 0x00000000;
-	g_bmp.byte_offset = 0x36;
-	g_bmp.header_size = 40;
-	g_bmp.image_width = g_mlx.win_w;
-	g_bmp.image_height = -g_mlx.win_h;
-	g_bmp.color_planes = 1;
-	g_bmp.bits_per_pixel = 32;
-	g_bmp.compression = 0;
-	g_bmp.image_size = (g_mlx.win_w * g_mlx.win_h * 4);
-	g_bmp.bits_xpels_per_meter = 2835;
-	g_bmp.bits_xpels_per_meter = 2835;
-	g_bmp.total_colors = 0;
+	g_bmp.reserved_bytes = 0;
+	g_bmp.pixel_data_offset = 54;
+	g_bmp.size_of_this_header = 40;
+	g_bmp.width = g_mlx.win_w;
+	g_bmp.height = -g_mlx.win_h;
+	g_bmp.number_of_color_planes = 1;
+	g_bmp.color_depth = 24;
+	g_bmp.compression_method = 0;
+	g_bmp.raw_bitmap_data_size = (g_mlx.win_w * g_mlx.win_h * 3);
+	g_bmp.horizontal_resolution = 3780;
+	g_bmp.vertical_resolution = 3780;
+	g_bmp.color_table_entries = 0;
 	g_bmp.important_colors = 0;
 }
 
 void	write_header(void)
 {
-	write(g_fd, &g_bmp.byte_type, 2);
-	write(g_fd, &g_bmp.byte_size, 4);
-	write(g_fd, &g_bmp.byte_reserved, 4);
-	write(g_fd, &g_bmp.byte_offset, 4);
-	write(g_fd, &g_bmp.header_size, 4);
-	write(g_fd, &g_bmp.image_width, 4);
-	write(g_fd, &g_bmp.image_height, 4);
-	write(g_fd, &g_bmp.color_planes, 2);
-	write(g_fd, &g_bmp.bits_per_pixel, 2);
-	write(g_fd, &g_bmp.compression, 4);
-	write(g_fd, &g_bmp.image_size, 4);
-	write(g_fd, &g_bmp.bits_xpels_per_meter, 4);
-	write(g_fd, &g_bmp.bits_ypels_per_meter, 4);
-	write(g_fd, &g_bmp.total_colors, 4);
+	write(g_fd, &g_bmp.bitmap_signature_bytes, 2);
+	write(g_fd, &g_bmp.size_of_bitmap_file, 4);
+	write(g_fd, &g_bmp.reserved_bytes, 4);
+	write(g_fd, &g_bmp.pixel_data_offset, 4);
+	write(g_fd, &g_bmp.size_of_this_header, 4);
+	write(g_fd, &g_bmp.width, 4);
+	write(g_fd, &g_bmp.height, 4);
+	write(g_fd, &g_bmp.number_of_color_planes, 2);
+	write(g_fd, &g_bmp.color_depth, 2);
+	write(g_fd, &g_bmp.compression_method, 4);
+	write(g_fd, &g_bmp.raw_bitmap_data_size, 4);
+	write(g_fd, &g_bmp.horizontal_resolution, 4);
+	write(g_fd, &g_bmp.vertical_resolution, 4);
+	write(g_fd, &g_bmp.color_table_entries, 4);
 	write(g_fd, &g_bmp.important_colors, 4);
 }
 
@@ -67,19 +65,19 @@ void	write_file(void)
 	unsigned int		i;
 	int					j;
 
-	if (!(pixel_array = malloc(sizeof(char) * g_bmp.image_size)))
+	if (!(pixel_array = malloc(sizeof(char) * g_bmp.raw_bitmap_data_size)))
 		my_exit("Problem with bitmap file.");
-	i = -1;
+	i = 0;
 	j = 0;
-	g_bmp.image_size /= 4;
-	while (++i < g_bmp.image_size)
+	g_bmp.raw_bitmap_data_size /= 3;
+	while (i < g_bmp.raw_bitmap_data_size)
 	{
 		pixel_array[j++] = g_mlx.addr[i] & 255;
 		pixel_array[j++] = (g_mlx.addr[i] & 255 << 8) >> 8;
 		pixel_array[j++] = (g_mlx.addr[i] & 255 << 16) >> 16;
-		j++;
+		i++;
 	}
-	write(g_fd, pixel_array, g_bmp.image_size *= 4);
+	write(g_fd, pixel_array, g_bmp.raw_bitmap_data_size *= 3);
 	free(pixel_array);
 }
 
